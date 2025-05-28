@@ -1,0 +1,31 @@
+# Book settings
+title: Bioinformatics 101
+author: Gamaliel Cabria
+logo: logo.png
+
+# Force re-execution of notebooks on each build
+execute:
+  execute_notebooks: force
+
+# PDF output settings
+latex:
+  latex_documents:
+    targetname: BioinformaticsTraining_101.tex
+
+# Bibliography
+bibtex_bibfiles:
+  - references.bib
+
+# Web location (optional, fix these if using them)
+repository:
+  url: https://github.com/gamalielcabria/gamalielcabria.github.io
+  path_to_book: _source  # Your actual source folder
+  branch: main
+
+# GitHub buttons
+html:
+  use_issues_button: true
+  use_repository_button: true
+
+  # Important for GitHub Pages in a subdirectory
+  baseurl: /book/Intro2Bash/

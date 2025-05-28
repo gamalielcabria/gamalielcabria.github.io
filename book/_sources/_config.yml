@@ -1,7 +1,0 @@
-# Jupyter Book Configuration
-
-title: Intro to Bash
-author: Gamaliel Cabria
-
-html:
-  baseurl: /book/Intro2Bash/

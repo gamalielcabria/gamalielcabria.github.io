@@ -30,10 +30,12 @@ jobs:
           cp -r book/_sources/_build/html/* book/Intro2Bash/
 
       - name: Commit and Push Built Book
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add book/Intro2Bash
           git commit -m "Update Intro2Bash HTML" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git push origin main

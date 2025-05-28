@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Jupyter Book
         run: |
-          jupyter-book build _sources
+          jupyter-book build book/_sources
           rm -rf book/Intro2Bash
           mkdir -p book/Intro2Bash
           cp -r book/_sources/_build/html/* book/Intro2Bash/

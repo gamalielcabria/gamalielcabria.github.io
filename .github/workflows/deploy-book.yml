@@ -26,7 +26,7 @@ jobs:
           jupyter-book build _sources
           rm -rf book/Intro2Bash
           mkdir -p book/Intro2Bash
-          cp -r _sources/_build/html/* book/Intro2Bash/
+          cp -r book/_sources/_build/html/* book/Intro2Bash/
 
       - name: Commit built book
         run: |

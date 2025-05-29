@@ -9,7 +9,7 @@ nav_order: 1
 
 Unix is an OS that originated from the 1960s and directly or indirectly the ancestors of most OS you can see today (Ubuntu, macOS, Android). However, whenever we say "unix or unix-like environment", it often pertains to the command-line interface that are associated with programming and computer science. Before we start the tutorial, let us brief on the terminologies you'll often hear.
 
-<div class="term_table">
+
     
 |**Terminologies**|**Definitions**|
 |---|---|
@@ -20,8 +20,6 @@ Unix is an OS that originated from the 1960s and directly or indirectly the ance
 |CLI|is the primary interface in which you interact with the computer through inputting lines of text or *command-lines*. CLI is often run in ***terminals*** such as *command prompt* in Windows|
 |BASH|is a common programming language used in a unix-like environment. Primarily run through CLI|
 |HPC or high performance computing| the ability to run programs with large number of cores or memory (RAMs). Primarily done in supercomputers or computer clusters|
-
-</div>
 
 ## Bioinformatics and the Unix' CLI
 
@@ -278,7 +276,7 @@ To remove files, use the command `rm`. For folders with items in it, the command
 
 <br>
 
-### <ins>Exercise 2: Creating files and folders</ins>
+## <ins>Exercise 2: Creating files and folders</ins>
 
 Let us test some skills you should have learn by now. Please do the following instructions:
 1. Go to your username's home folder
@@ -300,7 +298,7 @@ If there are any questions and problems. Do not hesitate to ask.
 
 ## Tips and Summary
 Basic Unix-like environment terms
-<div class=term_table>  
+
 
 |**Terminologies**|**Definitions**|
 |---|---|
@@ -315,10 +313,10 @@ Basic Unix-like environment terms
 |`./`|In relative path, this indicate the CWD|
 |`../`|In relative path, this indicate the folder above the CWD|
 |`-`|When running the `cd` command, `-` represents the previous working directory|
-</div>
+
 
 Commands in this lecture:
-<div class=term_table>  
+
 
 |**Commands**|**Definitions**|
 |---|---|
@@ -337,7 +335,7 @@ Commands in this lecture:
 |`nano`|A text-editor. Create a file by running `nano <filename>`|
 |`vim`|Another text-editor similar to previous one|
 |--help|is a *flag* that aids in identifying all the arguments of most of the command displayed above|
-</div>
+
 
 # Acknowledgement
 This tutorial is adapted from *Intro to Unix* from Happy Belly Bioinformatics by Michael D. Lee or known as [AstroBioMike in github](https://astrobiomike.github.io/unix/).

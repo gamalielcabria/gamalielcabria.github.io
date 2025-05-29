@@ -58,6 +58,7 @@ Other than your local desktop, there are ways to access the servers through comm
 # <ins>Exercise 1: Accessing Terminal</ins>
 For this exercise we will be utilising a web-based terminal through the Binder and JupyterLab interface. 
 
+{: note }
 > 📝 **Note:**  JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
 
 To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bioinformatics <cite>(Lee, 2019)</cite>:
@@ -68,6 +69,7 @@ To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bio
 4. Open the *Terminal* as shown.
 
 
+{: note }
 > 📝 **Note:** Another option to practice is using the online terminal/linux simulation website [**Webminal**](https://webminal.org/)
 >> It requires registration but allows persistent memory in which you can save files generated.
 
@@ -172,16 +174,19 @@ The root `/` contains the folder `bin`, `dev` and `home` among others while `hom
 <br>
 
 To display again all the files and folder within that location, you can run ```ls```. There should appear the file ```example.txt``` along with all other file.
+{: .highlight }
 > ✅ **Notice**: Running only ```ls``` shows you just the name of the file.
 > However, try running ```ls -l``` and it should show you all the specifications of the file.
 > This includes the accessibility of the file as indicated by *`drwx`*. The user who made the file (*jovyan*).
 > The usergroup that has access to the file (*jovyan*). The filesize in bytes (*4096/1592*) and the files and folders.
 > The folders here are displayed in blue bold fonts while individual files are in white/black font.
->
+
+{: .warning }
 > ⚠️ **Warning**: Not all terminals has color distinction between files and folders. Better to check 'fileszie' as all folders has attribute of *4096*
 
 There are two types of filepath: **absolute path** and **relative path**. The absolute path is the location of the file from the ***root*** of the drive (e.g. /home/jovyan/unix_intro/example.txt) while relative path is the location of the file depending on your CWD (e.g. example.txt or ./example.txt). 
->📝 **Note**: In ```./example.txt``` the dot before the forward slash'/' indicates that it is the current directory ```/home/jovyan/unix_intro/```.
+{: .note }
+> 📝 **Note**: In ```./example.txt``` the dot before the forward slash'/' indicates that it is the current directory ```/home/jovyan/unix_intro/```.
 >Meanwhile, ```../``` indicates of the path above the current workind directory.
 >In this case, ```../``` indicates the folder ```/home/jovyan/```.
 

@@ -12,17 +12,22 @@ Let us return to our home directory `cd ~`. In this directory, create three fold
 
 Afterwards, try typing `head te` and tap the **tab button** once. As you can see, it should auto-complete it to test as it is the next complete `string` without conflict in our folder. Now, that we have `head test` in our line, try tapping the **tab button** twice. It should ring a bell and prompt all possible matches with our initial user input.
 
+{: .activity }
 >```test11   test20   test21```
 
 <br>
 
 ## Wildcards
 Sometimes, we need to work on multiple files folders at the same time but they have different names (e.g. the test1, test 20 and test21). The default command-line shell that we are using allows manipulation of the files through the use of special characters called wildcards `*`. 
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```ls te*```
 
 The above command results in listing all files in the folder that starts with `te`. This can be used also in a more specific manner. 
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```ls test*1```
@@ -32,8 +37,10 @@ Using the wildcard within the string matches anyword that starts with `test` and
 {: .note }
 > 📝 **Note:** At the command line, the * means any character, any number of times (including 0 times).
 
-
 Let us try removing all the folder we made earlier that start with `test` simultaneously:
+
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```rm -r test*```
@@ -46,6 +53,7 @@ Let us try removing all the folder we made earlier that start with `test` simult
 ### **The Question Mark**
 Another type of wildcard is the use of `?` mark. Unlike the `*` which can match 1 or more strings e.g. (`test11111` and `test11`), the use of `test*1` will match both files while use of `test?1` will only match `test11`.
 
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```ls test?1```
@@ -60,16 +68,17 @@ The redirection symbols allow the change of destination of outputs (oe even inpu
 
 ---
 ### **The '>' and '<'**
-The '>' redirector indicates that the output of any command or process on its left will be transferred to a file indicated on its right. It's most basic structure follows this: ```[command] [any arguments] > [output file]```
+The '>' redirector indicates that the output of any command or process on its left will be transferred to a file indicated on its right. It's most basic structure follows this:
+> ```[command] [any arguments] > [output file]```
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
->```ls -all > list.txt```
->
->then, open `list.txt`
+>```ls -all > list.txt```, then open `list.txt`
 
-```{warning}
-Be warned that using an `>` output redirector with an output file that already exists in the destination will lead to the overwriting of that file. To append an existing file (adding output on the end of the file), please use the append `>>` redirector instead.
-```
+{:.warning}
+>Be warned that using an `>` output redirector towards an **output file that already exists** in the destination will lead to the **overwriting** of that file. To append an existing file (adding output on the end of the file), please use the append `>>` redirector instead.
+
 
 Meanwhile, the '<' redirector indicates  that the file in the right of the `<` will be used as an input to the command to its left: ```[command][options/arguments] < [input file]```
 >***<ins>Example:</ins>***
@@ -79,13 +88,16 @@ Meanwhile, the '<' redirector indicates  that the file in the right of the `<` w
 
 In this example, we can add the attachment `NewsFlash.zip` to the command line `mail` command rather than just sending plain text for email. 
 
-```{note}
-The `mail` command is command-line command used to send email. It is useful to incorporate in programs or scripts that need immediate notification to the user if they have errors or the run have finished.
-```
+{:.info}
+>The `mail` command is command-line command used to send email. It is useful to incorporate in programs or scripts that need immediate notification to the user if they have errors or the run have finished.
+
 
 ---
 ### **The pipe '|'**
-If you want your output to be redirected not into a file but to another process or command, the `|` or pipe redirector is primarily used. It can be used not only once on a line but can be used to chain several commands to gether. A basic structure would look like this: `[command 1] | [command 2] | [command 3] > [output file or STDOUT]`
+If you want your output to be redirected not into a file but to another process or command, the `|` or pipe redirector is primarily used. It can be used not only once on a line but can be used to chain several commands to gether. A basic structure would look like this: 
+>`[command 1] | [command 2] | [command 3] > [output file or STDOUT]`
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```ls ./data/all | head -n 20 > list.txt```
@@ -103,21 +115,30 @@ The 'error' redirector `2>` can be used alongside a 'output' redirector but desi
 ## Sequence File Formats
 Sequencing of DNA and RNA often produce signals of light, chromatogram peaks or electric current as an indication of a nucleotide base. These raw signals are converted into ASCII or computer friendly code using a 'basecaller' or basecalling program. Most of the files that we analysed in bioinformatic analysis are already in this ASCII or alphanumeric format that is readable to both machines and humans.
 
+{: .info }
 To learn more about basecaller, please look into in this [nanopore guide](https://nanoporetech.com/platform/technology/basecalling).
 
 ## The  FASTQ format
-The most common file format after basecalling is the ***fastq*** format or colloquially known as *Quality FASTA* format. The fastq files contained both nucleotide sequence information, represented with characters as AGCTN*, and the quality score of each nucleotide, which are represented by different alphanumeric characters. The quality score is based on **Phred Q Score** system in which quality is computed as probabilty of error *Pe* [2], as computed by this equation: 
+The most common file format after basecalling is the ***fastq*** format or colloquially known as *Quality FASTA* format. The fastq files contained both nucleotide sequence information, represented with characters as `AGCTN*`, and the quality score of each nucleotide, which are represented by different alphanumeric characters. The quality score is based on **Phred Q Score** system in which quality is computed as probabilty of error *Pe* [2], as computed by this equation: 
+
+{: .activity }
 >`Qphred=-10 x log10(Pe)`
 
-The fastQ file format is composed of four lines:
-1. Line 1 is the sequence identifier and description and commonly known as *header*. It often starts with '@' symbol and followed with sequencing information such as sequencer and flow cell lane used.
-2. The second line contains the RAW sequence data and denoted using `AGCT` characters used in FASTA file.
-3. Line 3 contains the `+` symbol that separates sequences and quality
-4. The fourthe line meanwhiles contains the quality score of the file in Phred Score Format
-
+An example of a **fastq** file:
 <div class="image3">
 <img src="https://biocorecrg.github.io/RNAseq_course_2019/images/fastq_format.png" alt="Sourced from https://biocorecrg.github.io/RNAseq_course_2019/fastq.html">
 </div>
+
+{: .highlight}
+>The FASTQ format consists of four lines:
+>
+>1. **Header** — Starts with `@`, followed by a sequence ID and metadata.
+>2. **Sequence** — The raw nucleotide sequence (e.g., `AGCT...`).
+>3. **Separator** — A `+` symbol separating the sequence and quality.
+>4. **Quality** — ASCII-encoded Phred quality scores.
+
+
+
 
 ### Phred Score
 The quality scores ranges from 0-40 with 40 indicating the highest level of quality. Phred quality score can be interpreted as a factor of accuracy as shown in this table:
@@ -137,9 +158,9 @@ The ASCII representation of this quality score in fastq files can be seen in thi
 </div>
 <br>
 
-```{note}
+{: .note}
 Phred-64 format is only used by Illumina sequencers while Phred-33 is primarily used by other sequencing file format.
-```
+
 
 ## The  FASTA format
 
@@ -172,9 +193,9 @@ Here is a sample of a protein FASTA file:
 <center><ins>Protein FASTA File</ins></center>
 </div>
 
-```{warning}
-The two formats should not be used at the same file as the nucleotide fasta format can be interpreted as a protein fasta file.
-```
+{: .warning}
+>The two formats should not be used at the same file as the nucleotide fasta format can be interpreted as a protein fasta file.
+
 
 <br>
 

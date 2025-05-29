@@ -7605,7 +7605,7 @@ p.info, blockquote.info {
 }
 p.info::before, blockquote.info::before {
   color: #e7af06;
-  content: "💡 Tip";
+  content: "💡 Info";
   display: block;
   font-weight: bold;
   text-transform: uppercase;
@@ -7723,6 +7723,62 @@ blockquote.save-title > p:nth-child(2) {
   margin-top: 0;
 }
 blockquote.save-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.activity, blockquote.activity {
+  background: rgba(245, 246, 250, 0.2);
+  border-left: 4px solid #e6e1e8;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.activity > .activity-title, blockquote.activity > .activity-title {
+  color: #e6e1e8;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.activity-title, blockquote.activity-title {
+  background: rgba(245, 246, 250, 0.2);
+  border-left: 4px solid #e6e1e8;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.activity-title > p:first-child, blockquote.activity-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e6e1e8;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.activity {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.activity > p:first-child {
+  margin-top: 0;
+}
+blockquote.activity > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.activity-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.activity-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.activity-title > p:last-child {
   margin-bottom: 0;
 }
 

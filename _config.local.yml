@@ -16,12 +16,14 @@ callouts:
     title: ✅ Notice
     color: yellow
   info:
-    title: 💡 Tip
+    title: 💡 Info
     color: yellow
   save:
     title: 💾
     color: yellow
+  activity:
+    color: grey-lt
   
     
 callouts_level: quiet    
-callouts_opacity: 0.2      
+callouts_opacity: 0.2    

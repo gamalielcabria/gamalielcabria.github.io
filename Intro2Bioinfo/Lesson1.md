@@ -58,8 +58,8 @@ Other than your local desktop, there are ways to access the servers through comm
 # <ins>Exercise 1: Accessing Terminal</ins>
 For this exercise we will be utilising a web-based terminal through the Binder and JupyterLab interface. 
 
-{: note }
-> 📝 **Note:**  JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
+{: .info }
+>JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
 
 To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bioinformatics <cite>(Lee, 2019)</cite>:
 1. Open a Firefox (Preferrably)
@@ -69,17 +69,18 @@ To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bio
 4. Open the *Terminal* as shown.
 
 
-{: note }
+{: .note }
 > 📝 **Note:** Another option to practice is using the online terminal/linux simulation website [**Webminal**](https://webminal.org/)
->> It requires registration but allows persistent memory in which you can save files generated.
+>> <em><b>It requires registration but allows persistent memory in which you can save files generated.</b></em>
 
 <br>
 
 # Working with Terminals
 ## Structure of a terminal command
 
-***<ins>Try running this command:</ins>***
-
+{: .activity }
+>***<ins>Try running this command:</ins>***
+>
 >``` [/home/jovyan/unix_intro]$ ls /home/jovyan/ --all ```
 
 The basic structure of command line interface often shows the current working directory ```[/home/joyvan/unix_intro]``` and followed by the ```$```. Everything on the right of the ```$``` are ***user inputed commands***. Its structure often follow this structure:
@@ -105,6 +106,7 @@ The basic structure of command line interface often shows the current working di
 
 In the above example, it followed the first structure. The `ls` is a command with the argument ```[FILE] ``` showing the location or path of the file/folder of interest and is shown here as ```/home/jovyan/```. The option here is ```--all``` which reveals all file and folder hidden. 
 
+{: .activity }
 >Running the above code should display all files within the ```FILE``` path indicated:
 >```
 >$ ls /home/jovyan/ --all
@@ -125,24 +127,34 @@ drwxr-xr-x 3 jovyan jovyan 4096 Sep 17 17:28 .local
 drwxr-xr-x 5 jovyan jovyan 4096 Dec  7  2022 unix_intro
 >```
 
-To learn more about the options of a program you can run ```man <program>``` to show its manual or ```<program/command> --help``` or ```<program/command> -h``` to show its help page. 
-> <ins>**Try Running this code**:</ins> ```ls --help``` to see the other arguments of the program.
+To learn more about the options of a program you can run ```man <program>``` to show its manual or ```<program/command> --help``` or ```<program/command> -h``` to show its help page.
+ 
+{: .activity }
+> <ins>**Try Running this code**:</ins> 
+>
+>```ls --help``` to see the other arguments of the program.
 > 
-> 📝 **Note**: Not all programs or commands have a manual or help page.
+> {: .note }
+> Not all programs or commands have a manual or help page.
 
 <br>
 
 ## Running Commands
 
-***<ins>Try running this command:</ins>***
+{: .activity }
+>***<ins>Try running this command:</ins>***
 >```head -n 5 example.txt```
 
-The command structure often has flexibility (not always) and you can run the options before the arguments or vice versa as shown above. The options ```-n 5``` was run here in front of the arguments ```example.txt```. The argument states the ```[File]``` that needs to be open. The abovesaid command works differently when you run it without the option ```-n 5```. 
+The command structure often has flexibility (**not always**) and you can run the options before the arguments or vice versa as shown above. The options ```-n 5``` was run here in front of the arguments ```example.txt```. The argument states the ```[File]``` that needs to be open. The abovesaid command works differently when you run it without the option ```-n 5```. 
+
+{: .activity }
 ><ins>**Try Running this code**:</ins> ```head example.txt```
 
 Without the ```-n 5```  option, the ```head``` command displays the first 10 lines of the text by default. Giving the ```-n 5``` option forcefully change the output to the first five lines. Changing the option yields different number of lines you will display.
 
 Other command that display text files are ```tail```, ```more```, ```less```, and others. The command ```tail``` is the opposite of ```head``` and displays the lines from the bottom of the text. The ```more``` command displays all the lines in the text file after the comman-line while ```less``` displays the text files on a separate screen. 
+
+{: .activity }
 >***<ins>Try running these commmands</ins>***
 >
 >```tail```, ```more```, ```less```
@@ -150,8 +162,12 @@ Other command that display text files are ```tail```, ```more```, ```less```, an
 <br>
 
 ## Filepaths 
-When running the commands before, we only specify ```example.txt```. This is because the ```example.txt``` is already located in our **current working directory(CWD)**. To check our **CWD**, we can just look to the left of ```$``` or subsequently <ins>***try running the command***</ins>: 
->```pwd```
+When running the commands before, we only specify ```example.txt```. This is because the ```example.txt``` is already located in our **current working directory(CWD)**. To check our **CWD**, we can just look to the left of ```$``` or subsequently `pwd`.
+
+{: .activity }
+><ins>***try running the command***</ins>: 
+>
+>`pwd`
 
 The ```pwd``` command should display your current location: ```/home/jovyan/unix_intro```. The filepath describes the address or location from the ***root```/```*** and all the folders below it: ```jovyan``` and ```unix_intro```. The subsequent forward slash```/``` after home are separator to determine the hierarchy of folders within the path. 
 
@@ -176,28 +192,31 @@ The root `/` contains the folder `bin`, `dev` and `home` among others while `hom
 To display again all the files and folder within that location, you can run ```ls```. There should appear the file ```example.txt``` along with all other file.
 
 {:.notice}
-> Running only ```ls``` shows you just the name of the file.
-> However, try running ```ls -l``` and it should show you all the specifications of the file.
-> This includes the accessibility of the file as indicated by *`drwx`*. The user who made the file (*jovyan*).
-> The usergroup that has access to the file (*jovyan*). The filesize in bytes (*4096/1592*) and the files and folders.
-> The folders here are displayed in blue bold fonts while individual files are in white/black font.
+> `ls` lists file names only.  
+> `ls -l` displays detailed info:  
+>> - Permissions (e.g., `drwx`)  
+>> - Owner and group (e.g., *jovyan*)  
+>> - File size in bytes (e.g., *4096*, *1592*)  
+>> - Files and folders (folders appear in **blue**, files in white/black)
+>
+>{: .warning }
+>> Not all terminals has color distinction between files and folders. Better to check 'filesize' as all folders has attribute of *4096*
 
-{: .warning }
-> Not all terminals has color distinction between files and folders. Better to check 'filesize' as all folders has attribute of *4096*
-
-There are two types of filepath: **absolute path** and **relative path**. The absolute path is the location of the file from the ***root*** of the drive (e.g. /home/jovyan/unix_intro/example.txt) while relative path is the location of the file depending on your CWD (e.g. example.txt or ./example.txt). 
+There are two types of filepath: **absolute path** and **relative path**. The absolute path is the location of the file from the ***root*** of the drive (e.g. `/home/jovyan/unix_intro/example.txt`) while relative path is the location of the file depending on your CWD (e.g. `example.txt` or `./example.txt`). 
 
 {:.note}
-> 📝 **Note**: In ```./example.txt``` the dot before the forward slash `/` indicates that it is the current directory ```/home/jovyan/unix_intro/```.
->Meanwhile, ```../``` indicates of the path above the current workind directory.
->In this case, ```../``` indicates the folder ```/home/jovyan/```.
+> `./` refers to the current directory.  
+> `./example.txt` points to a file in the current directory (e.g., `/home/jovyan/unix_intro/`).  
+> `../` refers to the parent directory (e.g., `/home/jovyan/`).
 
 Therefore, we can have the same result while running the `head` command with the following examples:
+
+{: .activity }
 >`head example.txt`
 >
 >`head ./example.txt`
 >
->`head /home/jovyan/unix_intro/example.txt
+>`head /home/jovyan/unix_intro/example.txt`
 
 Programs and commands can often interchangeably use absolute or relative path but several scripts/programs are created to follow only absolute or relative path. Please check the programs documentation thoroughly to prevent unwanted problems.
 <br><br>
@@ -205,6 +224,8 @@ Programs and commands can often interchangeably use absolute or relative path bu
 ---
 ### Moving paths
 Unlike in GUI which you can use double-click or back button to move between folders and up and down a path, CLI needs to run a command when changing filepath or location. The primary command use to move paths is the ```cd``` or *Change Directory* command. The `cd` command is often follow by either absolute or relative path to change locations.
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```cd ../../```
@@ -219,6 +240,8 @@ Additionally, from this CWD, if we want to go into the subfolders/subdirectories
 We also move files and folders using commands in CLI. To move files and folders we used the command `mv`. The format of this command is `mv <original filepath> <destination filepath>`. The filepaths can be absolute or relative. 
 
 Let us try moving `example.txt` to inside of `data/` folder:
+
+{: .activity }
 >***<ins>Try running this command:</ins>***
 >
 >```mv ./example.txt ./data/```
@@ -230,31 +253,38 @@ Let us try moving `example.txt` to inside of `data/` folder:
 As you can see, the example.txt did not appear now in `./` but is located in `./data/`. We can use similar command when moving folders.  Now, let us move back the file `example.txt` to its original location using ```mv ./data/example.txt .```.
 
 The `mv` command can be used also to rename files and folder. You can try renaming `example.txt` to any other name. An example: `mv example.txt example_edited.txt2`. Run a `ls` afterward.
->⚠️ **Warning**: *Renaming files to a filename that is already existing in the destination path would lead to overwriting of the file in the destination path with the file from the orginal filepath.* 
->>*This is a irreversible process that would lead to the loss of the destination filepath's original content.*
 
+{: .warning }
+>⚠️ Renaming files to a filename that is already existing in the destination path would lead to overwriting of the file in the destination path with the file from the orginal filepath.* 
+>>*This is a irreversible process that would lead to the loss of the destination filepath's original content.*
 <br>
 
 Alternatively, you can copy file instead of moving it. When copying files and folder, run the command `cp <original filepath> <destination filepath>`. These command duplicates your file, so if the file has large sizes ~5-100GB, it might take a while to finish.
->⚠️ **Warning**: *Copying files observed the same pitfalls are the moving command. This command can overwrite the files in the destination path too. Be very careful!!!*
+
+{: .warning }
+>⚠️ *Copying files observed the same pitfalls are the moving command. This command can overwrite the files in the destination path too. Be very careful!!!*
 <br>
 
 ---
 ### Making text files
 
 Files can be created through several ways. Programs can create output files based on their output parameters. You can also create your own `text files` by writing in a text editor. Akin to `notepad` in windows, you can write text files using several programs such as `vim` and `nano`. When creating new text files in this programs, just run the commands:
+
+{: .activity }
 >```nano <path to folder destination>/<filename>```
 >
 >```vim <path to folder destination>/<filename>```
 >
->An example:
->
->```nano ./data/newtextfile.txtextensioniwant```
+>>An example:
+>>```nano ./data/newtextfile.txtextensioniwant```
 
 The previous example would create the text file ```newtextfile.txtextensioniwant``` inside the folder `data/`. If you notice, the file extension (anything beyond `.`) is not written as the usual `.txt` file extension. In most cases in a terminal, you can even drop the extension and it will still be treated as a text file. Extensions are just helpful guides for user to know what type of file or program run those file. More on this will be discuss in future lessons.
-> 📝 **Note**: Windows text editors often have different way of representing `tabs` or `newlines` than in MacOS and Linux OSes and can affect your program or analyses. However, they can still be open and edited in a Linux or MacOS terminal/text editor.
+
+{: .note }
+>Windows text editors often have different way of representing `tabs` or `newlines` than in MacOS and Linux OSes and can affect your program or analyses. However, they can still be open and edited in a Linux or MacOS terminal/text editor.
 >
-> 📝 **Note**: Additionally, Microsoft Word files and other word processor are not recognize as text files as they are save in more elaborate file type.
+>{: .info }
+>> **Microsoft Word files** and other word processor are not recognize as text files as they are save in more elaborate file type.
 
 The two text editors are what are often installed by default in different Linux OSes. Focus on learning just one as both can be overwhelming. To learn more on how to use this text editors, click on this links: [nano](https://www.howtogeek.com/42980/the-beginners-guide-to-nano-the-linux-command-line-text-editor/) and [vim](https://www.freecodecamp.org/news/vim-beginners-guide/)
 
@@ -275,6 +305,8 @@ Lastly, you can create an empty text file using the command `touch <filename>`.
 ### Making folders
 
 For folders, creating a new one requires the command `mkdir <filepath>`. You cannot create a new folder that already exists. The command will output a warning prompt. You can create multiple folders in a single command with multiple input arguments. When running the command, separating the folder names with spaces as shown:
+
+{: .activity }
 >```mkdir test test1 test2 test3```
 
 <br>
@@ -283,6 +315,8 @@ For folders, creating a new one requires the command `mkdir <filepath>`. You can
 ### Removing files and folders
 
 To remove files, use the command `rm`. For folders with items in it, the command often will prompt you that it cannot remove a folder as it is a directory. You can run `rm -r` or the recursive option to delete the folder and all subsequent files inside it.
+
+{: .warning }
 >⚠️ **Warning**: Running this command will permanently delete your files.
 >There is ***no trash bin to recover your files***. So be very paranoid when removing files in important folders.
 >
@@ -296,6 +330,7 @@ To remove files, use the command `rm`. For folders with items in it, the command
 # <ins>Exercise 2: Creating files and folders</ins>
 
 Let us test some skills you should have learn by now. Please do the following instructions:
+
 1. Go to your username's home folder
 2. Create a folder named `Exercise2`
 3. Go to the folder inside `unix_intro` named `six_commands`

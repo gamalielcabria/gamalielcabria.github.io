@@ -4,7 +4,7 @@ parent: Intro to Bioinfo
 nav_order: 1
 ---
 
-# Bioinformatics Training: Lesson 1
+# Lesson 1: The Terminal, the OS, and Bioinfo
 ## "Unix Enviroment" and Bash Guide
 
 Unix is an OS that originated from the 1960s and directly or indirectly the ancestors of most OS you can see today (Ubuntu, macOS, Android). However, whenever we say "unix or unix-like environment", it often pertains to the command-line interface that are associated with programming and computer science. Before we start the tutorial, let us brief on the terminologies you'll often hear.
@@ -29,6 +29,11 @@ In this tutorial, we will dive into the anatomy of a ***command-line interface c
 
 ![Terminal](Intro2Bioinfo/terminal.png)
 <center>A Basic Terminal</center>
+
+Working with **Terminals** is oftern associated with old OSes or Linux. Windows OS also has a command-line interface, commonly known as **Command Prompt** or `cmd`. Additionally, you can have linux experience also within windows using the **Windows Subsystem in Linux** or **WSL2**. 
+
+To install WSL2: Guide to [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+
 
 ### Accessing command-line
 
@@ -278,7 +283,7 @@ To remove files, use the command `rm`. For folders with items in it, the command
 
 <br>
 
-## <ins>Exercise 2: Creating files and folders</ins>
+# <ins>Exercise 2: Creating files and folders</ins>
 
 Let us test some skills you should have learn by now. Please do the following instructions:
 1. Go to your username's home folder
@@ -298,7 +303,7 @@ If there are any questions and problems. Do not hesitate to ask.
 
 <br>
 
-## Tips and Summary
+# Tips and Summary
 Basic Unix-like environment terms
 
 

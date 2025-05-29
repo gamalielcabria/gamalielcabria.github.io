@@ -1,3 +1,8 @@
-theme: jekyll-theme-minimal
+theme: just-the-docs
 title: Gamaliel's Training Homepage
 description: Bookmark this to keep an eye on my project updates!
+
+url: https://gamalielcabria.github.io/gamalielcabria
+
+aux_links:
+  Template Repository: https://github.com/gamalielcabria

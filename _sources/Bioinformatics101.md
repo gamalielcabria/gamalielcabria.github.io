@@ -29,63 +29,8 @@ In this training, we will cover how we perform bioinformatics. It includes the *
 
 </div>
 
-You can access the guide here:
-
-```{tableofcontents}
-```
-
-
-
 ### Version Control
 Version: 1.2a
 Publish Date: 2025 May 07
 
 
-
-```python
-%%html
-<style>
-# Global Table parameters
-# table {float:center; width:70%}
-# tr {float: center; color:black}
-# th {float: center; color:grey}
-
-.term_table table{
-    float: center;
-}
-
-.term_table table tbody td:nth-child(1){
-    font-weight: bold;
-    text-align: center;
-    width: 200px;
-    float:center
-}
-
-.term_table table tbody td:nth-child(2){
-    text-align: center;
-    width: 300px;
-    float:center
-}
-
-.term_table table thead tr{
-    background-color: #b3b3b3;
-    border: 1px solid black
-}
-
-.term_table table tbody tr:nth-child(even){
-    background-color:#e5e5e
-}
-
-.image {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-</style>
-```
-
-
-```python
-
-```

@@ -7,7 +7,7 @@ permalink: /Intro2Bioinfo/
 
 # Bioinformatics 101
 
-##  Welcome to Bioinformatics 
+## 🖥️ Welcome to Bioinformatics 
   
 Hi, you might be wondering why are you learning bioinformatics. It may look intimidating but it is just similar to learning a new language. Better! It is learning a way to learn new language easily.
 

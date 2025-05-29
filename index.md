@@ -5,7 +5,7 @@ description: Home page for the documentation
 permalink: /
 ---
 
-# Welcome to Microbial Ecology and Bioinformatics Training Suite
+# 🧬🖥️ Welcome to Microbial Ecology and Bioinformatics Training Suite
 
 Microbial ecology explores the roles, relationships, and diversity of microorganisms in natural environments, from soil and oceans to the human body. These invisible communities drive global biogeochemical cycles, influence climate, and shape ecosystem health. Bioinformatics complements this field by providing computational tools to analyze vast genomic datasets, enabling researchers to uncover microbial functions, interactions, and evolutionary patterns. Together, microbial ecology and bioinformatics reveal the hidden world of microbes and their profound impact on life on Earth.
 

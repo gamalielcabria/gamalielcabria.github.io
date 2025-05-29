@@ -1,0 +1,41 @@
+name: Build and Deploy Jupyter Book to book/Intro2Bash
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Jupyter Book
+        run: pip install -U jupyter-book
+
+      - name: Build the Jupyter Book
+        run: |
+          jupyter-book build _sources
+          rm -rf book/Intro2Bash
+          mkdir -p book/Intro2Bash
+          cp -r _sources/_build/html/* book/Intro2Bash/
+
+      - name: Commit and Push Built Book
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add book/Intro2Bash
+          git commit -m "Update Intro2Bash HTML" || echo "No changes to commit"
+          git push

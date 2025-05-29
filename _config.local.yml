@@ -1,0 +1,4 @@
+theme: just-the-docs
+plugins:
+  - jekyll-seo-tag
+  - jekyll-default-layout

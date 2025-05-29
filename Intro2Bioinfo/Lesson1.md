@@ -27,15 +27,15 @@ Command line interface is primary mode of interaction when running in high perfo
 
 In this tutorial, we will dive into the anatomy of a ***command-line interface command/program*** and learn the basic commands in the terminal and BASH to run your bioinformatic analyses.
 
-![Terminal](Intro2Bioinfo/terminal.png)
-<center>A Basic Terminal</center>
+![Terminal](./images/terminal.png)
+<center><b><em>A Basic Terminal</em></b></center>
 
 Working with **Terminals** is oftern associated with old OSes or Linux. Windows OS also has a command-line interface, commonly known as **Command Prompt** or `cmd`. Additionally, you can have linux experience also within windows using the **Windows Subsystem in Linux** or **WSL2**. 
 
-To install WSL2: Guide to [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+To install WSL2: Windows [Guide to WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)
+<br>
 
-
-### Accessing command-line
+## Accessing command-line
 
 For your personal computers, you can access command-line interface through **command prompt** in Windows OS or the **terminal** app in MacOS and Linux OSes.
 
@@ -55,25 +55,26 @@ Other than your local desktop, there are ways to access the servers through comm
 
 ![ARC OnDemand Login](https://rcs.ucalgary.ca/images/thumb/d/d9/Open_OnDemand_Dashboard.jpg/300px-Open_OnDemand_Dashboard.jpg)
 
-## <ins>Exercise 1: Accessing Terminal</ins>
+# <ins>Exercise 1: Accessing Terminal</ins>
 For this exercise we will be utilising a web-based terminal through the Binder and JupyterLab interface. 
 
->JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
+> 📝 **Note:**  JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
 
 To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bioinformatics <cite>(Lee, 2019)</cite>:
 1. Open a Firefox (Preferrably)
 2. Click this ***[link](https://mybinder.org/v2/gh/AstrobioMike/binder-unix-intro/master?urlpath=lab)*** to open the Binder link
 3. Let the repository load and you should be able to see an image like this:
 ![Binder](https://astrobiomike.github.io/images/binder-app-launch2.png)
-5. Open the *Terminal* as shown.
+4. Open the *Terminal* as shown.
 
 
-
+> 📝 **Note:** Another option to practice is using the online terminal/linux simulation website [**Webminal**](https://webminal.org/)
+>> It requires registration but allows persistent memory in which you can save files generated.
 
 <br>
 
-## Working with Terminals
-### Structure of a terminal command
+# Working with Terminals
+## Structure of a terminal command
 
 ***<ins>Try running this command:</ins>***
 
@@ -129,7 +130,7 @@ To learn more about the options of a program you can run ```man <program>``` to 
 
 <br>
 
-### Running Commands
+## Running Commands
 
 ***<ins>Try running this command:</ins>***
 >```head -n 5 example.txt```
@@ -171,7 +172,7 @@ The root `/` contains the folder `bin`, `dev` and `home` among others while `hom
 <br>
 
 To display again all the files and folder within that location, you can run ```ls```. There should appear the file ```example.txt``` along with all other file.
-> **Notice**: Running only ```ls``` shows you just the name of the file.
+> ✅ **Notice**: Running only ```ls``` shows you just the name of the file.
 > However, try running ```ls -l``` and it should show you all the specifications of the file.
 > This includes the accessibility of the file as indicated by *`drwx`*. The user who made the file (*jovyan*).
 > The usergroup that has access to the file (*jovyan*). The filesize in bytes (*4096/1592*) and the files and folders.
@@ -194,6 +195,7 @@ Therefore, we can have the same result while running the `head` command with the
 Programs and commands can often interchangeably use absolute or relative path but several scripts/programs are created to follow only absolute or relative path. Please check the programs documentation thoroughly to prevent unwanted problems.
 <br><br>
 
+---
 ### Moving paths
 Unlike in GUI which you can use double-click or back button to move between folders and up and down a path, CLI needs to run a command when changing filepath or location. The primary command use to move paths is the ```cd``` or *Change Directory* command. The `cd` command is often follow by either absolute or relative path to change locations.
 >***<ins>Try running this command:</ins>***
@@ -205,6 +207,7 @@ This command should have move you two folders up your previous location. When yo
 Additionally, from this CWD, if we want to go into the subfolders/subdirectories such as `experiment/`, we can just run `cd experiment`. Subsequently, we can return to our previous workind directory by running `cd -`.
 <br><br>
 
+---
 ### Moving and copying files and folders
 We also move files and folders using commands in CLI. To move files and folders we used the command `mv`. The format of this command is `mv <original filepath> <destination filepath>`. The filepaths can be absolute or relative. 
 
@@ -220,17 +223,16 @@ Let us try moving `example.txt` to inside of `data/` folder:
 As you can see, the example.txt did not appear now in `./` but is located in `./data/`. We can use similar command when moving folders.  Now, let us move back the file `example.txt` to its original location using ```mv ./data/example.txt .```.
 
 The `mv` command can be used also to rename files and folder. You can try renaming `example.txt` to any other name. An example: `mv example.txt example_edited.txt2`. Run a `ls` afterward.
->⚠️ **Warning**: Renaming files to a filename that is already existing in the destination path would lead to overwriting of the file in the destination path with the file from the orginal filepath.
->This is a irreversible process that would lead to the loss of the destination filepath's original content.
+>⚠️ **Warning**: *Renaming files to a filename that is already existing in the destination path would lead to overwriting of the file in the destination path with the file from the orginal filepath.* 
+>>*This is a irreversible process that would lead to the loss of the destination filepath's original content.*
 
 <br>
 
 Alternatively, you can copy file instead of moving it. When copying files and folder, run the command `cp <original filepath> <destination filepath>`. These command duplicates your file, so if the file has large sizes ~5-100GB, it might take a while to finish.
->⚠️ **Warning**: Copying files observed the same pitfalls are the moving command. This command can overwrite the files in the destination path too. Be very careful!!!
-
-
+>⚠️ **Warning**: *Copying files observed the same pitfalls are the moving command. This command can overwrite the files in the destination path too. Be very careful!!!*
 <br>
 
+---
 ### Making text files
 
 Files can be created through several ways. Programs can create output files based on their output parameters. You can also create your own `text files` by writing in a text editor. Akin to `notepad` in windows, you can write text files using several programs such as `vim` and `nano`. When creating new text files in this programs, just run the commands:
@@ -260,9 +262,9 @@ The two text editors are what are often installed by default in different Linux 
 </div>
 
 Lastly, you can create an empty text file using the command `touch <filename>`.
-
 <br>
 
+---
 ### Making folders
 
 For folders, creating a new one requires the command `mkdir <filepath>`. You cannot create a new folder that already exists. The command will output a warning prompt. You can create multiple folders in a single command with multiple input arguments. When running the command, separating the folder names with spaces as shown:
@@ -270,6 +272,7 @@ For folders, creating a new one requires the command `mkdir <filepath>`. You can
 
 <br>
 
+---
 ### Removing files and folders
 
 To remove files, use the command `rm`. For folders with items in it, the command often will prompt you that it cannot remove a folder as it is a directory. You can run `rm -r` or the recursive option to delete the folder and all subsequent files inside it.

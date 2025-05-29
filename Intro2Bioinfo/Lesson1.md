@@ -27,6 +27,9 @@ Command line interface is primary mode of interaction when running in high perfo
 
 In this tutorial, we will dive into the anatomy of a ***command-line interface command/program*** and learn the basic commands in the terminal and BASH to run your bioinformatic analyses.
 
+![Terminal](Intro2Bioinfo/terminal.png)
+<center>A Basic Terminal</center>
+
 ### Accessing command-line
 
 For your personal computers, you can access command-line interface through **command prompt** in Windows OS or the **terminal** app in MacOS and Linux OSes.
@@ -47,7 +50,7 @@ Other than your local desktop, there are ways to access the servers through comm
 
 ![ARC OnDemand Login](https://rcs.ucalgary.ca/images/thumb/d/d9/Open_OnDemand_Dashboard.jpg/300px-Open_OnDemand_Dashboard.jpg)
 
-### <ins>Exercise 1: Accessing Terminal</ins>
+## <ins>Exercise 1: Accessing Terminal</ins>
 For this exercise we will be utilising a web-based terminal through the Binder and JupyterLab interface. 
 
 >JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online.
@@ -64,6 +67,7 @@ To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bio
 
 <br>
 
+## Working with Terminals
 ### Structure of a terminal command
 
 ***<ins>Try running this command:</ins>***
@@ -79,7 +83,6 @@ The basic structure of command line interface often shows the current working di
 
 
 <center><em><b>What do these terms mean:</b></em></center> 
-<div class="term_table">
     
 |**Terminologies**|**Definitions**|
 |---|---|
@@ -90,7 +93,6 @@ The basic structure of command line interface often shows the current working di
 ||Options are often key-value pairs with the keys indicates as ```--keys``` and the ```values``` are the one indicated after a space or ```=```|
 |Flags|Options that do not have key-value pair (e.g. --all above)|
 
-</div>
 
 
 In the above example, it followed the first structure. The `ls` is a command with the argument ```[FILE] ``` showing the location or path of the file/folder of interest and is shown here as ```/home/jovyan/```. The option here is ```--all``` which reveals all file and folder hidden. 
@@ -139,7 +141,7 @@ Other command that display text files are ```tail```, ```more```, ```less```, an
 
 <br>
 
-### Filepaths 
+## Filepaths 
 When running the commands before, we only specify ```example.txt```. This is because the ```example.txt``` is already located in our **current working directory(CWD)**. To check our **CWD**, we can just look to the left of ```$``` or subsequently <ins>***try running the command***</ins>: 
 >```pwd```
 
@@ -187,7 +189,7 @@ Therefore, we can have the same result while running the `head` command with the
 Programs and commands can often interchangeably use absolute or relative path but several scripts/programs are created to follow only absolute or relative path. Please check the programs documentation thoroughly to prevent unwanted problems.
 <br><br>
 
-#### Moving paths
+### Moving paths
 Unlike in GUI which you can use double-click or back button to move between folders and up and down a path, CLI needs to run a command when changing filepath or location. The primary command use to move paths is the ```cd``` or *Change Directory* command. The `cd` command is often follow by either absolute or relative path to change locations.
 >***<ins>Try running this command:</ins>***
 >
@@ -198,7 +200,7 @@ This command should have move you two folders up your previous location. When yo
 Additionally, from this CWD, if we want to go into the subfolders/subdirectories such as `experiment/`, we can just run `cd experiment`. Subsequently, we can return to our previous workind directory by running `cd -`.
 <br><br>
 
-#### Moving and copying files and folders
+### Moving and copying files and folders
 We also move files and folders using commands in CLI. To move files and folders we used the command `mv`. The format of this command is `mv <original filepath> <destination filepath>`. The filepaths can be absolute or relative. 
 
 Let us try moving `example.txt` to inside of `data/` folder:
@@ -224,7 +226,7 @@ Alternatively, you can copy file instead of moving it. When copying files and fo
 
 <br>
 
-#### Making text files
+### Making text files
 
 Files can be created through several ways. Programs can create output files based on their output parameters. You can also create your own `text files` by writing in a text editor. Akin to `notepad` in windows, you can write text files using several programs such as `vim` and `nano`. When creating new text files in this programs, just run the commands:
 >```nano <path to folder destination>/<filename>```
@@ -256,14 +258,14 @@ Lastly, you can create an empty text file using the command `touch <filename>`.
 
 <br>
 
-#### Making folders
+### Making folders
 
 For folders, creating a new one requires the command `mkdir <filepath>`. You cannot create a new folder that already exists. The command will output a warning prompt. You can create multiple folders in a single command with multiple input arguments. When running the command, separating the folder names with spaces as shown:
 >```mkdir test test1 test2 test3```
 
 <br>
 
-#### Removing files and folders
+### Removing files and folders
 
 To remove files, use the command `rm`. For folders with items in it, the command often will prompt you that it cannot remove a folder as it is a directory. You can run `rm -r` or the recursive option to delete the folder and all subsequent files inside it.
 >⚠️ **Warning**: Running this command will permanently delete your files.
@@ -343,48 +345,3 @@ This tutorial is adapted from *Intro to Unix* from Happy Belly Bioinformatics by
 # Citation
 [1] Lee, (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053
 
-
-
-```python
-%%html
-<style>
-# Global Table parameters
-# table {float:center; width:70%}
-# tr {float: center; color:black}
-# th {float: center; color:grey}
-
-.term_table table{
-    float: center;
-}
-
-.term_table table tbody td:nth-child(1){
-    font-weight: bold;
-    text-align: center;
-    width: 200px;
-    float:center
-}
-
-.term_table table tbody td:nth-child(2){
-    text-align: center;
-    width: 300px;
-    float:center
-}
-
-.term_table table thead tr{
-    background-color: #b3b3b3;
-    border: 1px solid black
-}
-
-.term_table table tbody tr:nth-child(even){
-    background-color:#e5e5e
-}
-
-.image {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-}
-
-</style>
-    
-```

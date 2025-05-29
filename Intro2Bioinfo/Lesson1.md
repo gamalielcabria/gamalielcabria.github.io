@@ -175,14 +175,14 @@ The root `/` contains the folder `bin`, `dev` and `home` among others while `hom
 
 To display again all the files and folder within that location, you can run ```ls```. There should appear the file ```example.txt``` along with all other file.
 
+{:.highlight}
 > ✅ **Notice**: Running only ```ls``` shows you just the name of the file.
 > However, try running ```ls -l``` and it should show you all the specifications of the file.
 > This includes the accessibility of the file as indicated by *`drwx`*. The user who made the file (*jovyan*).
 > The usergroup that has access to the file (*jovyan*). The filesize in bytes (*4096/1592*) and the files and folders.
 > The folders here are displayed in blue bold fonts while individual files are in white/black font.
-{:.highlight}
 
-{:.Warning}
+{:.highlight}
 > ⚠️ **Warning**: Not all terminals has color distinction between files and folders. Better to check 'fileszie' as all folders has attribute of *4096*
 
 

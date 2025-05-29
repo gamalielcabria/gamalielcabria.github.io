@@ -182,13 +182,13 @@ To display again all the files and folder within that location, you can run ```l
 > The usergroup that has access to the file (*jovyan*). The filesize in bytes (*4096/1592*) and the files and folders.
 > The folders here are displayed in blue bold fonts while individual files are in white/black font.
 
-{:.highlight}
+{: .warning }
 > ⚠️ **Warning**: Not all terminals has color distinction between files and folders. Better to check 'fileszie' as all folders has attribute of *4096*
 
 
 There are two types of filepath: **absolute path** and **relative path**. The absolute path is the location of the file from the ***root*** of the drive (e.g. /home/jovyan/unix_intro/example.txt) while relative path is the location of the file depending on your CWD (e.g. example.txt or ./example.txt). 
 
-{: .note }
+{:.note}
 > 📝 **Note**: In ```./example.txt``` the dot before the forward slash'/' indicates that it is the current directory ```/home/jovyan/unix_intro/```.
 >Meanwhile, ```../``` indicates of the path above the current workind directory.
 >In this case, ```../``` indicates the folder ```/home/jovyan/```.

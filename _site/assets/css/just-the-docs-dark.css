@@ -7609,4 +7609,264 @@ div.opaque {
   background-color: #27262b;
 }
 
+p.note, blockquote.note {
+  background: rgba(44, 132, 250, 0.2);
+  border-left: 4px solid #183385;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.note::before, blockquote.note::before {
+  color: #183385;
+  content: "Note";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.note > .note-title, blockquote.note > .note-title {
+  color: #183385;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.note-title, blockquote.note-title {
+  background: rgba(44, 132, 250, 0.2);
+  border-left: 4px solid #183385;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.note-title > p:first-child, blockquote.note-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #183385;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.note {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.note > p:first-child {
+  margin-top: 0;
+}
+blockquote.note > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.note-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.note-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.note-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.warning, blockquote.warning {
+  background: rgba(247, 126, 126, 0.2);
+  border-left: 4px solid #dd2e2e;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.warning::before, blockquote.warning::before {
+  color: #dd2e2e;
+  content: "⚠️ Warning";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.warning > .warning-title, blockquote.warning > .warning-title {
+  color: #dd2e2e;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.warning-title, blockquote.warning-title {
+  background: rgba(247, 126, 126, 0.2);
+  border-left: 4px solid #dd2e2e;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.warning-title > p:first-child, blockquote.warning-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #dd2e2e;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.warning {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.warning > p:first-child {
+  margin-top: 0;
+}
+blockquote.warning > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.warning-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.warning-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.warning-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.tip, blockquote.tip {
+  background: rgba(65, 214, 147, 0.2);
+  border-left: 4px solid #026e57;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.tip::before, blockquote.tip::before {
+  color: #026e57;
+  content: "💡 Tip";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.tip > .tip-title, blockquote.tip > .tip-title {
+  color: #026e57;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.tip-title, blockquote.tip-title {
+  background: rgba(65, 214, 147, 0.2);
+  border-left: 4px solid #026e57;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.tip-title > p:first-child, blockquote.tip-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #026e57;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.tip {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.tip > p:first-child {
+  margin-top: 0;
+}
+blockquote.tip > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.tip-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.tip-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.tip-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.highlight, blockquote.highlight {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.highlight::before, blockquote.highlight::before {
+  color: #e7af06;
+  content: "💡 Tip";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.highlight > .highlight-title, blockquote.highlight > .highlight-title {
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.highlight-title, blockquote.highlight-title {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.highlight-title > p:first-child, blockquote.highlight-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.highlight {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.highlight > p:first-child {
+  margin-top: 0;
+}
+blockquote.highlight > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.highlight-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.highlight-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.highlight-title > p:last-child {
+  margin-bottom: 0;
+}
+
 /*# sourceMappingURL=just-the-docs-dark.css.map */

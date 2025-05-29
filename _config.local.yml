@@ -2,3 +2,14 @@ theme: just-the-docs
 plugins:
   - jekyll-seo-tag
   - jekyll-default-layout
+
+callouts:
+  note:
+    title: Note
+    color: blue
+  warning:
+    title: ⚠️ Warning
+    color: red
+  tip:
+    title: 💡 Tip
+    color: gree

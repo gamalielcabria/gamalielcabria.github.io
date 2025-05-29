@@ -15,17 +15,23 @@ search_enabled: true
 
 callouts:
   note:
-    title: Note
+    title: 📝 Note
     color: blue
   warning:
     title: ⚠️ Warning
     color: red
-  tip:
-    title: 💡 Tip
-    color: green
   highlight:
+    color: yellow
+  notice:
+    title: ✅ Notice
+    color: yellow
+  info:
     title: 💡 Tip
     color: yellow
-
+  save:
+    title: 💾
+    color: yellow
+  
+    
 callouts_level: quiet    
-callouts_opacity: 0.2    
+callouts_opacity: 0.2      

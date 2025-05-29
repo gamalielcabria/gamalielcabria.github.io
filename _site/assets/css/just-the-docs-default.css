@@ -7354,7 +7354,7 @@ p.note, blockquote.note {
 }
 p.note::before, blockquote.note::before {
   color: #183385;
-  content: "Note";
+  content: "📝 Note";
   display: block;
   font-weight: bold;
   text-transform: uppercase;
@@ -7475,86 +7475,12 @@ blockquote.warning-title > p:last-child {
   margin-bottom: 0;
 }
 
-p.tip, blockquote.tip {
-  background: rgba(65, 214, 147, 0.2);
-  border-left: 4px solid #026e57;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 0.8rem;
-}
-p.tip::before, blockquote.tip::before {
-  color: #026e57;
-  content: "💡 Tip";
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  padding-bottom: 0.125rem;
-}
-p.tip > .tip-title, blockquote.tip > .tip-title {
-  color: #026e57;
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  padding-bottom: 0.125rem;
-}
-
-p.tip-title, blockquote.tip-title {
-  background: rgba(65, 214, 147, 0.2);
-  border-left: 4px solid #026e57;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
-  padding: 0.8rem;
-}
-p.tip-title > p:first-child, blockquote.tip-title > p:first-child {
-  margin-top: 0;
-  margin-bottom: 0;
-  color: #026e57;
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  padding-bottom: 0.125rem;
-}
-
-blockquote.tip {
-  margin-left: 0;
-  margin-right: 0;
-}
-blockquote.tip > p:first-child {
-  margin-top: 0;
-}
-blockquote.tip > p:last-child {
-  margin-bottom: 0;
-}
-
-blockquote.tip-title {
-  margin-left: 0;
-  margin-right: 0;
-}
-blockquote.tip-title > p:nth-child(2) {
-  margin-top: 0;
-}
-blockquote.tip-title > p:last-child {
-  margin-bottom: 0;
-}
-
 p.highlight, blockquote.highlight {
   background: rgba(255, 235, 130, 0.2);
   border-left: 4px solid #e7af06;
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
   padding: 0.8rem;
-}
-p.highlight::before, blockquote.highlight::before {
-  color: #e7af06;
-  content: "💡 Tip";
-  display: block;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.75em;
-  padding-bottom: 0.125rem;
 }
 p.highlight > .highlight-title, blockquote.highlight > .highlight-title {
   color: #e7af06;
@@ -7602,6 +7528,201 @@ blockquote.highlight-title > p:nth-child(2) {
   margin-top: 0;
 }
 blockquote.highlight-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.notice, blockquote.notice {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.notice::before, blockquote.notice::before {
+  color: #e7af06;
+  content: "✅ Notice";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.notice > .notice-title, blockquote.notice > .notice-title {
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.notice-title, blockquote.notice-title {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.notice-title > p:first-child, blockquote.notice-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.notice {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.notice > p:first-child {
+  margin-top: 0;
+}
+blockquote.notice > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.notice-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.notice-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.notice-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.info, blockquote.info {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.info::before, blockquote.info::before {
+  color: #e7af06;
+  content: "💡 Tip";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.info > .info-title, blockquote.info > .info-title {
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.info-title, blockquote.info-title {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.info-title > p:first-child, blockquote.info-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.info {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.info > p:first-child {
+  margin-top: 0;
+}
+blockquote.info > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.info-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.info-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.info-title > p:last-child {
+  margin-bottom: 0;
+}
+
+p.save, blockquote.save {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.save::before, blockquote.save::before {
+  color: #e7af06;
+  content: "💾";
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+p.save > .save-title, blockquote.save > .save-title {
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+p.save-title, blockquote.save-title {
+  background: rgba(255, 235, 130, 0.2);
+  border-left: 4px solid #e7af06;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 0.8rem;
+}
+p.save-title > p:first-child, blockquote.save-title > p:first-child {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #e7af06;
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  padding-bottom: 0.125rem;
+}
+
+blockquote.save {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.save > p:first-child {
+  margin-top: 0;
+}
+blockquote.save > p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote.save-title {
+  margin-left: 0;
+  margin-right: 0;
+}
+blockquote.save-title > p:nth-child(2) {
+  margin-top: 0;
+}
+blockquote.save-title > p:last-child {
   margin-bottom: 0;
 }
 

@@ -1,3 +1,9 @@
+---
+title: Lesson 1
+parent: Intro to Bioinfo
+nav_order: 1
+---
+
 # Bioinformatics Training: Lesson 1
 ## "Unix Enviroment" and Bash Guide
 

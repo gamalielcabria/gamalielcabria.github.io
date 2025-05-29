@@ -5,11 +5,15 @@ description: Home page for the documentation
 permalink: /
 ---
 
-# Welcome to My Documentation Site
+# Welcome to Microbial Ecology and Bioinformatics Training Suite
 
-Welcome to **My Docs Site**, powered by [Just the Docs](https://just-the-docs.github.io/just-the-docs/).
+Microbial ecology explores the roles, relationships, and diversity of microorganisms in natural environments, from soil and oceans to the human body. These invisible communities drive global biogeochemical cycles, influence climate, and shape ecosystem health. Bioinformatics complements this field by providing computational tools to analyze vast genomic datasets, enabling researchers to uncover microbial functions, interactions, and evolutionary patterns. Together, microbial ecology and bioinformatics reveal the hidden world of microbes and their profound impact on life on Earth.
 
-This site provides technical documentation and resources for our project. Use the navigation bar to explore different topics.
+This training suite is made for beginner microbial ecologists as a guide on where to start learning microbial ecology workflows and bioinformatic pipelines.
+
+This powered by [Just the Docs](https://just-the-docs.github.io/just-the-docs/).
+
+
 
 ## 🚀 Getting Started
 
@@ -17,5 +21,6 @@ To get started, check out the [Introduction](getting-started.md) or browse the t
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/my-docs-site.git
+git clone https://github.com/gamaliel
 cd my-docs-site
+```

@@ -1,3 +1,10 @@
+---
+title: Intro to Bioinfo
+nav_order: 3
+has_children: true
+permalink: /Intro2Bioinfo/
+---
+
 # Bioinformatics 101
 
 ##  Welcome to Bioinformatics 

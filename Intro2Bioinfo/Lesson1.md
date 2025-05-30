@@ -320,7 +320,7 @@ To remove files, use the command `rm`. For folders with items in it, the command
 >⚠️ **Warning**: Running this command will permanently delete your files.
 >There is ***no trash bin to recover your files***. So be very paranoid when removing files in important folders.
 >
->⚠️ **Warning**: You can delete other people's file in a shared environment even if you do not have a permission to access those files. So be very careful and do not delete other people's files.
+>⚠️ **Warning**: You can delete other people's file in a shared environment even if you did not made it but have a permission to access those files. So be very careful and do not delete other people's files.
 >
 >⚠️ **Warning**: Again be very attentive in which files you are deleting. It would be better to delete files individually than in a batch, like deleting a whole folder.
 

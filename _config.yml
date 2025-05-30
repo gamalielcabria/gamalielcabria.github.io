@@ -33,6 +33,9 @@ callouts:
     color: yellow
   activity:
     color: grey-lt
+  funfact:
+    title: ✔️ Fun Facts!
+    color: green
   
     
 callouts_level: quiet    

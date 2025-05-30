@@ -1,5 +1,5 @@
 ---
-title: Lesson 1
+title: Lesson 1 - The Terminal, the OS, and Bioinfo
 parent: Intro to Bioinfo
 nav_order: 1
 ---

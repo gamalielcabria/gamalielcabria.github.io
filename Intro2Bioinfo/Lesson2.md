@@ -1,5 +1,5 @@
 ---
-title: Lesson 2
+title: Lesson 2 - Basic Operations in Terminal and BASH
 parent: Intro to Bioinfo
 nav_order: 2
 ---

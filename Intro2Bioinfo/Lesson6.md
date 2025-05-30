@@ -1,6 +1,10 @@
+---
+title: Lesson 6 - Intro to ARC and SLURM JOB submissions
+parent: Intro to Bioinfo
+nav_order: 7
+---
+
 # Intro to ARC and SLURM JOB submissions
-
-
 ## Getting Started with ARC (Advanced Research Computing) at the University of Calgary
 
 This tutorial provides a quick-start guide for accessing and using ARC systems at the University of Calgary for high-performance computing tasks such as bioinformatics analysis, data processing, and simulations.
@@ -64,13 +68,14 @@ module load fastqc  # Load a specific tool
 
 ### 5. Softwares through Package Managers and environment management systems
 
-ARC allows the usage of software installed in environment management systems.
+[ARC allows the usage of software installed in environment management systems](Lesson4.html#installing-in-hpc).
 
 What are environments?
 
-```{note}
-Package Manager (i.e. PIP and Conda) allows you to install softwares. Meanwhile, environment management system (Python Env and Conda)  allows you to manage software in isolated environments. For example, one workflow requires PERL 5.41 but another needs PERL 6.1. An environment management system allows you to install different versions of software concurrently onto two different environments.
-```
+{:.note}
+>```
+>Package Manager (i.e. PIP and Conda) allows you to install softwares. Meanwhile, environment management system (Python Env and Conda)  allows you to manage software in isolated environments. For example, one workflow requires PERL 5.41 but another needs PERL 6.1. An environment management system allows you to install different versions of software concurrently onto two different environments.
+>```
 
 The most common you will encounter are Python Virtual Environment (Python VENV) and CONDA. For detail installation please follow the following links:
 [CONDA in ARC](https://rcs.ucalgary.ca/Conda_on_ARC)

@@ -1,179 +1,234 @@
-# Intro to ARC and SLURM JOB submissions
-
-
-## Getting Started with ARC (Advanced Research Computing) at the University of Calgary
-
-This tutorial provides a quick-start guide for accessing and using ARC systems at the University of Calgary for high-performance computing tasks such as bioinformatics analysis, data processing, and simulations.
-
+---
+title: Lesson 5 - BASH Scripting
+parent: Intro to Bioinfo
+nav_order: 6
 ---
 
-### 1. Getting Access
+# BASH Scripting Tutorial
 
-To access ARC:
+This tutorial introduces the basics of BASH scripting, useful for automating tasks in bioinformatics.
 
-1. Register for an ARC account at: [https://rcs.ucalgary.ca/How_to_get_an_account](https://rcs.ucalgary.ca/How_to_get_an_account)
-2. You will receive login credentials and instructions after approval.
+**BASH** stands for **Bourne Again SHell** — it is a command-line interpreter or shell used in most Unix-based systems (like Linux and macOS). It allows users to interact with the system by typing commands and running scripts to automate tasks.
 
----
+Key Points:
+- **Shell**: A shell is a program that interprets your commands. BASH is one of the most popular Unix shells.
+- **Command-line Interface (CLI)**: BASH runs in a terminal where you type commands to interact with files, run programs, and manage systems.
+- **Scripting**: You can write BASH scripts (text files ending in .sh) that contain sequences of commands, logic, loops, and functions.
 
-### 2. Connecting to ARC
+{:.note}
+>**Why BASH is Important in Bioinformatics and Research Computing:**
+>- Automates repetitive tasks (like running tools on hundreds of files)
+>- Manages HPC jobs (e.g., submitting jobs via SLURM)
+>- Enables reproducible workflows (especially when version-controlled)
+>- Integrated in nearly every Unix-based server, cluster, or cloud environment
 
-Use SSH (Secure Shell) to log in from your terminal:
+
+
+## Basic BASH Scripting
+
+A BASH script is a plain text file with commands executed sequentially by the BASH shell.
+
+### 📝 Creating a Script
 
 ```bash
-ssh <your user name>@arc.ucalgary.ca
-```
-Username is the same name you use for your University email (**john.doe** for an email with **john.doe@ucalgary.ca**).
-
-If using Windows, install a terminal like Git Bash or use [MobaXterm](https://mobaxterm.mobatek.net/) or [Putty](https://www.putty.org/). Alternatively, you can connect to the **SHELL TERMINAL** of ARC through your local browser. Just use the [Open On-Demand ARC Shell Access](https://ood-arc.rcs.ucalgary.ca/pun/sys/shell/ssh/arc.ucalgary.ca)
-
-Link for UCalgary ARC Open On-Demand Website: [OOD Dashboard](https://ood-arc.rcs.ucalgary.ca/pun/sys/dashboard)  
-<br>
-<div>
-    <img src="https://rcs.ucalgary.ca/images/d/d9/Open_OnDemand_Dashboard.jpg">
-</div>
-
----
-
-### 3. Transferring Files
-
-Use `scp` or `rsync` to move data between your local machine and ARC.
-
-#### Upload a file to ARC:
-
-```bash
-scp myfile.txt yourusername@arc.ucalgary.ca:/home/yourusername/
+nano my_script.sh
 ```
 
-#### Download a file from ARC:
-
-```bash
-scp yourusername@arc.ucalgary.ca:/home/yourusername/results.csv .
-```
-
----
-
-### 4. Modules and Software
-
-ARC uses **Environment Modules** to manage software. Load what you need:
-
-```bash
-module avail        # List all available modules
-module load fastqc  # Load a specific tool
-```
-
-### 5. Softwares through Package Managers and environment management systems
-
-ARC allows the usage of software installed in environment management systems.
-
-What are environments?
-
-```{note}
-Package Manager (i.e. PIP and Conda) allows you to install softwares. Meanwhile, environment management system (Python Env and Conda)  allows you to manage software in isolated environments. For example, one workflow requires PERL 5.41 but another needs PERL 6.1. An environment management system allows you to install different versions of software concurrently onto two different environments.
-```
-
-The most common you will encounter are Python Virtual Environment (Python VENV) and CONDA. For detail installation please follow the following links:
-[CONDA in ARC](https://rcs.ucalgary.ca/Conda_on_ARC)
-[Python Virtual Environment in ARC](https://rcs.ucalgary.ca/Python#Virtual_environments)
-
----
-
-### 6. File Storage
-
-- To check your space in ARC use `arc.quota`
-- Your home directory has limited quota (typically 500GB).
-- For large files, use `/scratch` or `/project` space.
-- Use `du -sh *` to check folder sizes.
-
----
-
-
-## Introduction to SLURM for Bioinformatics Workflows
-
-### 1. What is SLURM?
-
-SLURM (Simple Linux Utility for Resource Management) is an open-source job scheduler used by many high-performance computing (HPC) clusters. It manages and allocates resources like CPUs, memory, and GPUs for your computational jobs.
-
-<div class=image>
-<img src="https://carinadocs.stanford.edu/sites/g/files/sbiybj23026/files/styles/responsive_large/public/media/image/slurm-chart_0.png?itok=f6XRiBsr">
-</div>div>
-
-### 2. Key Concepts
-
-- **Job**: A script or command submitted to the queue.
-- **Node**: A physical machine in the cluster.
-- **Partition**: A queue of nodes, usually grouped by capabilities (e.g., `short`, `long`, `gpu`).
-- **Scheduler**: The system that decides when and where jobs run.
-
----
-
-### 3. Basic SLURM Commands
-
-```bash
-squeue             # View all running and queued jobs
-sbatch job.slurm   # Submit a batch job
-scancel 12345      # Cancel a job by its ID
-sinfo              # Show partition and node status
-```
-
----
-
-### 4. Sample SLURM Script
+Add the following:
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=fastqc_job       # Job name
-#SBATCH --output=logs/fastqc_%j.out # Output file
-#SBATCH --error=logs/fastqc_%j.err  # Error file
-#SBATCH --ntasks=1                  # Number of tasks (processes)
-#SBATCH --cpus-per-task=4           # CPUs per task
-#SBATCH --mem=8G                    # Total memory
-#SBATCH --time=01:00:00             # Time limit (hh:mm:ss)
-#SBATCH --partition=short           # Partition name
-
-# Load necessary modules
-module load fastqc
-
-# Run your command
-fastqc -t $SLURM_JOB_CPUS_PER_TASK raw_reads/sample1.fastq -o results/
+echo "Hello from your first script!"
 ```
 
-> 💡 `%j` is replaced by the job ID automatically.
-
----
-
-### 5. Monitoring Your Job
+Then make it executable and run it:
 
 ```bash
-squeue -u your_username       # Check your jobs
-sacct -j JOBID                # Get job accounting details
+chmod +x my_script.sh
+./my_script.sh
+```
+
+`#!/bin/bash` is called a **shebang line**, and it tells the operating system which interpreter to use when executing the script.
+
+Breakdown:
+- `#!` is the shebang symbol. It must be at the very start of the script.
+- `/bin/bash` is the full path to the **BASH shell**: this tells the system to run the script using BASH.
+
+{:.note}
+>**Why it's important:**
+>
+>Without the **shebang line**, the system might use the wrong shell or fail to interpret the script correctly. For example, different shells like `sh`, `zsh`, or `dash` interpret some commands differently.
+
+---
+
+## 🛠️ Variables and Input
+
+Variables help reuse values and pass arguments.
+
+```bash
+#!/bin/bash
+sample="Sample1"
+echo "Processing data for $sample"
+```
+
+| Line                                 | Description                                                                                                   |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `#!/bin/bash`                        | **Shebang** — tells the system to use the Bash shell to interpret the script.                                 |
+| `sample="Sample1"`                   | Defines a **variable** named `sample` and assigns it the value `"Sample1"`.                                   |
+| `echo "Processing data for $sample"` | **Prints** the message with the value of the variable. The output will be: <br> `Processing data for Sample1` |
+
+
+### **Using arguments**:
+Try making this script in `nano` or `vim`:
+
+```bash
+#!/bin/bash
+echo "This script was called with: $1 and $2"
+```
+
+Afterwards, run it using this command.
+
+```bash
+./my_script.sh file1.txt file2.txt
+```
+What is the output?
+
+
+{:.note}
+>What it means:
+>
+>In Bash scripts, arguments are values passed to the script when it's run from the command line.
+- `$1` refers to the **first** argument
+- `$2` refers to the **second** argument
+
+---
+
+## 🔁 Loops
+**BASH loops** let you repeat commands over a list of values, files, or a sequence of numbers — essential for automating tasks.
+
+Use `for`, `while`, and `until` loops to handle different automation scenarios in your scripts.
+
+### For Loops
+This loop will print "Processing ..." for every `*.fastq` file in the directory.
+
+```bash
+for file in *.fastq; do
+    echo "Processing $file"
+done
+```
+
+### While Loops
+This script uses a `while` loop to print numbers from 1 to 5. It initializes a counter `count=1`, checks that `count` is less than or equal to 5, prints the **value**, **increments it**, and **repeats the process** until the condition is false.
+
+```bash
+count=1
+while [ $count -le 5 ]; do
+  echo "Count is $count"
+  ((count++))
+done
+```
+
+The expected output would look like:
+```
+Count is 1
+Count is 2
+Count is 3
+Count is 4
+Count is 5
+```
+
+---
+
+## ⚙️ Conditional Statements
+**Conditional statements** in Bash let you make decisions in your scripts based on file checks, variable values, or command outputs.
+
+**Example**:
+```bash
+if [ -f "genome.fasta" ]; then
+    echo "Genome file found!"
+else
+    echo "Genome file is missing!"
+fi
+```
+This checks whether the file genome.fasta exists:
+- `-f` tests if it's a regular file.
+- If the condition is **true**, it *prints a confirmation*.
+- If **false**, it *prints a warning*.
+
+Use `if`, `else`, and `elif` to add logic and control flow to your scripts.
+
+
+---
+
+## Real-World Example
+Explain what this script does:
+
+```bash
+#!/bin/bash
+
+indir="raw_data"
+outdir="qc_results"
+mkdir -p "$outdir"
+
+for file in "$indir"/*.fastq; do
+    if [ -s "$file" ]; then
+        echo "Running FastQC on $file"
+        fastqc "$file" -o "$outdir"
+    else
+        echo "Skipping $file, it is empty."
+    fi
+done
+
+echo "All files processed."
 ```
 
 
+<details>
+<summary>Click for the answer</summary>
+
+<pre><code class="language-bash">
+This script automates quality control on `.fastq` files using FastQC:
+- Declares the script as a Bash script.
+- Sets input (raw_data) and output (qc_results) directories.
+- `mkdir -p` ensures the output directory exists (creates it if it doesn't).
+- Loops through all `.fastq` files in the input directory.
+- Checks if the file is non-empty `-s "$file"` means file size greater than zero).
+- When TRUE, Runs FastQC on the file and saves the result to the output directory.
+- ELSE, if the file is empty, it prints a warning and skips processing.
+- "done" ends the loop and prints a completion message.
+</code></pre>
+</details>
 
 ---
 
-## Tips
+## Try It Yourself!
 
-- Always test scripts with small data first.
-- Use `--mail-type=END,FAIL` and `--mail-user=email@example.com` to get job status emails.
-- Use `module avail` to see available tools on your cluster.
-- Use `screen` or `tmux` if running interactive sessions.
-- Clean up old files to avoid storage overuse.
+Create a script that checks if a `.gz` file exists, unzips it, and prints how many lines it has.
+
+<details>
+<summary>Click for the answer</summary>
+
+<pre><code class="language-bash">
+#!/bin/bash
+file="example.gz"
+if [ -f "$file" ]; then
+    echo "Unzipping $file"
+    gunzip -c "$file" | wc -l
+else
+    echo "$file not found."
+fi
+</code></pre>
+</details>
 
 ---
 
-## 9. Support
+## Summary
 
-For help or custom software installs, contact ARC support:
-📧 arc.support@ucalgary.ca  
-🔗 [ARC Website](https://rcs.ucalgary.ca/arc)
+You’ve now learned how to:
+- Create and execute BASH scripts
+- Use variables and arguments
+- Run loops and conditionals
+- Process real data automatically
 
----
+Enjoy scripting! :D
 
-## References
-
-- [SLURM Documentation](https://slurm.schedmd.com/documentation.html)
-- [Cheat Sheet (by Ohio Supercomputer Center)](https://www.osc.edu/sites/osc.edu/files/images/SLURM-Cheat-Sheet.pdf)
-- [ARC Getting Started](https://rcs.ucalgary.ca/arc/getting-started)
-- [SLURM Documentation](https://slurm.schedmd.com/documentation.html)

@@ -28,453 +28,600 @@
     "relUrl": "/Intro2Bioinfo/"
   },"4": {
     "doc": "Exercise 3 - Useful Commands",
+    "title": "🧪 Bioinformatics Practice Exercise: Linux Command Line",
+    "content": "This exercise uses files from this GitHub folder. To get started, download the files to your terminal using wget: . mkdir -p ~/bioinfo_practice &amp;&amp; cd ~/bioinfo_practice wget -P ./ https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/data.tsv wget -P ./ https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/gene_counts.tsv wget -P ./ https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/genes.txt wget -P ./ https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/lengths.txt wget -P ./ https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/random.fasta . ",
+    "url": "/Intro2Bioinfo/Exercise3.html#-bioinformatics-practice-exercise-linux-command-line",
+    
+    "relUrl": "/Intro2Bioinfo/Exercise3.html#-bioinformatics-practice-exercise-linux-command-line"
+  },"5": {
+    "doc": "Exercise 3 - Useful Commands",
+    "title": "📝 Exercises",
+    "content": "Task 1. Inspecting Files . | View the first few lines of each file using head. | Count the number of rows and columns in gene_counts.tsv. | . Task 2. Extracting and Combining Columns . | Extract the 1st and 3rd columns from data.tsv and save to score.tsv. | Extract the 1st and 2nd columns and save to value.tsv. | Merge them side by side using paste. | . Task 3. Grep and Regex . | Count how many genes start with geneK or geneC in gene_counts.tsv. | Count how many sequences are in random.fasta. | . Task 4. Text Processing with sed . | Replace all instances of gene in gene_counts.tsv with GENE. | Convert data.tsv into a CSV file. | . Task 5: Character-Level Transformations with tr . | Convert all nucleotide sequences in random.fasta to lowercase. | Remove numbers from FASTA sequences. | . Task 6: Count Features in GTF File . | Download a GTF file from Ensembl: | Count the number of entries that are gene and annotated as rRNA | Count the number of entries that are exon and annotated as tRNA | . ",
+    "url": "/Intro2Bioinfo/Exercise3.html#-exercises",
+    
+    "relUrl": "/Intro2Bioinfo/Exercise3.html#-exercises"
+  },"6": {
+    "doc": "Exercise 3 - Useful Commands",
+    "title": "🧪 Advanced Practice Tasks",
+    "content": "Task 7: Filter Genes with High Expression in Multiple Samples . Using awk, filter rows in gene_counts.tsv where: . | Sample3 &gt; 250 | Sample6 &gt; 250 | . Click to view code awk '$4 &gt; 250 &amp;&amp; $7 &gt; 250' destination/gene_counts.tsv . Task 8: Convert FASTA sequences to lowercase and count base composition . Use tr to convert the sequences in random.fasta to lowercase, and then use grep and wc to count how many ‘a’, ‘t’, ‘g’, and ‘c’ characters are present. Click to view code tr 'A-Z' 'a-z' &lt; destination/random.fasta | grep -v \"^&gt;\" &gt; seq_lc.txt grep -o \"a\" seq_lc.txt | wc -l grep -o \"t\" seq_lc.txt | wc -l grep -o \"g\" seq_lc.txt | wc -l grep -o \"c\" seq_lc.txt | wc -l . ",
+    "url": "/Intro2Bioinfo/Exercise3.html#-advanced-practice-tasks",
+    
+    "relUrl": "/Intro2Bioinfo/Exercise3.html#-advanced-practice-tasks"
+  },"7": {
+    "doc": "Exercise 3 - Useful Commands",
+    "title": "✅ Submission (Optional)",
+    "content": "Summarize your findings or output in a report.txt file using echo and redirection. Exampled: . echo \"Number of gene rows: $(wc -l &lt; gene_counts.tsv)\" &gt; report.txt echo \"Number of sequences: $(grep -c '^&gt;' random.fasta)\" &gt;&gt; report.txt . 📂 Files Used: . | data.tsv | gene_counts.tsv | genes.txt | lengths.txt | random.fasta | . 📌 Tip: Try modifying the scripts or extending them. For instance, filter genes with expression above 200, or find sequences longer than 10 bp using awk. ",
+    "url": "/Intro2Bioinfo/Exercise3.html#-submission-optional",
+    
+    "relUrl": "/Intro2Bioinfo/Exercise3.html#-submission-optional"
+  },"8": {
+    "doc": "Exercise 3 - Useful Commands",
+    "title": "Solution",
+    "content": "Tired? Here are the solutions: . Number 1 . Click to expand code head gene_counts.tsv wc -l gene_counts.tsv head -1 gene_counts.tsv | awk -F'\\t' '{print NF}' . Number 2 . Click to expand code cut -f1,3 data.tsv &gt; score.tsv cut -f1,2 data.tsv &gt; value.tsv paste score.tsv value.tsv &gt; combined.tsv . Number 3 . Click to expand code grep \"^gene[KC]\" gene_counts.tsv | wc -l grep -c \"^&gt;\" random.fasta . Number 4 . Click to expand code sed 's/gene/GENE/g' gene_counts.tsv | head sed 's/\\t/,/g' data.tsv &gt; data.csv . Number 5 . Click to expand code tr 'A-Z' 'a-z' &lt; random.fasta &gt; random_lowercase.fasta tr -d '0-9' &lt; random.fasta | head . Number 6 . Click to expand code wget ftp://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/Homo_sapiens.GRCh38.110.gtf.gz zcat Homo_sapiens.GRCh38.110.gtf.gz | grep -P '\\tgene\\t' | grep 'rRNA' | wc -l zcat Homo_sapiens.GRCh38.110.gtf.gz | grep -P '\\texon\\t' | grep 'tRNA' | wc -l . Or not? :D . ",
+    "url": "/Intro2Bioinfo/Exercise3.html#solution",
+    
+    "relUrl": "/Intro2Bioinfo/Exercise3.html#solution"
+  },"9": {
+    "doc": "Exercise 3 - Useful Commands",
     "title": "Exercise 3 - Useful Commands",
     "content": " ",
     "url": "/Intro2Bioinfo/Exercise3.html",
     
     "relUrl": "/Intro2Bioinfo/Exercise3.html"
-  },"5": {
+  },"10": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Lesson 1: The Terminal, the OS, and Bioinfo",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson1.html#lesson-1-the-terminal-the-os-and-bioinfo",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#lesson-1-the-terminal-the-os-and-bioinfo"
-  },"6": {
+  },"11": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "“Unix Enviroment” and Bash Guide",
     "content": "Unix is an OS that originated from the 1960s and directly or indirectly the ancestors of most OS you can see today (Ubuntu, macOS, Android). However, whenever we say “unix or unix-like environment”, it often pertains to the command-line interface that are associated with programming and computer science. Before we start the tutorial, let us brief on the terminologies you’ll often hear. | Terminologies | Definitions | . | OS or Operating Systems | are the main program that manages all other application programs and allows the interaction between the user and the computing hardware (e.g. Windows 11, macOS, Ubuntu) | . | Kernel | are core programs in an operating system that manage and bridge processes/programs and the hardware (e.g. Linux, Windows NT, etc.) | . | Shell | is the interface that you interact with the computer. This is primarily divided as GUI or graphical user interface and the CLI command-line interface | . | GUI | is the interface in which you utilise visual to interact with the computer | . | CLI | is the primary interface in which you interact with the computer through inputting lines of text or command-lines. CLI is often run in terminals such as command prompt in Windows | . | BASH | is a common programming language used in a unix-like environment. Primarily run through CLI | . | HPC or high performance computing | the ability to run programs with large number of cores or memory (RAMs). Primarily done in supercomputers or computer clusters | . ",
     "url": "/Intro2Bioinfo/Lesson1.html#unix-enviroment-and-bash-guide",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#unix-enviroment-and-bash-guide"
-  },"7": {
+  },"12": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Bioinformatics and the Unix’ CLI",
     "content": "Command line interface is primary mode of interaction when running in high performance computing clusters. The additional computing requirement often associated with graphical interface results in most bioinformatics programs and pipeline to be run through command-line interface. In addition to draining computing resources, running GUI-based programs often can be time consuming as you might need to manually click and analyse individual data. Meanwhile, through programming language such as BASH and other softwares in the command-line, you can parallelize your analysis. In this tutorial, we will dive into the anatomy of a command-line interface command/program and learn the basic commands in the terminal and BASH to run your bioinformatic analyses. A Basic Terminal Working with Terminals is oftern associated with old OSes or Linux. Windows OS also has a command-line interface, commonly known as Command Prompt or cmd. Additionally, you can have linux experience also within windows using the Windows Subsystem in Linux or WSL2. To install WSL2: Windows Guide to WSL2 . ",
     "url": "/Intro2Bioinfo/Lesson1.html#bioinformatics-and-the-unix-cli",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#bioinformatics-and-the-unix-cli"
-  },"8": {
+  },"13": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Accessing command-line",
     "content": "For your personal computers, you can access command-line interface through command prompt in Windows OS or the terminal app in MacOS and Linux OSes. | To open command prompt on Windows: . | Search for Run in your search bar | Type cmd and run it | . | To open command prompt on MacOS: . | In Finder, go to Applications &gt; Utilities | Double-click Terminal | . | For Ubuntu and Debian based Linux OS: . | Press your Home or Windows button | And search Terminal | . | . Other than your local desktop, there are ways to access the servers through command-line interface such as the University of Calgary’s ARC OnDemand service. ",
     "url": "/Intro2Bioinfo/Lesson1.html#accessing-command-line",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#accessing-command-line"
-  },"9": {
+  },"14": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Exercise 1: Accessing Terminal",
     "content": "For this exercise we will be utilising a web-based terminal through the Binder and JupyterLab interface. JupyterLab is an organizing program to run different programming language in uniform and replicable manner. It is a great tool for bioinformatics and data analysis. This guide is made through JupyterLabs and we will talk more about it in the future. Meanwhile, Binder is an online repository for Jupyter notebooks that allow reproducibility with colleages and anyone you want online. To open a terminal in Binder, we will use the JupyterLab made for Happy Bell Bioinformatics (Lee, 2019): . | Open a Firefox (Preferrably) | Click this link to open the Binder link | Let the repository load and you should be able to see an image like this: | Open the Terminal as shown. | . 📝 Note: Another option to practice is using the online terminal/linux simulation website Webminal . It requires registration but allows persistent memory in which you can save files generated. ",
     "url": "/Intro2Bioinfo/Lesson1.html#exercise-1-accessing-terminal",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#exercise-1-accessing-terminal"
-  },"10": {
+  },"15": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Working with Terminals",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson1.html#working-with-terminals",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#working-with-terminals"
-  },"11": {
+  },"16": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Structure of a terminal command",
     "content": "Try running this command: . [/home/jovyan/unix_intro]$ ls /home/jovyan/ --all . The basic structure of command line interface often shows the current working directory [/home/joyvan/unix_intro] and followed by the $. Everything on the right of the $ are user inputed commands. Its structure often follow this structure: . | 1st: &lt;command&gt; [arguments] [options] -or- | 2nd: &lt;program&gt; &lt;command&gt; [arguments] [options] -or- | 3rd: &lt;program&gt; [arguments] [options] | . What do these terms mean: | Terminologies | Definitions | . | Program | The software to run your analysis. | . | Command | The operation within the software that needs to be performed to run your analysis | . | Arguments | Arguments are required field that indicate the user input | . | Options | Parameters that the user adds to pass on to the command to specify the detail of the run. Can be optional or mandatory. | . |   | Options are often key-value pairs with the keys indicates as --keys and the values are the one indicated after a space or = | . | Flags | Options that do not have key-value pair (e.g. –all above) | . In the above example, it followed the first structure. The ls is a command with the argument [FILE] showing the location or path of the file/folder of interest and is shown here as /home/jovyan/. The option here is --all which reveals all file and folder hidden. Running the above code should display all files within the FILE path indicated: . $ ls /home/jovyan/ --all total 64 drwxr-xr-x 1 jovyan jovyan 4096 Sep 17 17:28 . drwxr-xr-x 1 root root 4096 Dec 7 2022 .. -rw-r--r-- 1 jovyan jovyan 71 Dec 7 2022 apt.txt -rw-r--r-- 1 jovyan jovyan 220 Apr 4 2018 .bash_logout -rw-r--r-- 1 jovyan jovyan 4018 Dec 7 2022 .bashrc drwxr-xr-x 3 jovyan jovyan 4096 Sep 17 17:28 .cache drwxr-xr-x 8 jovyan jovyan 4096 Dec 7 2022 .git drwxr-xr-x 2 jovyan jovyan 4096 Sep 17 17:28 .ipython drwxr-xr-x 3 jovyan jovyan 4096 Sep 17 17:28 .jupyter -rw-r--r-- 1 jovyan jovyan 4908 Sep 17 17:29 .jupyter-server-log.txt drwxr-xr-x 3 jovyan jovyan 4096 Sep 17 17:28 .local -rw-r--r-- 1 jovyan jovyan 807 Apr 4 2018 .profile -rw-r--r-- 1 jovyan jovyan 395 Dec 7 2022 README.md drwxr-xr-x 5 jovyan jovyan 4096 Dec 7 2022 unix_intro . To learn more about the options of a program you can run man &lt;program&gt; to show its manual or &lt;program/command&gt; --help or &lt;program/command&gt; -h to show its help page. Try Running this code: . ls --help to see the other arguments of the program. Not all programs or commands have a manual or help page. ",
     "url": "/Intro2Bioinfo/Lesson1.html#structure-of-a-terminal-command",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#structure-of-a-terminal-command"
-  },"12": {
+  },"17": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Running Commands",
     "content": "Try running this command: head -n 5 example.txt . The command structure often has flexibility (not always) and you can run the options before the arguments or vice versa as shown above. The options -n 5 was run here in front of the arguments example.txt. The argument states the [File] that needs to be open. The abovesaid command works differently when you run it without the option -n 5. Try Running this code: head example.txt . Without the -n 5 option, the head command displays the first 10 lines of the text by default. Giving the -n 5 option forcefully change the output to the first five lines. Changing the option yields different number of lines you will display. Other command that display text files are tail, more, less, and others. The command tail is the opposite of head and displays the lines from the bottom of the text. The more command displays all the lines in the text file after the comman-line while less displays the text files on a separate screen. Try running these commmands . tail, more, less . ",
     "url": "/Intro2Bioinfo/Lesson1.html#running-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#running-commands"
-  },"13": {
+  },"18": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Filepaths",
     "content": "When running the commands before, we only specify example.txt. This is because the example.txt is already located in our current working directory(CWD). To check our CWD, we can just look to the left of $ or subsequently pwd. try running the command: . pwd . The pwd command should display your current location: /home/jovyan/unix_intro. The filepath describes the address or location from the root/ and all the folders below it: jovyan and unix_intro. The subsequent forward slash/ after home are separator to determine the hierarchy of folders within the path. The hierarchy can be visualised as this: . / &lt;-root directory |___bin/ |___dev/ |___home/ |___jovyan/ &lt;\"~\" or the username's 'home' folder |___unix_intro &lt;-current working directory |___data/ |___example.txt |___experiment/ |___six_commands/ . The root / contains the folder bin, dev and home among others while home contains the folder jovyan which has the files. To display again all the files and folder within that location, you can run ls. There should appear the file example.txt along with all other file. ls lists file names only. ls -l displays detailed info: . | Permissions (e.g., drwx) | Owner and group (e.g., jovyan) | File size in bytes (e.g., 4096, 1592) | Files and folders (folders appear in blue, files in white/black) | . Not all terminals has color distinction between files and folders. Better to check ‘filesize’ as all folders has attribute of 4096 . There are two types of filepath: absolute path and relative path. The absolute path is the location of the file from the root of the drive (e.g. /home/jovyan/unix_intro/example.txt) while relative path is the location of the file depending on your CWD (e.g. example.txt or ./example.txt)./ refers to the current directory./example.txt points to a file in the current directory (e.g., /home/jovyan/unix_intro/)../ refers to the parent directory (e.g., /home/jovyan/). Therefore, we can have the same result while running the head command with the following examples: . head example.txt . head ./example.txt . head /home/jovyan/unix_intro/example.txt . Programs and commands can often interchangeably use absolute or relative path but several scripts/programs are created to follow only absolute or relative path. Please check the programs documentation thoroughly to prevent unwanted problems. Moving paths . Unlike in GUI which you can use double-click or back button to move between folders and up and down a path, CLI needs to run a command when changing filepath or location. The primary command use to move paths is the cd or Change Directory command. The cd command is often follow by either absolute or relative path to change locations. Try running this command: . cd ../../ . This command should have move you two folders up your previous location. When you run pwd, you will see that you are in the /home folder. Now try to return to the previous working directory by running an absolute path as argument: cd /home/jovyan/unix_intro. Additionally, from this CWD, if we want to go into the subfolders/subdirectories such as experiment/, we can just run cd experiment. Subsequently, we can return to our previous workind directory by running cd -. Moving and copying files and folders . We also move files and folders using commands in CLI. To move files and folders we used the command mv. The format of this command is mv &lt;original filepath&gt; &lt;destination filepath&gt;. The filepaths can be absolute or relative. Let us try moving example.txt to inside of data/ folder: . Try running this command: . mv ./example.txt ./data/ . Run: ls ./ . And afterwards: ls ./data/ . As you can see, the example.txt did not appear now in ./ but is located in ./data/. We can use similar command when moving folders. Now, let us move back the file example.txt to its original location using mv ./data/example.txt .. The mv command can be used also to rename files and folder. You can try renaming example.txt to any other name. An example: mv example.txt example_edited.txt2. Run a ls afterward. ⚠️ Renaming files to a filename that is already existing in the destination path would lead to overwriting of the file in the destination path with the file from the orginal filepath.* . This is a irreversible process that would lead to the loss of the destination filepath’s original content. Alternatively, you can copy file instead of moving it. When copying files and folder, run the command cp &lt;original filepath&gt; &lt;destination filepath&gt;. These command duplicates your file, so if the file has large sizes ~5-100GB, it might take a while to finish. ⚠️ Copying files observed the same pitfalls are the moving command. This command can overwrite the files in the destination path too. Be very careful!!! . Making text files . Files can be created through several ways. Programs can create output files based on their output parameters. You can also create your own text files by writing in a text editor. Akin to notepad in windows, you can write text files using several programs such as vim and nano. When creating new text files in this programs, just run the commands: . nano &lt;path to folder destination&gt;/&lt;filename&gt; . vim &lt;path to folder destination&gt;/&lt;filename&gt; . An example: nano ./data/newtextfile.txtextensioniwant . The previous example would create the text file newtextfile.txtextensioniwant inside the folder data/. If you notice, the file extension (anything beyond .) is not written as the usual .txt file extension. In most cases in a terminal, you can even drop the extension and it will still be treated as a text file. Extensions are just helpful guides for user to know what type of file or program run those file. More on this will be discuss in future lessons. Windows text editors often have different way of representing tabs or newlines than in MacOS and Linux OSes and can affect your program or analyses. However, they can still be open and edited in a Linux or MacOS terminal/text editor. Microsoft Word files and other word processor are not recognize as text files as they are save in more elaborate file type. The two text editors are what are often installed by default in different Linux OSes. Focus on learning just one as both can be overwhelming. To learn more on how to use this text editors, click on this links: nano and vim . Vim Text Editor nano Text Editor Lastly, you can create an empty text file using the command touch &lt;filename&gt;. Making folders . For folders, creating a new one requires the command mkdir &lt;filepath&gt;. You cannot create a new folder that already exists. The command will output a warning prompt. You can create multiple folders in a single command with multiple input arguments. When running the command, separating the folder names with spaces as shown: . mkdir test test1 test2 test3 . Removing files and folders . To remove files, use the command rm. For folders with items in it, the command often will prompt you that it cannot remove a folder as it is a directory. You can run rm -r or the recursive option to delete the folder and all subsequent files inside it. ⚠️ Warning: Running this command will permanently delete your files. There is no trash bin to recover your files. So be very paranoid when removing files in important folders. ⚠️ Warning: You can delete other people’s file in a shared environment even if you do not have a permission to access those files. So be very careful and do not delete other people’s files. ⚠️ Warning: Again be very attentive in which files you are deleting. It would be better to delete files individually than in a batch, like deleting a whole folder. ",
     "url": "/Intro2Bioinfo/Lesson1.html#filepaths",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#filepaths"
-  },"14": {
+  },"19": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Exercise 2: Creating files and folders",
     "content": "Let us test some skills you should have learn by now. Please do the following instructions: . | Go to your username’s home folder | Create a folder named Exercise2 | Go to the folder inside unix_intro named six_commands | Get your current working directory | Run ls -all and copy its output by highlighting it with your mouse and using the right-click button | Create a file inside the CWD named exercise2.txt using nano | Paste the text you have copy using Ctrl+Shift+V or the mouse | On the next seven lines, write the colors of the rainbow in any order | Save your file using ^X or colloquially known as Ctrl+X and then Yes | Copy that file to the previously made Exercise2 folder. | Rename the file using mv to exercise2.&lt;whateverextension you prefer&gt; | View the file using either more, less, head or tail commands | . If there are any questions and problems. Do not hesitate to ask. ",
     "url": "/Intro2Bioinfo/Lesson1.html#exercise-2-creating-files-and-folders",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#exercise-2-creating-files-and-folders"
-  },"15": {
+  },"20": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Tips and Summary",
     "content": "Basic Unix-like environment terms . | Terminologies | Definitions | . | path | address of files and folder within the computer | . | CWD/PWD | the current or present working directory is the location of the terminal within the computer hierarchy. This is where you currently are. | . | root | is the top-level directory in a computer partition | . |   | root directory is represented as C:\\ or D:\\ in windows and \\ in Linux or macOS | . | ~ | the user’s home folder is where the personal files of the user is located. It is often the first location when booting a terminal. | . |   | It can be represented as ~/ but is often located in /home/&lt;username&gt;/ | . | absolute path | the address of file and folder from the specified ‘root’ or ‘home’ location | . | relative path | the path of files and folders based on your CWD | . | ./ | In relative path, this indicate the CWD | . | ../ | In relative path, this indicate the folder above the CWD | . | - | When running the cd command, - represents the previous working directory | . Commands in this lecture: . | Commands | Definitions | . | ls | The list command shows the files and folder inside the supplied ARGUMENT | . | head | The head command shows the top lines within the ARGUMENT supplied text file | . | tail | The opposite of head. The tail shows the bottom lines | . | more | Displays a text file within the terminal | . | less | Displays a text file in the terminal on a separate screen instance | . | pwd | a command to show the current or present working directory | . | cd | The change directory command moves the current working directory | . | mv | The move command moves files and folders from the &lt;orginal filepath&gt; to the &lt;destination filepath&gt; | . | cp | The copy command creates a copy of files from the &lt;orginal filepath&gt; to the &lt;destination filepath&gt; | . | mkdir | creates a new directory | . | rm | The remove command deletes a file or folder | . |   | ⚠️ Warning: There is no trash bin in the terminal or linux. Deleted files are deleted permanently | . | nano | A text-editor. Create a file by running nano &lt;filename&gt; | . | vim | Another text-editor similar to previous one | . | –help | is a flag that aids in identifying all the arguments of most of the command displayed above | . ",
     "url": "/Intro2Bioinfo/Lesson1.html#tips-and-summary",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#tips-and-summary"
-  },"16": {
+  },"21": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Acknowledgement",
     "content": "This tutorial is adapted from Intro to Unix from Happy Belly Bioinformatics by Michael D. Lee or known as AstroBioMike in github. ",
     "url": "/Intro2Bioinfo/Lesson1.html#acknowledgement",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#acknowledgement"
-  },"17": {
+  },"22": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Citation",
     "content": "[1] Lee, (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053 . ",
     "url": "/Intro2Bioinfo/Lesson1.html#citation",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html#citation"
-  },"18": {
+  },"23": {
     "doc": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "title": "Lesson 1 - The Terminal, the OS, and Bioinfo",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson1.html",
     
     "relUrl": "/Intro2Bioinfo/Lesson1.html"
-  },"19": {
+  },"24": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Lesson 2: Basic Operations in Terminal and BASH",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson2.html#lesson-2-basic-operations-in-terminal-and-bash",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#lesson-2-basic-operations-in-terminal-and-bash"
-  },"20": {
+  },"25": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Auto-completion",
     "content": "Let us return to our home directory cd ~. In this directory, create three folders named test11, test20, and test21 using the mkdir command. Check your folder using ls. Afterwards, try typing head te and tap the tab button once. As you can see, it should auto-complete it to test as it is the next complete string without conflict in our folder. Now, that we have head test in our line, try tapping the tab button twice. It should ring a bell and prompt all possible matches with our initial user input. test11 test20 test21 . ",
     "url": "/Intro2Bioinfo/Lesson2.html#auto-completion",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#auto-completion"
-  },"21": {
+  },"26": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Wildcards",
     "content": "Sometimes, we need to work on multiple files folders at the same time but they have different names (e.g. the test1, test 20 and test21). The default command-line shell that we are using allows manipulation of the files through the use of special characters called wildcards *. Try running this command: . ls te* . The above command results in listing all files in the folder that starts with te. This can be used also in a more specific manner. Try running this command: . ls test*1 . Using the wildcard within the string matches anyword that starts with test and ends with 1. It is useful also when runnning commands of files with the same file extension: cp *.fasta ./folder/ . 📝 Note: At the command line, the * means any character, any number of times (including 0 times). Let us try removing all the folder we made earlier that start with test simultaneously: . Try running this command: . rm -r test* . ⚠️ Removing files using wildcards should be done carefully as use of wildcards can result in unintended results (e.g. using rm * to delete all files within the folder) . The Question Mark . Another type of wildcard is the use of ? mark. Unlike the * which can match 1 or more strings e.g. (test11111 and test11), the use of test*1 will match both files while use of test?1 will only match test11. Try running this command: . ls test?1 . Which one matches your query? . ",
     "url": "/Intro2Bioinfo/Lesson2.html#wildcards",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#wildcards"
-  },"22": {
+  },"27": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Redirectors",
     "content": "The redirection symbols allow the change of destination of outputs (oe even inputs in some instances). Rather than outputs directly showing to your terminal screen, it can be redirected to another command or file. Additionally, redirectors can also be use to push an input to a command. The ‘&gt;’ and ‘&lt;’ . The ‘&gt;’ redirector indicates that the output of any command or process on its left will be transferred to a file indicated on its right. It’s most basic structure follows this: . [command] [any arguments] &gt; [output file] . Try running this command: . ls -all &gt; list.txt, then open list.txt . Be warned that using an &gt; output redirector towards an output file that already exists in the destination will lead to the overwriting of that file. To append an existing file (adding output on the end of the file), please use the append &gt;&gt; redirector instead. Meanwhile, the ‘&lt;’ redirector indicates that the file in the right of the &lt; will be used as an input to the command to its left: [command][options/arguments] &lt; [input file] . Example: . ```mail -s “News Today” gccab@ymail.com &lt; NewsFlash.zip . In this example, we can add the attachment NewsFlash.zip to the command line mail command rather than just sending plain text for email. The mail command is command-line command used to send email. It is useful to incorporate in programs or scripts that need immediate notification to the user if they have errors or the run have finished. The pipe ‘|’ . If you want your output to be redirected not into a file but to another process or command, the | or pipe redirector is primarily used. It can be used not only once on a line but can be used to chain several commands to gether. A basic structure would look like this: . [command 1] | [command 2] | [command 3] &gt; [output file or STDOUT] . Try running this command: . ls ./data/all | head -n 20 &gt; list.txt . Error redirectors . Several programs often outputed also the errors in STDOUT or terminal screen. You can separate the errors and redirect it to a new distinct file using 2&gt; redirection. It works similar as the normal output redirection but the difference is it will only filter ‘error’ outputs designated by the program you use. The ‘error’ redirector 2&gt; can be used alongside a ‘output’ redirector but designate it as such 1&gt;. One example would be like this: head nonexistentfile.txt 1&gt; file.out 2&gt; file.err. ",
     "url": "/Intro2Bioinfo/Lesson2.html#redirectors",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#redirectors"
-  },"23": {
+  },"28": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Bioinformatic File types and formats",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson2.html#bioinformatic-file-types-and-formats",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#bioinformatic-file-types-and-formats"
-  },"24": {
+  },"29": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Sequence File Formats",
     "content": "Sequencing of DNA and RNA often produce signals of light, chromatogram peaks or electric current as an indication of a nucleotide base. These raw signals are converted into ASCII or computer friendly code using a ‘basecaller’ or basecalling program. Most of the files that we analysed in bioinformatic analysis are already in this ASCII or alphanumeric format that is readable to both machines and humans. To learn more about basecaller, please look into in this nanopore guide. ",
     "url": "/Intro2Bioinfo/Lesson2.html#sequence-file-formats",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#sequence-file-formats"
-  },"25": {
+  },"30": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "The  FASTQ format",
     "content": "The most common file format after basecalling is the fastq format or colloquially known as Quality FASTA format. The fastq files contained both nucleotide sequence information, represented with characters as AGCTN*, and the quality score of each nucleotide, which are represented by different alphanumeric characters. The quality score is based on Phred Q Score system in which quality is computed as probabilty of error Pe [2], as computed by this equation: . Qphred=-10 x log10(Pe) . An example of a fastq file: . The FASTQ format consists of four lines: . | Header — Starts with @, followed by a sequence ID and metadata. | Sequence — The raw nucleotide sequence (e.g., AGCT...). | Separator — A + symbol separating the sequence and quality. | Quality — ASCII-encoded Phred quality scores. | . Phred Score . The quality scores ranges from 0-40 with 40 indicating the highest level of quality. Phred quality score can be interpreted as a factor of accuracy as shown in this table: . Quality Scores and Accuracy | Phred Score | Probability of incorrect call | Base Call Accuracy | . | 10 | 1 in 10 | 90% | . | 20 | 1 in 100 | 99% | . | 30 | 1 in 1,000 | 99.9% | . | 40 | 1 in 10,000 | 99.99% | . The ASCII representation of this quality score in fastq files can be seen in this image adapted from NYU: . Phred-64 format is only used by Illumina sequencers while Phred-33 is primarily used by other sequencing file format. ",
     "url": "/Intro2Bioinfo/Lesson2.html#the--fastq-format",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#the--fastq-format"
-  },"26": {
+  },"31": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "The  FASTA format",
     "content": "FASTA files are the most common file format you will encounter when doing bioinformatic analysis. Unlike FASTQ files with quality score, FASTA files primarily contains only the sequence information using AGCT characters for nucleotides. Aside from this, the N and * are also used as unspecified based and stop character. A nucleotide FASTA File . The FASTA file format is composed of two lines per sequence. The first line starts with &gt; composes the header line. It often has the sequence name and other properties depending on the program used. The second line is composed of the nucleotide sequence file. This can be on capital or small characters. When reading FASTA format of protein sequences, we use single amino acid representations. Here is a sample of a protein FASTA file: . Protein FASTA File The two formats should not be used at the same file as the nucleotide fasta format can be interpreted as a protein fasta file. ",
     "url": "/Intro2Bioinfo/Lesson2.html#the--fasta-format",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#the--fasta-format"
-  },"27": {
+  },"32": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Alignment Format",
     "content": "In many downstream analysis, fasta/fastq files are aligned to create a large genome sequence file. Among the most common alignment format used here are the SAM and BAM format. ‘BAM’ is the binary file format of ‘SAM’ and often used for its smaller file size. The SAM or Sequence Alignment Map format . %%script false --no-raise-error 1:497:R:-272+13M17D24M 113 1 497 37 37M 15 100338662 0 CGGGTCTGACCTGAGGAGAACTGTGCTCCGCCTTCAG 0;==-==9;&gt;&gt;&gt;&gt;&gt;=&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; XT:A:U NM:i:0 SM:i:37 AM:i:0 X0:i:1 X1:i:0 XM:i:0 XO:i:0 XG:i:0 MD:Z:37 19:20389:F:275+18M2D19M 99 1 17644 0 37M = 17919 314 TATGACTGCTAATAATACCTACACATGTTAGAACCAT &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&lt;&lt;&gt;&gt;&gt;&lt;&lt;&gt;&gt;4::&gt;&gt;:&lt;9 RG:Z:UM0098:1 XT:A:R NM:i:0 SM:i:0 AM:i:0 X0:i:4 X1:i:0 XM:i:0 XO:i:0 XG:i:0 MD:Z:37 19:20389:F:275+18M2D19M 147 1 17919 0 18M2D19M = 17644 -314 GTAGTACCAACTGTAAGTCCTTATCTTCATACTTTGT ;44999;499&lt;8&lt;8&lt;&lt;&lt;8&lt;&lt;&gt;&lt;&lt;&lt;&lt;&gt;&lt;7&lt;;&lt;&lt;&lt;&gt;&gt;&lt;&lt; XT:A:R NM:i:2 SM:i:0 AM:i:0 X0:i:4 X1:i:0 XM:i:0 XO:i:1 XG:i:2 MD:Z:18^CA19 9:21597+10M2I25M:R:-209 83 1 21678 0 8M2I27M = 21469 -244 CACCACATCACATATACCAAGCCTGGCTGTGTCTTCT &lt;;9&lt;&lt;5&gt;&lt;&lt;&lt;&lt;&gt;&lt;&lt;&lt;&gt;&gt;&lt;&lt;&gt;&lt;&gt;&gt;&lt;9&gt;&gt;&lt;&gt;&gt;&gt;9&gt;&gt;&gt;&lt;&gt; XT:A:R NM:i:2 SM:i:0 AM:i:0 X0:i:5 X1:i:0 XM:i:0 XO:i:1 XG:i:2 MD:Z:35 . As shown above, it is composed of several columns that describes a reads position in the genome. The meaning of each column can be seen here: . We will not discuss this in detail but will tackle in the future. ",
     "url": "/Intro2Bioinfo/Lesson2.html#alignment-format",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#alignment-format"
-  },"28": {
+  },"33": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Other File formats",
     "content": "Multiple other file formats are used in Bioinformatics. We will tackle them in detail when we encounter them in our analysis. Here are some of the file formats that are common in a bioinformatic workflow. Bioinformatic files | File Formats | Extension | Definitions | . | FASTQ | .fastq or .fq | contains sequence information and the quality of the sequences | . | FASTA | .fasta or .fa | basic file containing description and sequence information | . |   | .fna | an alternative extension used to denote a nucleotide fasta format | . |   | .faa | an alternative extension used to denote a protein fasta format | . |   | .fa.gz or .fasta.gz or .fq.gz | gunzipped compressed format of FASTA or FASTQ for smaller file size | . | SAM | .sam | a sequence alignment format that details position of each nucleotide. May include quality score and other options depending on the program used | . | BAM | .bam | a compressed or binary form of SAM to lower file size | . | General Feature Format | .gff or .gff2 or .gff3 | is a file format used to describe genes and other general feature of the genome | . |   |   | It is consisting of several columns describing the genes, gene names, position and orientation of the genes | . | Gene Transfer format | .gtf | Similar to GFF files but may containe gene structure data | . | Variant Calling File | .vcf | VCf is the standard format when storing gene variation data such as indels and single nucleotide polymorphisms (SNPs) | . ",
     "url": "/Intro2Bioinfo/Lesson2.html#other-file-formats",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#other-file-formats"
-  },"29": {
+  },"34": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Summary",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson2.html#summary",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#summary"
-  },"30": {
+  },"35": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Common operations in Terminal",
     "content": "| Terminologies | Definitions | . | tab | Auto-completion of files or programs available in the terminal | . | * | A catch-all wildcard that matches 0 or more instances | . | ? | A single character wildcard that matches just 1 character instance | . | &gt; | Output redirector that allows both STDOUT and STDERR to be save to a file | . | &lt; | Input redirector that allows files to fill in as STDIN to the command or program | . | &gt;&gt; | Append redirector add STDOUT to the end of the file rather than replacing it | . | 2&gt; | error redirection separates STDERR outputs to a file | . | 1&gt; | STDOUT only redirection to a file | . | \\| | Pipe redirection allows to chain a STDOUT as STDIN to another program | . | STDIN | Standard input are inputs that are often provided to a program or command via terminal | . | STDOUT | Standard output are output of programs and commands and are often shown into the terminal rather than a file | . | STDERR | Standard errors are error outputs of programs and commands that is also often shown in terminal | . ",
     "url": "/Intro2Bioinfo/Lesson2.html#common-operations-in-terminal",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#common-operations-in-terminal"
-  },"31": {
+  },"36": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Acknowledgement",
     "content": "This tutorial is adapted from Intro to Unix from Happy Belly Bioinformatics by Michael D. Lee or known as AstroBioMike in github. ",
     "url": "/Intro2Bioinfo/Lesson2.html#acknowledgement",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#acknowledgement"
-  },"32": {
+  },"37": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Citation",
     "content": "[1] Lee, M. (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053 . [2] Cock, P.J.A, C.J. Fields, N. Goto, M.L. Heuer, &amp; P.M. Rice (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Research, 38(6):1767-1771, https://doi.org/10.1093%2Fnar%2Fgkp1137 . ",
     "url": "/Intro2Bioinfo/Lesson2.html#citation",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html#citation"
-  },"33": {
+  },"38": {
     "doc": "Lesson 2 - Basic Operations in Terminal and BASH",
     "title": "Lesson 2 - Basic Operations in Terminal and BASH",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson2.html",
     
     "relUrl": "/Intro2Bioinfo/Lesson2.html"
-  },"34": {
+  },"39": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Lesson 3: The commands to rule them all",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson3.html#lesson-3-the-commands-to-rule-them-all",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#lesson-3-the-commands-to-rule-them-all"
-  },"35": {
+  },"40": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Basic bioinformatics commands:",
     "content": "There are tons of built-in commands within Linux OSes that are very useful for bioinformatic analysis. In this section, we will examine a few of the most commonly used commands in bioinformatics. We will adapt content from the Happy Belly Bioinformatics. The following lesson and activity should be tried using a linux terminal. Please use your WSL2 and/or register an account to Webminal. ",
     "url": "/Intro2Bioinfo/Lesson3.html#basic-bioinformatics-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#basic-bioinformatics-commands"
-  },"36": {
+  },"41": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "History: history &lt;n&gt;",
     "content": "Look into the recent commands run in the terminal for the past n lines. Useful for backtracking the commands you have previously run. Try this command: . history 20 . This should display the last 20 files you have entered in the command-line. If you are searching a specific command, you can also combine history with grep(see below) to search a specific command you’ve previously used. Try this command: . history | grep \"ls\" . It should be noted that you can recall also previous commands using your up ⬆️ and down ⬇️ arrow key. ",
     "url": "/Intro2Bioinfo/Lesson3.html#history-history-n",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#history-history-n"
-  },"37": {
+  },"42": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "GNU Wget wget &lt;url&gt;",
     "content": "wget is a command-line utility for downloading files from the web. It supports HTTP, HTTPS, and FTP protocols and is useful for retrieving datasets, software packages, or scripts directly into your working directory. Try this command: . wget https://github.com/gamalielcabria/gamalielcabria.github.io/blob/main/Intro2Bioinfo/files/gene_counts.tsv . The previous command will download the gene_counts.tsv directly into your current working directory. If you want it to be located in a different directory, you can use the command: . wget &lt;url&gt; -P &lt;destination path&gt;. To download a folder with multiple files inside, it would be suggested to zip the files or if not possible do a recursive download: . Try this command: . # Create a destination folder mkdir -p ./destination #download recursively to the destination folder wget -r -np -nH --cut-dirs=5 -A \"*.gtf.gz\" ftp://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/ -P ./destination . This command will download all *gtf.gz files from ENSEMBL . | -r: Recursive download | -np: No parent: don’t go to parent directories | -nH: No host directory: avoid creating ftp.ensembl.org/ | --cut-dirs=5: Skip 5 directory levels (so files save cleanly) | -A \"*.gtf.gz\": Only download files ending in .gtf.gz | -P: Destination folder of the file | . ",
     "url": "/Intro2Bioinfo/Lesson3.html#gnu-wget-wget-url",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#gnu-wget-wget-url"
-  },"38": {
+  },"43": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Concatenate cat",
     "content": "The cat (short for concatenate) command is used to display the contents of a file or combine multiple files into one. It’s especially useful for quickly checking small files or merging sequencing data. cat file1 file2 &gt; combined_file # Merges two or more files into one combined_file. Without the redirector &gt; symbol, concatenate cat will display the concatenated file to STDOUT only. Try this command: . # Download files to be concatenated wget -P ./destination https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/data.tsv wget -P ./destination https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/genes.tsv # Run cat to visually concatenate: cat data.tsv genes.tsv # Run it again but different order cat genes.tsv data.tsv . Have you notice any difference? . ",
     "url": "/Intro2Bioinfo/Lesson3.html#concatenate-cat",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#concatenate-cat"
-  },"39": {
+  },"44": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Gunzip Compression gzip [-d|-k] &lt;file&gt;",
     "content": "gzip is a widely used command-line tool for compressing text files, such as FASTA, FASTQ, GTF, or VCF files, into .gz format. This is especially useful in bioinformatics, where raw data files can be very large. This command compresses data.txt into data.txt.gz and removes the original file by default. gzip data.txt . The plaing gzip command will remove the original file and be replaced with data.txt.gz. Use -k to keep the original file: . gzip -k data.txt . Meanwhile, decompressing a file uses -d option or gunzip command. gzip -d data.txt.gz . To retain the original gz file: . gunzip -c data.txt.gz &gt; data.txt . Compare the sizes of the files between the compressed and uncompressed files. Did you notice any difference? . | File Type | Compression Ratio | Notes | . | FASTA | 2–4× smaller | Compresses well due to repetitive sequences | . | FASTQ | 3–6× smaller | Especially efficient for raw reads | . | GTF/GFF | 3–5× smaller | Mostly text-based, highly compressible | . | VCF | 4–8× smaller | Works well but block compression (bgzip) often preferred | . Gunzip compressed files cannot be read by normal text editor or text file view commands such as more, cat, and nano. They will appear gibberish because they are binary. However, less command are able to interpret them. zcat zcat &lt;gzipped file&gt; . Given that concatenate cat command does not work with gzipped files. The zcat command replaces it and allows viewing and concatenation of gz files. ",
     "url": "/Intro2Bioinfo/Lesson3.html#gunzip-compression-gzip--d-k-file",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#gunzip-compression-gzip--d-k-file"
-  },"40": {
+  },"45": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Wordcount wc [-c|-m|-w|-l]",
     "content": "The wordcount commands wc print out the number of bytes -c, characters -m, word -w, and lines -l within a text file. It is often useful in counting the number of items in your file or a list. One examples is counting the number of genes being analyse in gene count table: . Try this command: . # Download Test Data wget -P ./destination https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/gene_counts.tsv # count the number of genes wc -l gene_counts.tsv . Is it the same when you open the file using less|more and counted the genes? . Files often have a header that you need to account for. It will be counted by wc . ",
     "url": "/Intro2Bioinfo/Lesson3.html#wordcount-wc--c-m-w-l",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#wordcount-wc--c-m-w-l"
-  },"41": {
+  },"46": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Column Extraction Command: cut",
     "content": "The cut command is used to extract columns (fields) from tabular files, like .tsv or .csv, which is common in bioinformatics data such as gene tables or expression matrices. Try this command: . more ./destination/data.tsv cut -f 1 ./destination/data.tsv cut -f 1,3 ./destination/data.tsv . cut command cuts the table based on delimiters. The default delimiter is the tab character (\\t). To change delimiter, just use the option -d: . Try this command: . cut -d'e' -f 3 ./destination/data.tsv . To permanently combine a cut file, you need to redirect it to an output file. !!DO THIS COMMAND!! . Save cut files to different text files . cut -f 1,3 ./destination/data.tsv &gt; score.txt cut -f 1,2 ./destination/data.tsv &gt; value.txt . ",
     "url": "/Intro2Bioinfo/Lesson3.html#column-extraction-command-cut",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#column-extraction-command-cut"
-  },"42": {
+  },"47": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Line-by-line paste command paste",
     "content": "The paste command merges lines of multiple files horizontally, inserting a delimiter (default: tab). It’s useful for joining columns from separate files into one table. Try this command: . # Joins corresponding lines from two files side by side. `paste score.txt value.txt` # Compare it to the opposite order `paste value.txt score.txt` . Now compare it to a cat command. What did you observe . ",
     "url": "/Intro2Bioinfo/Lesson3.html#line-by-line-paste-command-paste",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#line-by-line-paste-command-paste"
-  },"43": {
+  },"48": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Regular expression search command grep",
     "content": "grep is a powerful command-line tool used to search text using regular expressions (regex) — patterns that describe sets of strings. It’s widely used in bioinformatics to extract specific sequence IDs, gene names, or annotations from large text-based files. It’s basic command is as such: . grep \"&lt;pattern&gt;\" &lt;input file&gt; . What is regular expression? . 🧩 Regular Expressions (Regex) . Regular expressions are powerful patterns used to match strings of text. They are essential for searching, filtering, and extracting data in large bioinformatics files like FASTA, GTF, or VCF. For example: . | ^gene — matches lines that start(^) with “gene” | \\.gz$ — matches filenames that end($) with .gz. | The backward slash \\ here forces the program to treat . as a dot character | Otherwise, . in regex can signal any character or whitespace | . | [ATCG]{10,} — matches sequences with 10 or more A/T/C/G characters | . Regex is used with tools like grep, sed, awk, and even within programming languages like Python or R. Learn more about how regular expressions work using the following cheatsheet. If you want to check out and practice how it works, visit the website regex101.com. For now let us stick to the basics. GREP most known function in bioinformatics is the counting of reads in a fasta file. If you recall, fasta file consists of a header starting with &gt; followed by some text and a sequence file. To know the number of fasta sequences within a fasta file, simply use the following: . Try this command: . #Download a fasta file wget -P ./destination https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/random.fasta #Count the number of headers using `-c` option grep -c \"^&gt;\" ./destination/random.fasta . The -c is used to count the number of reoccurrence of the pattern within \"&lt;pattern&gt;\". Again, ^ signifies start of a line. Thus, \"^&gt;\" counts the number of &gt; in the file that is at the start of the line (i.e. headers). Can you compare it without the -c option? . Try this command: . grep \"^&gt;\" ./destination/random.fasta . It should display the lines that match and color the pattern that matches. GREP can be used only on text files. To read compressed or binary files such as *.gz. However, you do not to decompress to process them but you can use pipe to chain the commands. An example for counting all non-comment files in gtf file: . Try this command: . zcat ./destination/Homo_sapiens.GRCh38.110.gtf.gz | grep -c -v \"^#\" . The gtf file often has commented text in top of the file such as this: . #!genome-build GRCh38.p14 #!genome-version GRCh38 #!genome-date 2013-12 #!genome-build-accession GCA_000001405.29 #!genebuild-last-updated 2023-03 1 havana gene 182696 184174 . + . gene_id \"ENSG00000279928\"; gene_version \"2\"; gene_name \"DDX11L17\"; gene_source \"havana\"; gene_biotype \"unprocessed_pseudogene\"; 1 havana transcript 182696 184174 . + . gene_id \"ENSG00000279928\"; gene_version \"2\"; transcript_id \"ENST00000624431\"; transcript_version \"2\"; gene_name \"DDX11L17\"; gene_source \"havana\"; gene_biotype \"unprocessed_pseudogene\"; transcript_name \"DDX11L17-201\"; transcript_source \"havana\"; transcript_biotype \"unprocessed_pseudogene\"; tag \"basic\"; tag \"Ensembl_canonical\"; transcript_support_level \"NA\"; 1 havana exon 182696 182746 . + . gene_id \"ENSG00000279928\"; gene_version \"2\"; transcript_id \"ENST00000624431\"; transcript_version \"2\"; exon_number \"1\"; gene_name \"DDX11L17\"; gene_source \"havana\"; gene_biotype \"unprocessed_pseudogene\"; transcript_name \"DDX11L17-201\"; transcript_source \"havana\"; transcript_biotype \"unprocessed_pseudogene\"; exon_id \"ENSE00003759020\"; exon_version \"2\"; tag \"basic\"; tag \"Ensembl_canonical\"; transcript_support_level \"NA\"; . The -v option in the grep command skip all files that matches the pattern: lines that starts with #. We can also chain grep commands to search more thoroughly within the file. For example, if we want to find a line that is a rRNA gene and its gene description in the gtf file, we can run this: . zcat ./destination/Homo_sapiens.GRCh38.110.gtf.gz | grep -P '\\tgene\\t' file.gtf | grep 'gene_biotype \"rRNA\"' . Now, can you count the number of tRNA exons in these gtf file? . ",
     "url": "/Intro2Bioinfo/Lesson3.html#regular-expression-search-command-grep",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#regular-expression-search-command-grep"
-  },"44": {
+  },"49": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "The Stream Editor Command sed",
     "content": "The sed command is a powerful tool for editing text in files or streams. It’s often used for find-and-replace operations, especially when working with large datasets or automated scripts. sed [options: -i|-E] 's/&lt;old pattern or text&gt;/&lt;new replacement&gt;/g' &lt;file&gt; . Several options can be used when running sed, check --help for more info. Without any options declared, the sed output will just be displayed in STDOUT. The command -i, means in-line replacement, can be use to edit the input file without displaying. sed command utilizes regular expression for matching text. The sed has so many options than what I can easily discuss in this beginner guide. Please look up this SED cheatsheet for more details. One example of sed usage in bioinformatics is quick renameing of headers of fasta file. Try this command: . # Visualize the content of fasta file head ./destination/random.fasta # Let us replace the header name `seq` by including the species they are from sed 's/^&gt;seq/&gt;Bacillus subtillis \\| gene /g' ./destination/random.fasta . Did it change the contents of the file? What do you need to do to change the content of the file permanently? . sed is also useful when removing or replacing unwanted targets. For example, I want to remove sequences that has adenosine homopolymer count of 4 or more and replace them with N’s: . Try this command: . # See how many matches using `grep` grep -E \"A{4,}\" ./destination/rando.fasta # run replacement and visualize it using sed -E 's/A{4,}/NNNNNNNN/g' ./destination/random.fasta | grep -E \"N{8}\" -B1 . Remember this does not invoke -i which means the sed replacement is not save in the file. Lastly, one other use of sed is changing file delimtiers. Converting a tsv file to csv in which the \\t is replaced by ,: . !!DO THIS COMMAND!! . sed 's/\\t/,/g' data.tsv &gt; data.csv . ",
     "url": "/Intro2Bioinfo/Lesson3.html#the-stream-editor-command-sed",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#the-stream-editor-command-sed"
-  },"45": {
+  },"50": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Pattern scanning and text processing language awk",
     "content": "awk is a powerful command-line tool for pattern scanning, text processing, and column-wise operations in structured files like TSV or CSV. It reads input line by line, splits lines into fields, and lets you perform calculations, filtering, or formatting. awk '$3 &gt; 150' gene_counts.tsv . | This prints lines from gene_counts.tsv where the third column is greater than 100. | . It can also perform more complicated task such as filtering based on values for multiple columns: . awk ' BEGIN {OFS = \"\\t\"} $2 &gt; 180 &amp;&amp; $7 &lt; 300 { print } ' &lt; ./destination/gene_counts.tsv . awk is indispensable in bioinformatics pipelines for filtering large tabular files like GTFs, count matrices, and sequence stats. Other common uses: . awk '{print $1, $3}' data.tsv # Print columns 1 and 3 awk -F',' '{print $2}' data.csv # Use comma as delimiter awk 'NR &gt; 1' file.tsv # Skip header (print after 1st row) . Remember earlier that we count the rows of the table using wc command? Now, we can also combine it with awk to count the number of columns of data.csv . Try this command: . wc -l &lt; gene_counts.tsv head -1 gene_counts.tsv | awk -F'\\t' '{print NF}' . | wc -l: counts the number of lines (i.e., rows) | head -1: grabs the header row | awk -F'\\t' '{print NF}': prints the number of fields/NF (columns), assuming tab-delimited | . ",
     "url": "/Intro2Bioinfo/Lesson3.html#pattern-scanning-and-text-processing-language-awk",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#pattern-scanning-and-text-processing-language-awk"
-  },"46": {
+  },"51": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Translate tr",
     "content": "The tr (translate) command is used to replace, squeeze, or delete characters from input. It works only on character-by-character transformations and reads from standard input. An example, let us change the [AGCT] nucleotides in this fasta to lowercase. We can use: . tr 'A-Z' 'a-z' &lt; random.fasta . We can use tr also to remove all digits in the file . tr -d '0-9' &lt; random.fasta . ",
     "url": "/Intro2Bioinfo/Lesson3.html#translate-tr",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#translate-tr"
-  },"47": {
+  },"52": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Display text or variable command echo",
     "content": "The echo command prints text or variables to the terminal. It’s often used in scripts to show messages, output variable values, or create files on the fly. | Prints a simple message: | . echo \"Hello, bioinformaticians!\" . | Show the value of a variable: | . sample=\"sample1\" echo \"Currently processing: $sample\" . Values to the variables in bash is assigned using the = symbol. The variable name to the left of it and the values from the right. There should be no space between the variable, =, and the assigned value to the left. We can use it also to write FASTA or any text to a file! . | Write FASTA content to a file: | . echo -e \"&gt;geneX\\nATGCGTACGTA\" &gt; geneX.fasta . | Add content to a file: | . echo -e \"&gt;geneX\\nATGCGTACGTA\" &gt; geneX.fasta . ",
     "url": "/Intro2Bioinfo/Lesson3.html#display-text-or-variable-command-echo",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#display-text-or-variable-command-echo"
-  },"48": {
+  },"53": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Summary",
     "content": "| Command | Description | Example | Use Case | . | history | Shows recently used commands | history 20 | Recall past terminal commands | . | wget | Downloads files from the web | wget &lt;url&gt; | Retrieve datasets/scripts | . | cat | Displays or combines files | cat file1 file2 &gt; merged.txt | Merge sequencing files | . | gzip / gunzip | Compress/decompress files | gzip file.txt / gunzip file.gz | Save storage on large files | . | wc | Counts lines, words, etc. | wc -l gene_counts.tsv | Count rows in tables | . | cut | Extracts columns | cut -f1,3 data.tsv | Subset tabular data | . | paste | Merges files line-by-line | paste file1 file2 | Combine columns from files | . | grep | Searches using regex | grep \"^&gt;\" fasta.fna | Count sequences or search patterns | . | sed | Stream editor for text | sed 's/old/new/g' file.txt | Replace or clean text | . | awk | Processes text by column | awk '$2 &gt; 100' file.tsv | Filter tabular data | . | tr | Translates/deletes characters | tr 'A-Z' 'a-z' &lt; file | Change case or strip characters | . | echo | Prints text/variables | echo \"Hello!\" | Display info or write files | . ",
     "url": "/Intro2Bioinfo/Lesson3.html#summary",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#summary"
-  },"49": {
+  },"54": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Acknowledgement",
     "content": "This tutorial is adapted from Intro to Unix from Happy Belly Bioinformatics by Michael D. Lee or known as AstroBioMike in github. ",
     "url": "/Intro2Bioinfo/Lesson3.html#acknowledgement",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#acknowledgement"
-  },"50": {
+  },"55": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Citation",
     "content": "[1] Lee, M. (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053 . ",
     "url": "/Intro2Bioinfo/Lesson3.html#citation",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#citation"
-  },"51": {
+  },"56": {
     "doc": "Lesson 3 - The commands to rule them all",
     "title": "Lesson 3 - The commands to rule them all",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson3.html",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html"
-  },"52": {
+  },"57": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Lesson 4: Installing New Commands",
     "content": "Most Unix-based systems come with a set of core commands (like ls, cd, cp, mv, etc.). However, as your work becomes more specialized—especially in fields like bioinformatics, you’ll often need to install additional tools and commands. ",
     "url": "/Intro2Bioinfo/Lesson4.html#lesson-4-installing-new-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#lesson-4-installing-new-commands"
-  },"53": {
+  },"58": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "💡 How It Works",
     "content": "Commands become available when you install new programs. These programs typically place their executable files in directories like /usr/bin, /usr/local/bin, or your user’s ~/bin. Once installed and added to your system’s PATH, you can run them from the terminal just like built-in commands. ",
     "url": "/Intro2Bioinfo/Lesson4.html#-how-it-works",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#-how-it-works"
-  },"54": {
+  },"59": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "✅ Ways to Install Commands",
     "content": ". | Using a package manager: . | On Debian/Ubuntu: . sudo apt install fastqc . | On macOS (with Homebrew): . brew install fastqc . | . | With Conda (recommended for bioinformatics): . conda install -c bioconda fastqc . | From source (if no package is available): . git clone https://github.com/example/tool.git cd tool make &amp;&amp; sudo make install . | . ",
     "url": "/Intro2Bioinfo/Lesson4.html#-ways-to-install-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#-ways-to-install-commands"
-  },"55": {
+  },"60": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "🎈 Example of installing new commands with Whimsical and Fun Linux Commands",
     "content": "Add some humor to your Linux terminal with these quirky and delightful commands! Below is a step-by-step guide to install and verify some of the most popular fun tools. ",
     "url": "/Intro2Bioinfo/Lesson4.html#-example-of-installing-new-commands-with-whimsical-and-fun-linux-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#-example-of-installing-new-commands-with-whimsical-and-fun-linux-commands"
-  },"56": {
+  },"61": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "🐄 cowsay: Make a Cow Talk",
     "content": "An ASCII cow (or other creature) that repeats your message. | Install Depending on your OS (check your OS using uname -a), you can install using the following commands: | . sudo apt install cowsay # Debian/Ubuntu sudo yum install cowsay # RHEL/CentOS sudo pacman -S cowsay # Arch . | Verify Installation Verify first where it is installed using which and then try running it! | . which cowsay # Shows the path if installed cowsay \"Hello!\" # Outputs: &lt;Hello!&gt; from a cow . ",
     "url": "/Intro2Bioinfo/Lesson4.html#-cowsay-make-a-cow-talk",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#-cowsay-make-a-cow-talk"
-  },"57": {
+  },"62": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "🖥️ cmatrix: Matrix Terminal Animation",
     "content": "Wanna be Nero? Try this. It mimics the “falling code” from The Matrix . | Install Depending on your OS (check your OS using uname -a), you can install using the following commands: | . sudo apt install cmatrix sudo yum install cmatrix sudo pacman -S cmatrix . | Verify Installation Verify first where it is installed using which and then try running it! | . cmatrix # Start the animation . Stop the animation using Ctrl+c . ",
     "url": "/Intro2Bioinfo/Lesson4.html#%EF%B8%8F-cmatrix-matrix-terminal-animation",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#️-cmatrix-matrix-terminal-animation"
-  },"58": {
+  },"63": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "🐍 Installing and using Conda via Miniforge",
     "content": "Conda is a powerful package manager widely used in data science and bioinformatics. It can manage Python/R environments and install tools like fastqc, samtools, and more. ",
     "url": "/Intro2Bioinfo/Lesson4.html#-installing-and-using-conda-via-miniforge",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#-installing-and-using-conda-via-miniforge"
-  },"59": {
+  },"64": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Download and Install Miniconda",
-    "content": "For Linux/macOS: . Download lates conda installer from either Anaconda or Conda-Forge (Github). wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh bash Miniforge3-Linux-x86_64.sh . For macOS: . | Using macOS(Intel): | . wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh bash Miniforge3-MacOSX-x86_64.sh . | Using macOS(M1/ARM): | . wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh bash Miniforge3-MacOSX-arm64.sh . If you are installing inside a high-performance computer (HPC), follow the specific guidelines your administrator recommends. For example here is a link for the installation of conda in University of Calgary’s HPC. University of calgary suggest to Decline the option to initialize Conda/Miniforge in your shell startup. This prevents automatic activation, which can cause issues on shared systems. They suggest to intialize conda manually: . # Create a script based on where conda is installed echo 'source ~/software/miniforge3/etc/profile.d/conda.sh' &gt; ~/software/init-conda # Run init-conda when using the server or put into job manager scripts: source ~/software/init-conda . ",
+    "content": "For Linux/macOS: . Download lates conda installer from either Anaconda or Conda-Forge (Github). wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh bash Miniforge3-Linux-x86_64.sh . For macOS: . | Using macOS(Intel): | . wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-x86_64.sh bash Miniforge3-MacOSX-x86_64.sh . | Using macOS(M1/ARM): | . wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh bash Miniforge3-MacOSX-arm64.sh . Installing in HPC . If you are installing inside a high-performance computer (HPC), follow the specific guidelines your administrator recommends. For example here is a link for the installation of conda in University of Calgary’s HPC. University of calgary suggest to Decline the option to initialize Conda/Miniforge in your shell startup. This prevents automatic activation, which can cause issues on shared systems. They suggest to intialize conda manually: . # Create a script based on where conda is installed echo 'source ~/software/miniforge3/etc/profile.d/conda.sh' &gt; ~/software/init-conda # Run init-conda when using the server or put into job manager scripts: source ~/software/init-conda . ",
     "url": "/Intro2Bioinfo/Lesson4.html#download-and-install-miniconda",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#download-and-install-miniconda"
-  },"60": {
+  },"65": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Check Conda Installation",
     "content": "Check its version or find where it is installed: . conda --version # Version check which conda # Find installation path . Expected output for version check should look like this: . conda 24.x.x . You can activate an environment (i.e. base ) using the command: . conda activate &lt;environment name&gt; . Meanwhile, to deactivate the environment, run the following: . conda deactivate . A Conda environment is an isolated workspace that allows you to manage specific packages and dependencies for a project without affecting your system or other projects. This is especially useful in bioinformatics, where different tools often require conflicting versions of libraries. To check the list of installed environments, run: . conda env list . ",
     "url": "/Intro2Bioinfo/Lesson4.html#check-conda-installation",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#check-conda-installation"
-  },"61": {
+  },"66": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Install Packages",
     "content": "Let us try installing the fastq file quality checker program, fastqc. To install the fastqc in your current environment . conda install -c bioconda fastqc . -c specifies from which channels the fastqc package can be found. For bioinformatics programs, it is usually in bioconda and/or conda-forge. It is often recommended that you install programs of the same pipeline with no conflict with each other in the same environment. However, you can also create one environment per program you are installing. conda create -n bioinfo_env python=3.10 conda activate bioinfo_env conda install -c bioconda fastqc . You can specify the version of programs you install manually or else it would default to the latest version in the repository. ",
     "url": "/Intro2Bioinfo/Lesson4.html#install-packages",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#install-packages"
-  },"62": {
+  },"67": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "More Conda?",
     "content": "To learn more on how Conda/Miniforge/Mamba works, please check the following link for the cheat sheet of conda. ",
     "url": "/Intro2Bioinfo/Lesson4.html#more-conda",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#more-conda"
-  },"63": {
+  },"68": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Other tools for Bioinformatics",
     "content": "Other than conda, there are several other package and environment manager you might use in bioinformatics. | Tool | Type | Description | . | Conda | ✅ Both | Manages packages and creates isolated environments. Widely used in bioinformatics with bioconda. | . | Mamba | ✅ Both | A faster implementation of Conda using C++; handles environments and packages. | . | pip | ✅ Package Manager | Installs Python packages. Doesn’t handle environments by itself. Often used inside Conda environments. | . | Bioconda | ✅ Package Source | A Conda channel for bioinformatics packages. Works with Conda/Mamba. | . | CRAN | ✅ Package Manager | R’s base package system. Installs R packages. | . | Bioconductor | ✅ Package Manager | Extension of CRAN for bioinformatics in R. | . | virtualenv | ✅ Environment Manager | Python tool for creating isolated environments. Doesn’t manage non-Python packages. | . | Homebrew | ✅ Package Manager | macOS/Linux system-level package manager. Installs bioinformatics tools like samtools, blast. | . | APT (apt-get) | ✅ Package Manager | Debian/Ubuntu package manager for installing system software including bio tools. | . | YUM / DNF | ✅ Package Manager | Red Hat/CentOS/Fedora equivalent of APT. | . | Nix | ✅ Both | Purely functional manager for packages and environments. Focuses on reproducibility. | . | Guix | ✅ Both | Similar to Nix but GNU-based. Ideal for reproducible bioinformatics pipelines. | . | Docker | ✅ Environment Manager | Containerizes full environments. Useful for reproducibility. | . | Singularity | ✅ Environment Manager | Container platform often used in HPC. Supports Docker-compatible containers. | . | Galaxy Toolshed | ✅ Package Manager | Galaxy platform’s tool/package repository. Focused on workflows. | . ",
     "url": "/Intro2Bioinfo/Lesson4.html#other-tools-for-bioinformatics",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html#other-tools-for-bioinformatics"
-  },"64": {
+  },"69": {
     "doc": "Lesson 4 - Installing New Commands",
     "title": "Lesson 4 - Installing New Commands",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson4.html",
     
     "relUrl": "/Intro2Bioinfo/Lesson4.html"
-  },"65": {
+  },"70": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "BASH Scripting Tutorial",
+    "content": "This tutorial introduces the basics of BASH scripting, useful for automating tasks in bioinformatics. BASH stands for Bourne Again SHell — it is a command-line interpreter or shell used in most Unix-based systems (like Linux and macOS). It allows users to interact with the system by typing commands and running scripts to automate tasks. Key Points: . | Shell: A shell is a program that interprets your commands. BASH is one of the most popular Unix shells. | Command-line Interface (CLI): BASH runs in a terminal where you type commands to interact with files, run programs, and manage systems. | Scripting: You can write BASH scripts (text files ending in .sh) that contain sequences of commands, logic, loops, and functions. | . Why BASH is Important in Bioinformatics and Research Computing: . | Automates repetitive tasks (like running tools on hundreds of files) | Manages HPC jobs (e.g., submitting jobs via SLURM) | Enables reproducible workflows (especially when version-controlled) | Integrated in nearly every Unix-based server, cluster, or cloud environment | . ",
+    "url": "/Intro2Bioinfo/Lesson5.html#bash-scripting-tutorial",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#bash-scripting-tutorial"
+  },"71": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "Basic BASH Scripting",
+    "content": "A BASH script is a plain text file with commands executed sequentially by the BASH shell. 📝 Creating a Script . nano my_script.sh . Add the following: . #!/bin/bash echo \"Hello from your first script!\" . Then make it executable and run it: . chmod +x my_script.sh ./my_script.sh . #!/bin/bash is called a shebang line, and it tells the operating system which interpreter to use when executing the script. Breakdown: . | #! is the shebang symbol. It must be at the very start of the script. | /bin/bash is the full path to the BASH shell: this tells the system to run the script using BASH. | . Why it’s important: . Without the shebang line, the system might use the wrong shell or fail to interpret the script correctly. For example, different shells like sh, zsh, or dash interpret some commands differently. ",
+    "url": "/Intro2Bioinfo/Lesson5.html#basic-bash-scripting",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#basic-bash-scripting"
+  },"72": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "🛠️ Variables and Input",
+    "content": "Variables help reuse values and pass arguments. #!/bin/bash sample=\"Sample1\" echo \"Processing data for $sample\" . | Line | Description | . | #!/bin/bash | Shebang — tells the system to use the Bash shell to interpret the script. | . | sample=\"Sample1\" | Defines a variable named sample and assigns it the value \"Sample1\". | . | echo \"Processing data for $sample\" | Prints the message with the value of the variable. The output will be: Processing data for Sample1 | . Using arguments: . Try making this script in nano or vim: . #!/bin/bash echo \"This script was called with: $1 and $2\" . Afterwards, run it using this command./my_script.sh file1.txt file2.txt . What is the output? . What it means: . In Bash scripts, arguments are values passed to the script when it’s run from the command line. | $1 refers to the first argument | $2 refers to the second argument | . ",
+    "url": "/Intro2Bioinfo/Lesson5.html#%EF%B8%8F-variables-and-input",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#️-variables-and-input"
+  },"73": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "🔁 Loops",
+    "content": "BASH loops let you repeat commands over a list of values, files, or a sequence of numbers — essential for automating tasks. Use for, while, and until loops to handle different automation scenarios in your scripts. For Loops . This loop will print “Processing …” for every *.fastq file in the directory. for file in *.fastq; do echo \"Processing $file\" done . While Loops . This script uses a while loop to print numbers from 1 to 5. It initializes a counter count=1, checks that count is less than or equal to 5, prints the value, increments it, and repeats the process until the condition is false. count=1 while [ $count -le 5 ]; do echo \"Count is $count\" ((count++)) done . The expected output would look like: . Count is 1 Count is 2 Count is 3 Count is 4 Count is 5 . ",
+    "url": "/Intro2Bioinfo/Lesson5.html#-loops",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#-loops"
+  },"74": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "⚙️ Conditional Statements",
+    "content": "Conditional statements in Bash let you make decisions in your scripts based on file checks, variable values, or command outputs. Example: . if [ -f \"genome.fasta\" ]; then echo \"Genome file found!\" else echo \"Genome file is missing!\" fi . This checks whether the file genome.fasta exists: . | -f tests if it’s a regular file. | If the condition is true, it prints a confirmation. | If false, it prints a warning. | . Use if, else, and elif to add logic and control flow to your scripts. ",
+    "url": "/Intro2Bioinfo/Lesson5.html#%EF%B8%8F-conditional-statements",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#️-conditional-statements"
+  },"75": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "Real-World Example",
+    "content": "Explain what this script does: . #!/bin/bash indir=\"raw_data\" outdir=\"qc_results\" mkdir -p \"$outdir\" for file in \"$indir\"/*.fastq; do if [ -s \"$file\" ]; then echo \"Running FastQC on $file\" fastqc \"$file\" -o \"$outdir\" else echo \"Skipping $file, it is empty.\" fi done echo \"All files processed.\" . Click for the answer This script automates quality control on `.fastq` files using FastQC: - Declares the script as a Bash script. - Sets input (raw_data) and output (qc_results) directories. - `mkdir -p` ensures the output directory exists (creates it if it doesn't). - Loops through all `.fastq` files in the input directory. - Checks if the file is non-empty `-s \"$file\"` means file size greater than zero). - When TRUE, Runs FastQC on the file and saves the result to the output directory. - ELSE, if the file is empty, it prints a warning and skips processing. - \"done\" ends the loop and prints a completion message. ",
+    "url": "/Intro2Bioinfo/Lesson5.html#real-world-example",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#real-world-example"
+  },"76": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "Try It Yourself!",
+    "content": "Create a script that checks if a .gz file exists, unzips it, and prints how many lines it has. Click for the answer #!/bin/bash file=\"example.gz\" if [ -f \"$file\" ]; then echo \"Unzipping $file\" gunzip -c \"$file\" | wc -l else echo \"$file not found.\" fi . ",
+    "url": "/Intro2Bioinfo/Lesson5.html#try-it-yourself",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#try-it-yourself"
+  },"77": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "Summary",
+    "content": "You’ve now learned how to: . | Create and execute BASH scripts | Use variables and arguments | Run loops and conditionals | Process real data automatically | . Enjoy scripting! :D . ",
+    "url": "/Intro2Bioinfo/Lesson5.html#summary",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html#summary"
+  },"78": {
+    "doc": "Lesson 5 - BASH Scripting",
+    "title": "Lesson 5 - BASH Scripting",
+    "content": " ",
+    "url": "/Intro2Bioinfo/Lesson5.html",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson5.html"
+  },"79": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "Intro to ARC and SLURM JOB submissions",
+    "content": " ",
+    "url": "/Intro2Bioinfo/Lesson6.html#intro-to-arc-and-slurm-job-submissions",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#intro-to-arc-and-slurm-job-submissions"
+  },"80": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "Getting Started with ARC (Advanced Research Computing) at the University of Calgary",
+    "content": "This tutorial provides a quick-start guide for accessing and using ARC systems at the University of Calgary for high-performance computing tasks such as bioinformatics analysis, data processing, and simulations. 1. Getting Access . To access ARC: . | Register for an ARC account at: https://rcs.ucalgary.ca/How_to_get_an_account | You will receive login credentials and instructions after approval. | . 2. Connecting to ARC . Use SSH (Secure Shell) to log in from your terminal: . ssh &lt;your user name&gt;@arc.ucalgary.ca . Username is the same name you use for your University email (john.doe for an email with john.doe@ucalgary.ca). If using Windows, install a terminal like Git Bash or use MobaXterm or Putty. Alternatively, you can connect to the SHELL TERMINAL of ARC through your local browser. Just use the Open On-Demand ARC Shell Access . Link for UCalgary ARC Open On-Demand Website: OOD Dashboard . 3. Transferring Files . Use scp or rsync to move data between your local machine and ARC. Upload a file to ARC: . scp myfile.txt yourusername@arc.ucalgary.ca:/home/yourusername/ . Download a file from ARC: . scp yourusername@arc.ucalgary.ca:/home/yourusername/results.csv . 4. Modules and Software . ARC uses Environment Modules to manage software. Load what you need: . module avail # List all available modules module load fastqc # Load a specific tool . 5. Softwares through Package Managers and environment management systems . ARC allows the usage of software installed in environment management systems. What are environments? . Package Manager (i.e. PIP and Conda) allows you to install softwares. Meanwhile, environment management system (Python Env and Conda) allows you to manage software in isolated environments. For example, one workflow requires PERL 5.41 but another needs PERL 6.1. An environment management system allows you to install different versions of software concurrently onto two different environments. The most common you will encounter are Python Virtual Environment (Python VENV) and CONDA. For detail installation please follow the following links: CONDA in ARC Python Virtual Environment in ARC . 6. File Storage . | To check your space in ARC use arc.quota | Your home directory has limited quota (typically 500GB). | For large files, use /scratch or /project space. | Use du -sh * to check folder sizes. | . ",
+    "url": "/Intro2Bioinfo/Lesson6.html#getting-started-with-arc-advanced-research-computing-at-the-university-of-calgary",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#getting-started-with-arc-advanced-research-computing-at-the-university-of-calgary"
+  },"81": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "Introduction to SLURM for Bioinformatics Workflows",
+    "content": "1. What is SLURM? . SLURM (Simple Linux Utility for Resource Management) is an open-source job scheduler used by many high-performance computing (HPC) clusters. It manages and allocates resources like CPUs, memory, and GPUs for your computational jobs. div&gt; . 2. Key Concepts . | Job: A script or command submitted to the queue. | Node: A physical machine in the cluster. | Partition: A queue of nodes, usually grouped by capabilities (e.g., short, long, gpu). | Scheduler: The system that decides when and where jobs run. | . 3. Basic SLURM Commands . squeue # View all running and queued jobs sbatch job.slurm # Submit a batch job scancel 12345 # Cancel a job by its ID sinfo # Show partition and node status . 4. Sample SLURM Script . #!/bin/bash #SBATCH --job-name=fastqc_job # Job name #SBATCH --output=logs/fastqc_%j.out # Output file #SBATCH --error=logs/fastqc_%j.err # Error file #SBATCH --ntasks=1 # Number of tasks (processes) #SBATCH --cpus-per-task=4 # CPUs per task #SBATCH --mem=8G # Total memory #SBATCH --time=01:00:00 # Time limit (hh:mm:ss) #SBATCH --partition=short # Partition name # Load necessary modules module load fastqc # Run your command fastqc -t $SLURM_JOB_CPUS_PER_TASK raw_reads/sample1.fastq -o results/ . 💡 %j is replaced by the job ID automatically. 5. Monitoring Your Job . squeue -u your_username # Check your jobs sacct -j JOBID # Get job accounting details . ",
+    "url": "/Intro2Bioinfo/Lesson6.html#introduction-to-slurm-for-bioinformatics-workflows",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#introduction-to-slurm-for-bioinformatics-workflows"
+  },"82": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "Tips",
+    "content": ". | Always test scripts with small data first. | Use --mail-type=END,FAIL and --mail-user=email@example.com to get job status emails. | Use module avail to see available tools on your cluster. | Use screen or tmux if running interactive sessions. | Clean up old files to avoid storage overuse. | . ",
+    "url": "/Intro2Bioinfo/Lesson6.html#tips",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#tips"
+  },"83": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "9. Support",
+    "content": "For help or custom software installs, contact ARC support: 📧 arc.support@ucalgary.ca 🔗 ARC Website . ",
+    "url": "/Intro2Bioinfo/Lesson6.html#9-support",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#9-support"
+  },"84": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "References",
+    "content": ". | SLURM Documentation | Cheat Sheet (by Ohio Supercomputer Center) | ARC Getting Started | SLURM Documentation | . ",
+    "url": "/Intro2Bioinfo/Lesson6.html#references",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html#references"
+  },"85": {
+    "doc": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "title": "Lesson 6 - Intro to ARC and SLURM JOB submissions",
+    "content": " ",
+    "url": "/Intro2Bioinfo/Lesson6.html",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson6.html"
+  },"86": {
     "doc": "Getting Started",
     "title": "Getting Started",
     "content": "This is a top-level page. ",
     "url": "/getting-started.html",
     
     "relUrl": "/getting-started.html"
-  },"66": {
+  },"87": {
     "doc": "Welcome",
     "title": "🧬🖥️ Welcome to Microbial Ecology and Bioinformatics Training Suite",
     "content": "Microbial ecology explores the roles, relationships, and diversity of microorganisms in natural environments, from soil and oceans to the human body. These invisible communities drive global biogeochemical cycles, influence climate, and shape ecosystem health. Bioinformatics complements this field by providing computational tools to analyze vast genomic datasets, enabling researchers to uncover microbial functions, interactions, and evolutionary patterns. Together, microbial ecology and bioinformatics reveal the hidden world of microbes and their profound impact on life on Earth. This training suite is made for beginner microbial ecologists as a guide on where to start learning microbial ecology workflows and bioinformatic pipelines. This powered by Just the Docs. ",
     "url": "/#%EF%B8%8F-welcome-to-microbial-ecology-and-bioinformatics-training-suite",
     
     "relUrl": "/#️-welcome-to-microbial-ecology-and-bioinformatics-training-suite"
-  },"67": {
+  },"88": {
     "doc": "Welcome",
     "title": "🚀 Getting Started",
     "content": "To get started, check out the Introduction or browse the topics in the sidebar. # Clone the repository git clone https://github.com/gamaliel cd my-docs-site . ",
     "url": "/#-getting-started",
     
     "relUrl": "/#-getting-started"
-  },"68": {
+  },"89": {
     "doc": "Welcome",
     "title": "Welcome",
     "content": " ",

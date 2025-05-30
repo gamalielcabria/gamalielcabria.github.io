@@ -135,6 +135,7 @@ Download lates conda installer from either Anaconda or Conda-Forge (Github).
 >bash Miniforge3-MacOSX-arm64.sh
 >```
 
+### Installing in HPC
 If you are installing inside a high-performance computer (HPC), follow the specific guidelines your administrator recommends. For example here is a link for the installation of conda in [University of Calgary's HPC](https://rcs.ucalgary.ca/Conda_on_ARC).
 
 {:.note}

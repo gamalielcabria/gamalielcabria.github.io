@@ -239,7 +239,7 @@
   },"34": {
     "doc": "Lesson 3",
     "title": "Basic bioinformatics commands:",
-    "content": "There are tons of built-in commands within Linux OSes that are very useful for bioinformatic analysis. In this section, we will examine a few of the most commonly used commands in bioinformatics. We will adapt content from the Happy Belly Bioinformatics. ",
+    "content": "There are tons of built-in commands within Linux OSes that are very useful for bioinformatic analysis. In this section, we will examine a few of the most commonly used commands in bioinformatics. We will adapt content from the Happy Belly Bioinformatics. The following lesson and activity should be tried using a linux terminal. Please use your WSL2 and/or register an account to Webminal. ",
     "url": "/Intro2Bioinfo/Lesson3.html#basic-bioinformatics-commands",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#basic-bioinformatics-commands"
@@ -252,54 +252,68 @@
     "relUrl": "/Intro2Bioinfo/Lesson3.html#history-history-n"
   },"36": {
     "doc": "Lesson 3",
+    "title": "GNU Wget wget &lt;url&gt;",
+    "content": "wget is a command-line utility for downloading files from the web. It supports HTTP, HTTPS, and FTP protocols and is useful for retrieving datasets, software packages, or scripts directly into your working directory. Try this command: . wget https://github.com/gamalielcabria/gamalielcabria.github.io/blob/main/Intro2Bioinfo/files/gene_counts.tsv . The previous command will download the gene_counts.tsv directly into your current working directory. If you want it to be located in a different directory, you can use the command: . wget &lt;url&gt; -P &lt;destination path&gt;. To download a folder with multiple files inside, it would be suggested to zip the files or if not possible do a recursive download: . Try this command: . # Create a destination folder mkdir -p ./destination #download recursively to the destination folder wget -r -np -nH --cut-dirs=5 -A \"*.gtf.gz\" ftp://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/ -P ./destination . This command will download all *gtf.gz files from ENSEMBL . | -r: Recursive download | -np: No parent: don’t go to parent directories | -nH: No host directory: avoid creating ftp.ensembl.org/ | --cut-dirs=5: Skip 5 directory levels (so files save cleanly) | -A \"*.gtf.gz\": Only download files ending in .gtf.gz | -P: Destination folder of the file | . ",
+    "url": "/Intro2Bioinfo/Lesson3.html#gnu-wget-wget-url",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson3.html#gnu-wget-wget-url"
+  },"37": {
+    "doc": "Lesson 3",
+    "title": "Gunzip Compression gzip [-d|-k] &lt;file&gt;",
+    "content": "gzip is a widely used command-line tool for compressing text files, such as FASTA, FASTQ, GTF, or VCF files, into .gz format. This is especially useful in bioinformatics, where raw data files can be very large. This command compresses data.txt into data.txt.gz and removes the original file by default. gzip data.txt . The plaing gzip command will remove the original file and be replaced with data.txt.gz. Use -k to keep the original file: . gzip -k data.txt . Meanwhile, decompressing a file uses -d option or gunzip command. gzip -d data.txt.gz . To retain the original gz file: . gunzip -c data.txt.gz &gt; data.txt . Compare the sizes of the files between the compressed and uncompressed files. Did you notice any difference? . | File Type | Compression Ratio | Notes | . | FASTA | 2–4× smaller | Compresses well due to repetitive sequences | . | FASTQ | 3–6× smaller | Especially efficient for raw reads | . | GTF/GFF | 3–5× smaller | Mostly text-based, highly compressible | . | VCF | 4–8× smaller | Works well but block compression (bgzip) often preferred | . Gunzip compressed files cannot be read by normal text editor or text file view commands such as more, cat, and nano. They will appear gibberish because they are binary. However, less command are able to interpret them. zcat zcat &lt;gzipped file&gt; . Given that concatenate cat command does not work with gzipped files. The zcat command replaces it and allows viewing and concatenation of gz files. ",
+    "url": "/Intro2Bioinfo/Lesson3.html#gunzip-compression-gzip--d-k-file",
+    
+    "relUrl": "/Intro2Bioinfo/Lesson3.html#gunzip-compression-gzip--d-k-file"
+  },"38": {
+    "doc": "Lesson 3",
     "title": "Wordcount wc [-c|-m|-w|-l]",
-    "content": "The wordcount commands wc print out the number of bytes -c, characters -m, word -w, and lines -l within a text file. It is often useful in counting the number of items in your file or a list. One examples is counting the number of genes being analyse in gene count table: . Try this command: . cut . Extract specific columns from tab-delimited files. cut -f1,3 data.tsv # Extracts columns 1 and 3 from a tab-separated file. grep . Search for patterns in a file. Very useful for filtering sequences or logs. grep \"^&gt;\" sequences.fasta # Shows all FASTA headers. paste . Combine files line by line. paste genes.txt lengths.txt # Joins corresponding lines from two files side by side. cat . Concatenate and display file contents. cat sample1.fq sample2.fq &gt; combined.fq # Merges two FASTQ files into one. sed . Stream editor for simple substitutions and line operations. sed 's/chr/Chr/' genome.txt # Replaces 'chr' with 'Chr' in each line. awk . Pattern scanning and processing tool. Useful for complex column-based filtering. awk '$3 &gt; 100' gene_counts.tsv # Shows lines where the third column is greater than 100. tr . Translate or delete characters. tr 'a-z' 'A-Z' &lt; seq.txt # Converts lowercase bases to uppercase. ",
+    "content": "The wordcount commands wc print out the number of bytes -c, characters -m, word -w, and lines -l within a text file. It is often useful in counting the number of items in your file or a list. One examples is counting the number of genes being analyse in gene count table: . Try this command: . # Download Test Data wget -P ./destination https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/Intro2Bioinfo/files/gene_counts.tsv # count the number of genes wc -l gene_counts.tsv . Is it the same when you open the file using less|more and counted the genes? . Files often have a header that you need to account for. It will be counted by wc . grep . Search for patterns in a file. Very useful for filtering sequences or logs. grep \"^&gt;\" sequences.fasta # Shows all FASTA headers. cut . Extract specific columns from tab-delimited files. cut -f1,3 data.tsv # Extracts columns 1 and 3 from a tab-separated file. paste . Combine files line by line. paste genes.txt lengths.txt # Joins corresponding lines from two files side by side. cat . Concatenate and display file contents. cat sample1.fq sample2.fq &gt; combined.fq # Merges two FASTQ files into one. sed . Stream editor for simple substitutions and line operations. sed 's/chr/Chr/' genome.txt # Replaces 'chr' with 'Chr' in each line. awk . Pattern scanning and processing tool. Useful for complex column-based filtering. awk '$3 &gt; 100' gene_counts.tsv # Shows lines where the third column is greater than 100. tr . Translate or delete characters. tr 'a-z' 'A-Z' &lt; seq.txt # Converts lowercase bases to uppercase. ",
     "url": "/Intro2Bioinfo/Lesson3.html#wordcount-wc--c-m-w-l",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#wordcount-wc--c-m-w-l"
-  },"37": {
+  },"39": {
     "doc": "Lesson 3",
     "title": "Acknowledgement",
     "content": "This tutorial is adapted from Intro to Unix from Happy Belly Bioinformatics by Michael D. Lee or known as AstroBioMike in github. ",
     "url": "/Intro2Bioinfo/Lesson3.html#acknowledgement",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#acknowledgement"
-  },"38": {
+  },"40": {
     "doc": "Lesson 3",
     "title": "Citation",
     "content": "[1] Lee, M. (2019). Happy Belly Bioinformatics: an open-source resource dedicated to helping biologists utilize bioinformatics. Journal of Open Source Education, 4(41), 53, https://doi.org/10.21105/jose.00053 . ",
     "url": "/Intro2Bioinfo/Lesson3.html#citation",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html#citation"
-  },"39": {
+  },"41": {
     "doc": "Lesson 3",
     "title": "Lesson 3",
     "content": " ",
     "url": "/Intro2Bioinfo/Lesson3.html",
     
     "relUrl": "/Intro2Bioinfo/Lesson3.html"
-  },"40": {
+  },"42": {
     "doc": "Getting Started",
     "title": "Getting Started",
     "content": "This is a top-level page. ",
     "url": "/getting-started.html",
     
     "relUrl": "/getting-started.html"
-  },"41": {
+  },"43": {
     "doc": "Welcome",
     "title": "🧬🖥️ Welcome to Microbial Ecology and Bioinformatics Training Suite",
     "content": "Microbial ecology explores the roles, relationships, and diversity of microorganisms in natural environments, from soil and oceans to the human body. These invisible communities drive global biogeochemical cycles, influence climate, and shape ecosystem health. Bioinformatics complements this field by providing computational tools to analyze vast genomic datasets, enabling researchers to uncover microbial functions, interactions, and evolutionary patterns. Together, microbial ecology and bioinformatics reveal the hidden world of microbes and their profound impact on life on Earth. This training suite is made for beginner microbial ecologists as a guide on where to start learning microbial ecology workflows and bioinformatic pipelines. This powered by Just the Docs. ",
     "url": "/#%EF%B8%8F-welcome-to-microbial-ecology-and-bioinformatics-training-suite",
     
     "relUrl": "/#️-welcome-to-microbial-ecology-and-bioinformatics-training-suite"
-  },"42": {
+  },"44": {
     "doc": "Welcome",
     "title": "🚀 Getting Started",
     "content": "To get started, check out the Introduction or browse the topics in the sidebar. # Clone the repository git clone https://github.com/gamaliel cd my-docs-site . ",
     "url": "/#-getting-started",
     
     "relUrl": "/#-getting-started"
-  },"43": {
+  },"45": {
     "doc": "Welcome",
     "title": "Welcome",
     "content": " ",

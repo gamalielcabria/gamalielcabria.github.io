@@ -20,3 +20,7 @@ Big data refers to datasets that are too large, complex, or fast-changing to be 
 - and, integrations with big data platforms (e.g., `sparklyr` for Apache Spark),
 
 **R** allows analysts to explore large datasets, detect patterns, and build predictive models. While `R` may hit memory limitations on extremely large datasets, it can be paired with high-performance computing environments or used to sample and summarize data efficiently.
+
+## Version Control
+Version: 1.1
+Publish Date: 2025 May 29

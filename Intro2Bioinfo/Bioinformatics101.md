@@ -24,15 +24,7 @@ Bioinformatics is an intersectional field of biology, computer science and stati
 
 In this training, we will cover how we perform bioinformatics. It includes the *command-line interface* and its basic commands, basic useful commands in Unix, BASH, and how to run files in a server. 
 
-| Lessons    | Description                             |
-|------------|-----------------------------------------|
-| Lesson 1   | Unix-environment and the Command-Line   |
-| Lesson 2   | File Types in Bioinformatics            |
-| Lesson 3   | Basic Commands and BASH Scripting       |
-| Lesson 4   | Intro to ARC and SLURM JOB submissions  |
-
-
-### Version Control
+## Version Control
 Version: 2.1
 Publish Date: 2025 May 29
 

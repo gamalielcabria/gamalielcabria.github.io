@@ -33,7 +33,7 @@ In this training, we will cover how we perform bioinformatics. It includes the *
 
 
 ### Version Control
-Version: 1.2a
-Publish Date: 2025 May 07
+Version: 2.1
+Publish Date: 2025 May 29
 
 

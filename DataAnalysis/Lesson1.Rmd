@@ -1,112 +1,401 @@
 ---
-title: "Introduction to the tidyverse"
+title: "Introduction to R"
 author: "Gamaliel Cabria"
 date: "`r Sys.Date()`"
 output: html_document
 ---
 
-# Introduction
+# A Quick Introduction to *R*
+R is a powerful programming language and environment for statistical computing and graphics. It is widely used among statisticians and data miners for data analysis and visualization. 
 
-The **tidyverse** is a collection of R packages designed for data science. All tidyverse packages share an underlying design philosophy, grammar, and data structures.
-
-This loads several core packages:
-
-- **ggplot2** (data visualization)
-- **dplyr** (data manipulation)
-- **tidyr** (tidy data formatting)
-- **readr** (reading rectangular data)
-- **purrr** (functional programming tools)
-- **tibble** (modern data frames)
-
-![dplyr](https://dplyr.tidyverse.org/logo.png){width=200px height=200px}![ggplot2](https://ggplot2.tidyverse.org/logo.png){width=200px height=200px}![tidyr](https://tidyr.tidyverse.org/logo.png){width=200px height=200px}
-![readr](https://readr.tidyverse.org/logo.png){width=200px height=200px}![purrr](https://purrr.tidyverse.org/logo.png){width=200px height=200px}![tibble](https://tibble.tidyverse.org/logo.svg){width=200px height=200px}
-
-## The R vs Tidyverse Philosophy
-The tidyverse promotes a consistent and intuitive approach to data analysis in R. It emphasizes:
-- **Tidy data**: Data is structured in a way that makes it easy to manipulate and visualize.
-- **Pipes (`%>%`)**: A way to chain commands together, making code more readable.
-- **Consistent syntax**: Functions across packages share similar naming conventions and arguments, reducing the learning curve.
-
-
-## Installation
-To use the tidyverse, you first need to install it. You can do this from CRAN using the following command:
-```r
-install.packages("tidyverse")
+In base R (without additional packages), you can create variables, manipulate data, and perform calculations with simple commands. Here are some basic examples:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Create a variable
+x <- 5
+# Perform a calculation
+y <- x * 2
+# Print the result
+print(y)  
+# Create a vector
+v <- c(1, 2, 3, 4, 5)
+# Calculate the mean of the vector
+mean_v <- mean(v)
+# Print the mean
+print(mean_v)  
 ```
 
-To use the tidyverse, we load the main package:
-```r
-library(tidyverse)
+Think of R as a more complex and **powerful calculator** that can handle complex data analysis tasks. It allows you to perform operations on data, create visualizations, and apply statistical models.
+
+# R as programming language
+## R Data Structures
+R has several built-in data structures that are essential for data analysis. Data structures in R are ways to organize and store data so that it can be easily manipulated and analyzed. Each structure has its own characteristics and is suited for different types of data.
+
+The most common ones include:
+
+### Core Data Structures in Base R
+
+| **Structure**   | **Description**                                                                 | **Example**                                                                 |
+|-----------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **Vector**      | One-dimensional sequence of elements of the same type                           | `x <- c(1, 2, 3, 4)`<br>`names <- c("Alice", "Bob")`                         |
+| **Matrix**      | Two-dimensional array of the same type                                          | `m <- matrix(1:6, nrow = 2)`<br>`m[1, 2]  # Access element`                  |
+| **Array**       | Multi-dimensional generalization of a matrix                                    | `a <- array(1:12, dim = c(2, 3, 2))`<br>`a[1, 2, 1]`                         |
+| **Data Frame**  | Table with columns of different types                                           | `df <- data.frame(name=c("A", "B"), age=c(25, 30))`<br>`df$age`             |
+| **List**        | Collection of elements of any type                                              | `lst <- list(name="Alice", age=25, scores=c(90, 85))`<br>`lst[[2]]`         |
+| **Factor**      | Categorical variable with predefined levels                                     | `f <- factor(c("low", "medium", "high"))`<br>`levels(f)`                    |
+| **Environment** | Collection of objects (variables, functions) in a specific scope              | `env <- new.env()`<br>`assign("x", 10, envir = env)`<br>`env$x`              |
+| **Function**    | A block of code that can be called with arguments                               | `my_func <- function(x) { x^2 }`<br>`my_func(3)`                              |
+
+## R Data Types and Variables
+Like any programming language, R allows you to create variables to store data. Variables can hold different types of data, such as numbers, text, or logical values. Here are some examples of creating and using variables in R:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Numeric type
+num_var <- 3.14
+print(num_var)        
+
+# Integer type
+int_var <- 5L  # 'L' suffix indicates an integer
+print(int_var)        
+
+# Character type
+char_var <- "Hello, R!"
+print(char_var)      
+
+# Logical type
+log_var <- TRUE
+print(log_var)        
+
+# Complex type
+complex_var <- 1 + 2i  # 'i' indicates an imaginary part
+print(complex_var)    
+
+# Raw type
+raw_var <- charToRaw("A")  # Converts character to raw bytes
+print(raw_var)     
+
+# Factor type
+factor_var <- factor(c("low", "medium", "high"))  # Categorical data
+print(factor_var)
+print(levels(factor_var)) 
+
+# Date type
+date_var <- as.Date("2025-01-01")  # Date object
+print(date_var)      
+
+# POSIXct type
+posix_var <- as.POSIXct("2025-01-01 12:00:00")  # Date-time object
+print(posix_var)
+
+# Function type
+func_var <- function(a, b) a + b  # User-defined function
+print(func_var(2, 3))  
+
+# List type
+list_var <- list(name="Gama", age=18, scores=c(96, 88))  # Heterogeneous container
+print(list_var)  
+
+# Data frame type
+df_var <- data.frame(a=1:4, b=c("A", "B","C","Z"))  # Table-like structure
+print(df_var)  
+
+# Matrix type
+matrix_var <- matrix(1:4, nrow=2)  # 2D numeric structure
+print(matrix_var)  
+
+# Array type
+array_var <- array(1:8, dim=c(2, 2, 2))  # Multi-dimensional structure
+print(array_var)  
+```
+
+R is also an **interactive language**, meaning you can type commands directly into the console and see results immediately. This makes it easy to experiment with data and perform quick calculations.
+
+### Summary of R Data Types and Structures
+| **Type**       | **Description**                                 | **Example**                                   | **typeof()**     | **class()**     |
+|----------------|-------------------------------------------------|-----------------------------------------------|------------------|-----------------|
+| **Numeric**     | Numbers with decimal points                     | `x <- 3.14`                                    | `"double"`       | `"numeric"`     |
+| **Integer**     | Whole numbers (explicit with `L`)               | `x <- 5L`                                      | `"integer"`      | `"integer"`     |
+| **Character**   | Text strings                                    | `x <- "hello"`                                 | `"character"`    | `"character"`   |
+| **Logical**     | Boolean values: TRUE or FALSE                   | `x <- TRUE`                                    | `"logical"`      | `"logical"`     |
+| **Complex**     | Complex numbers                                 | `x <- 1 + 2i`                                  | `"complex"`      | `"complex"`     |
+| **Raw**         | Raw bytes (rarely used)                         | `x <- charToRaw("A")`                          | `"raw"`          | `"raw"`         |
+| **Factor**      | Categorical data with levels                    | `x <- factor(c("low", "high"))`               | `"integer"`      | `"factor"`      |
+| **Date**        | Date objects                                    | `x <- as.Date("2025-01-01")`                   | `"double"`       | `"Date"`        |
+| **POSIXct**     | Date-time object                                | `x <- as.POSIXct("2025-01-01 12:00:00")`       | `"double"`       | `"POSIXct"`     |
+| **Function**    | User-defined or built-in functions              | `x <- function(a, b) a + b`                    | `"closure"`      | `"function"`    |
+| **List**        | Heterogeneous container                         | `x <- list(name="Gama", age=30)`              | `"list"`         | `"list"`        |
+| **Data Frame**  | Table-like structure                            | `x <- data.frame(a=1:2, b=c("A", "B"))`        | `"list"`         | `"data.frame"`  |
+| **Matrix**      | 2D numeric structure                            | `x <- matrix(1:4, 2, 2)`                       | `"integer"`      | `"matrix"`      |
+| **Array**       | Multi-dimensional structure                     | `x <- array(1:8, c(2,2,2))`                    | `"integer"`      | `"array"`       |
+| **Environment** | Collection of objects in a scope                | `x <- new.env()`                               | `"environment"`  | `"environment"` |
+
+{:.note}
+>If you do not know data type or structure of an object, you can use the `typeof()` and `class()` functions to check it. For example:
+```{r, echo=TRUE, warning=FALSE, message=FALSE} 
+typeof(x)  # Check the type of x
+class(x)   # Check the class of x
+```
+
+# R Basics
+
+## Basic Syntax
+R syntax is straightforward and similar to other programming languages. Here are some basic elements of R syntax:
+- **Comments**: Use `#` to add comments in your code.
+- **Assignment**: Use `<-` or `=` to assign values to variables.
+- **Functions**: Call functions using their names followed by parentheses, e.g., `mean(x)`.
+- **Operators**: Use operators like `+`, `-`, `*`, `/` for arithmetic operations, and `==`, `!=`, `<`, `>` for comparisons.
+- **Control Structures**: Use `if`, `else`, `for`, and `while` for control flow.
+- **Packages**: Use `library(package_name)` to load additional functionality.
+
+## Indexing and Subsetting
+In R, you can access elements of vectors, matrices, data frames, and lists using indexing. Here are some examples:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Accessing elements in a vector
+v <- c(10, 20, 30, 40)
+print(v)
+print(v[2])  
+
+# Accessing elements in a matrix
+m <- matrix(1:9, nrow=3)
+print(m)
+print(m[2, 3])  
+
+# Accessing elements in a data frame
+df <- data.frame(name=c("Alice", "Bob"), age=c(25, 30))
+print(df)
+print(df[1, ])  
+print(df[1, "name"])  
+print(df$name)  
+
+# Accessing elements in a list
+lst <- list(a=1:5, b="Hello", c=TRUE)
+print(lst)
+print(lst$b)  
+
+# Accessing elements in a factor
+f <- factor(c("low", "medium", "high"))
+print(f[2])  
+
+# Accessing elements in a character vector
+char_vec <- c("apple", "banana", "cherry")
+print(char_vec[1])  
 ```
 
 {:.note}
->This is the basic is also the basic way to install and load packages in R. 
+>Indexing in R is **1-based**, meaning the first element is accessed with index 1. You can also use **negative indices** to exclude elements or logical vectors to filter data.
 
-
-# Example Dataset
-We will use the built-in `mtcars` dataset for demonstration:
-
-```r
-head(mtcars)
+## Vectorized Operations
+R is designed for vectorized operations, meaning you can perform operations on entire vectors or matrices without using explicit loops. This makes R efficient for data manipulation. Here are some examples:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Vectorized addition
+v1 <- c(1, 2, 3)
+v2 <- c(4, 5, 6)
+result <- v1 + v2  # Adds corresponding elements
+print(result)  
+# Vectorized multiplication
+v3 <- c(2, 3, 4)
+result2 <- v1 * v3  # Multiplies corresponding elements
+print(result2)  
+# Vectorized comparison
+v4 <- c(1, 2, 3, 4)
+result3 <- v4 > 2  # Compares each element to 2
+print(result3)  
+# Matrix operations
+m1 <- matrix(1:4, nrow=2)
+m2 <- matrix(5:8, nrow=2)
+result4 <- m1 + m2  # Adds corresponding elements
+print(m1)
+print(m2)
+print(result4)  
+# Vectorized functions
+v5 <- c(1, 2, 3, 4)
+result5 <- sqrt(v5)  # Applies square root to each element
+print(result5)  
+# Vectorized logical operations
+v6 <- c(TRUE, FALSE, TRUE)
+v7 <- c(FALSE, TRUE, TRUE)
+result6 <- v6 & v7  # Logical AND operation
+print(result6)  
 ```
 
-# Data Manipulation with `dplyr`
+Vectorized operations allow you to write concise and efficient code, **avoiding the need for explicit loops** like in other languages. This is one of the key features that makes R powerful for data analysis.
 
-### Select columns
-```r
-mtcars %>% select(mpg, cyl, hp)
+## Recycling Rules *R*
+In R, when performing operations on vectors of different lengths, R applies a concept called **recycling**. This means that if one vector is shorter than the other, R will repeat the shorter vector until it matches the length of the longer vector. Here are some examples:
+```{r, echo=TRUE, warning=TRUE, message=FALSE}
+# Example with different lengths
+v1 <- c(1, 2, 3)
+v2 <- c(10, 20)
+result <- v1 + v2  # The second vector is recycled
+print(result)  
+
+# Example with recycling in a matrix
+m1 <- matrix(1:6, nrow=2)
+m2 <- c(10, 20)  # Shorter vector
+result2 <- m1 + m2  # The second vector is recycled
+print(m1)
+print(m2)
+print(result2)  
 ```
 
-### Filter rows
-```r
-mtcars %>% filter(cyl == 6)
+## Logical Operations in **R**
+Logical operations in R are used to perform comparisons and logical tests on data. They return boolean values (`TRUE` or `FALSE`) based on the conditions specified. Here are some common logical operations:
+
+{:.note}
+>'TRUE' and 'FALSE' are written in uppercase in R, and they are used to represent boolean values. 'TRUE' and 'FALSE' can be represented as 1 and 0, respectively, but are not strict equivalents.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Logical operations
+# Create two vectors
+v1 <- c(1, 2, 3, 4)
+v2 <- c(3, 4, 3, 6)
+# Comparison operators
+equal <- v1 == v2  # Check if elements are equal
+print(equal)  
+greater_than <- v1 > v2  # Check if elements in v1 are greater than those in v2
+print(greater_than)  
+less_than <- v1 < v2  # Check if elements in v1 are less than those in v2
+print(less_than)  
+# Logical operators
+and <- v1 > 2 & v2 < 5  # Logical AND operation
+print(and)  
+or <- v1 < 2 | v2 > 5  # Logical OR operation
+print(or)  
+not <- !(v1 < 3)  # Logical NOT operation
+print(not)  
+# Combining logical conditions
+combined_condition <- (v1 > 2) & (v2 < 5)  # Combine conditions with AND
+print(combined_condition)  
+# Logical indexing
+# Use logical vectors to index elements
+v3 <- c(10, 20, 30, 40)
+logical_index <- v3 > 20  # Create a logical vector
+print(logical_index)  
+# Use logical vector to subset the original vector
+subset_v3 <- v3[logical_index]  # Subset using logical indexing
+print(subset_v3)  
 ```
 
-### Create new variables
-```r
-mtcars %>% mutate(kpl = mpg * 0.425144)
+### Conditional Statements
+Conditional statements in R allow you to execute code based on certain conditions. The most common conditional statements are `if`, `else if`, and `else`. Here are some examples:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Conditional statements
+x <- 5
+
+# If-else statement
+if (x > 0) {
+  print("x is positive")
+} else if (x < 0) {
+  print("x is negative")
+} else {
+  print("x is zero")
+}
+
+# Nested if-else statement
+if (x > 0) {
+  print("x is positive")
+} else {
+  if (x < 0) {
+    print("x is negative")
+  } else {
+    print("x is zero")
+  }
+}
+
+# Switch statement
+fruit <- "apple"
+switch(fruit,
+       apple = "This is an apple",
+       banana = "This is a banana",
+       orange = "This is an orange",
+       "Unknown fruit")  # Default case if no match
 ```
 
-### Summarize data
-```r
-mtcars %>% summarise(mean_mpg = mean(mpg), max_hp = max(hp))
+Conditional statements are essential for controlling the flow of your R programs, allowing you to execute different code blocks based on specific conditions.
+
+## Understanding Missing Values or **NA** in R
+In R, missing values are represented by `NA` (Not Available). They indicate that a value is not present or is unknown. Handling missing values is crucial in data analysis, as they can affect calculations and results. 
+
+There are several ways of working with missing values in R:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Create a vector with missing values
+v <- c(1, 2, NA, 4, NA, 6)
+mean(v)
+mean(v, na.rm = TRUE)  # Calculate mean while ignoring NA values
+
+# Check for missing values
+is.na(v)  # Returns TRUE for NA values
+
+# Count missing values
+na_count <- sum(is.na(v))  # Count the number of NA values
+print(na_count)
+
+# Remove missing values
+v_no_na <- na.omit(v)  # Remove NA values from the vector
+print(v_no_na)
+
+# Replace missing values
+v[is.na(v)] <- 0  # Replace NA values with 0
+print(v)  # Print the vector after replacing NA values
 ```
 
-### Group and summarize
-```r
-mtcars %>% 
-  group_by(cyl) %>% 
-  summarise(mean_mpg = mean(mpg), .groups = 'drop')
+Missing values can occur in various data types, including vectors, matrices, data frames, and lists. It is essential to handle them appropriately to ensure accurate analysis and results.
+
+## Reading and Writing Data
+There are several ways to read and write data in R, depending on the format of the data. 
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Let us create a sample data frame
+df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(25, 30, 35),
+  Score = c(90, 85, 95)
+)
+# Writing data to a CSV file
+write.csv(df, "./sample_data.csv", row.names = FALSE)  # Save data frame to CSV file
+# Reading data from a CSV file
+df_read <- read.csv("./sample_data.csv")  # Read data from CSV file
+print(df_read)  # Print the read data frame
 ```
 
-# Tidying Data with `tidyr`
+# 🧠 Extra Base R information
+## The HELP System
+R has a built-in help system that provides documentation for functions, packages, and datasets. You can access help in several ways:
+```{r}
+?mean
+help("lm")
+example(mean)
 
-### Gather (wide to long)
-```r
-pivot_longer(mtcars, cols = c(mpg, hp), names_to = "metric", values_to = "value") %>% head()
+# Try this too:
+help(package = "stats")  # Get help for the 'stats' package
+help.search("linear model")  # Search for help on linear models
 ```
 
-### Spread (long to wide)
-```r
-mtcars_long <- mtcars %>% 
-  select(model = rownames(mtcars), cyl, gear) %>% 
-  pivot_wider(names_from = gear, values_from = cyl, values_fn = mean)
+## Apply family functions
+The apply family functions in base R are a set of functions used to perform loop-like operations over elements of data structures (vectors, lists, matrices, etc.) in a more concise and often more efficient way than using explicit for loops.
+Examples of apply family functions include `apply()`, `lapply()`, `sapply()`, `tapply()`, and `mapply()`. These functions allow you to apply a function to each element or subset of a data structure without writing explicit loops.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Using apply family functions
+# Create a matrix
+m <- matrix(1:9, nrow=3)
+# Apply function to rows
+row_sums <- apply(m, 1, sum)  # Sum of each row
+print(row_sums)  
+# lapply
+lst <- list(a=1:5, b=6:10, c=11:15)
+lapply_result <- lapply(lst, mean)  # Calculate mean of each list element
+print(lapply_result)  
+#sapply
+sapply_result <- sapply(lst, mean)  # Simplified version of lapply
+print(sapply_result)  
+# tapply
+ages <- c(25, 30, 35, 40)
+group <- c("A", "A", "B", "B")
+tapply(ages, group, mean)  # Mean age by group
 ```
 
-# Data Visualization with `ggplot2`
 
-### Basic scatter plot
-```r
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point()
-```
+# Summary: Base R
 
-### Add trend line
-```r
-ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point() + 
-  geom_smooth(method = "lm")
-```
+In this introduction to **base R**, you've learned how to create and manipulate variables, explore core data types and structures, perform vectorized operations, handle missing values, and apply functions efficiently using the `apply` family. You've also seen how to read and write data, use conditional logic, and leverage R's built-in help system.
 
-# Conclusion
-The tidyverse streamlines many common data science tasks in R. It emphasizes readability and consistency, making it ideal for beginners and experienced users alike.
+Base R provides a strong foundation for data analysis, and understanding its syntax and logic will help you confidently explore more advanced tools like the tidyverse, data visualization, and statistical modeling. With practice, R becomes a powerful ally in data-driven problem-solving.
+
+Happy analysis!

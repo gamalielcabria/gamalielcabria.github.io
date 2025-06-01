@@ -1,0 +1,112 @@
+---
+title: "Introduction to the tidyverse"
+author: "Gamaliel Cabria"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Introduction
+
+The **tidyverse** is a collection of R packages designed for data science. All tidyverse packages share an underlying design philosophy, grammar, and data structures.
+
+This loads several core packages:
+
+- **ggplot2** (data visualization)
+- **dplyr** (data manipulation)
+- **tidyr** (tidy data formatting)
+- **readr** (reading rectangular data)
+- **purrr** (functional programming tools)
+- **tibble** (modern data frames)
+
+![dplyr](https://dplyr.tidyverse.org/logo.png){width=200px height=200px}![ggplot2](https://ggplot2.tidyverse.org/logo.png){width=200px height=200px}![tidyr](https://tidyr.tidyverse.org/logo.png){width=200px height=200px}
+![readr](https://readr.tidyverse.org/logo.png){width=200px height=200px}![purrr](https://purrr.tidyverse.org/logo.png){width=200px height=200px}![tibble](https://tibble.tidyverse.org/logo.svg){width=200px height=200px}
+
+## The R vs Tidyverse Philosophy
+The tidyverse promotes a consistent and intuitive approach to data analysis in R. It emphasizes:
+- **Tidy data**: Data is structured in a way that makes it easy to manipulate and visualize.
+- **Pipes (`%>%`)**: A way to chain commands together, making code more readable.
+- **Consistent syntax**: Functions across packages share similar naming conventions and arguments, reducing the learning curve.
+
+
+## Installation
+To use the tidyverse, you first need to install it. You can do this from CRAN using the following command:
+```r
+install.packages("tidyverse")
+```
+
+To use the tidyverse, we load the main package:
+```r
+library(tidyverse)
+```
+
+{:.note}
+>This is the basic is also the basic way to install and load packages in R. 
+
+
+# Example Dataset
+We will use the built-in `mtcars` dataset for demonstration:
+
+```r
+head(mtcars)
+```
+
+# Data Manipulation with `dplyr`
+
+### Select columns
+```r
+mtcars %>% select(mpg, cyl, hp)
+```
+
+### Filter rows
+```r
+mtcars %>% filter(cyl == 6)
+```
+
+### Create new variables
+```r
+mtcars %>% mutate(kpl = mpg * 0.425144)
+```
+
+### Summarize data
+```r
+mtcars %>% summarise(mean_mpg = mean(mpg), max_hp = max(hp))
+```
+
+### Group and summarize
+```r
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mean_mpg = mean(mpg), .groups = 'drop')
+```
+
+# Tidying Data with `tidyr`
+
+### Gather (wide to long)
+```r
+pivot_longer(mtcars, cols = c(mpg, hp), names_to = "metric", values_to = "value") %>% head()
+```
+
+### Spread (long to wide)
+```r
+mtcars_long <- mtcars %>% 
+  select(model = rownames(mtcars), cyl, gear) %>% 
+  pivot_wider(names_from = gear, values_from = cyl, values_fn = mean)
+```
+
+# Data Visualization with `ggplot2`
+
+### Basic scatter plot
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+### Add trend line
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+# Conclusion
+The tidyverse streamlines many common data science tasks in R. It emphasizes readability and consistency, making it ideal for beginners and experienced users alike.

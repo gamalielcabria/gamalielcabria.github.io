@@ -48,32 +48,67 @@ install.packages("tidyverse")
 ```
 
 To use the tidyverse, we load the main package:
-```r
+```{r}
 library(tidyverse)
 ```
 
 {:.note}
 >This is the basic is also the basic way to install and load packages in R. 
 
+# Data Manipulation with `dplyr`
+`dplyr` is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. It uses vectorized operations to make data manipulation fast and efficient.
+The main verbs in `dplyr` are:
+- **`select()`**: Choose specific columns from a data frame.
+- **`filter()`**: Subset rows based on conditions.
+- **`mutate()`**: Create new variables or modify existing ones.
+- **`summarise()`**: Reduce data to summary statistics.
+- **`group_by()`**: Group data by one or more variables for subsequent operations.
 
-# Example Dataset
-We will use the built-in `mtcars` dataset for demonstration:
-
-```r
+## Example Dataset
+We will use the built-in `mtcars` dataset for demonstration. The `mtcars` dataset contains specifications and performance measurements of various car models from the 1970s. It includes variables such as miles per gallon (mpg), number of cylinders (cyl), horsepower (hp), weight (wt), and more.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 head(mtcars)
 ```
 
-# Data Manipulation with `dplyr`
+The `mtcars` dataset is a data frame with 32 rows and 11 columns, where each row represents a different car model and each column represents a different attribute of the car.
 
-### Select columns
-```r
-mtcars %>% select(mpg, cyl, hp)
+## Select columns
+If we need to subset the dataset to only include specific columns, we can use the `select()` function from `dplyr`. This is useful for focusing on relevant variables for analysis.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+mtcars %>% select(mpg, cyl, hp) %>% head()
+mtcars %>% select(c(mpg, cyl, hp)) %>% head()
 ```
 
-### Filter rows
-```r
-mtcars %>% filter(cyl == 6)
+{:.notice}
+> The input for `select()` can be a vector of column names. You can use the `c()` function to combine multiple column names, or list them directly within `select()`.
+> 
+> Additionally, you can use helper functions like `starts_with()`, `ends_with()`, `contains()`, etc. More of this later.
+
+## Filter rows
+Now, the power of `dplyr` shines with the `filter()` function, which allows us to subset rows based on conditions. This is particularly useful for focusing on specific groups or values within the dataset.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+mtcars %>% filter(cyl > 5) %>% head()
 ```
+
+Additionally, we can combine multiple conditions using logical operators like `&` (and) and `|` (or):
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+mtcars %>% filter(cyl > 5 & hp > 100) %>% head()
+```
+
+We can combine `filter` command with pattern matching such as `grepl()` or `str_detect()` from the `stringr` package.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# filter rows that is the model name contains "Mazda"
+mtcars %>% filter(grepl("Mazda", rownames(mtcars)))
+
+# You can also filter by removing rows that match a pattern. 
+# Let us remove cars with the make "Hornet"
+mtcars %>% filter(!grepl("Hornet", rownames(mtcars)))
+```
+
+## Bioinformatics Example
+Let us use a Bioinformatics example to illustrate the use of `dplyr` for data manipulation.
+
+For the next segment of this lesson, let us use 
 
 ### Create new variables
 ```r

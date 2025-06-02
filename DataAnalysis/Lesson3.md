@@ -131,11 +131,12 @@ The `unite()` function from `tidyr` allows you to combine multiple
 columns into a single column. This is useful when you want to create a
 new column that contains information from multiple existing columns.
 
-```{r}
-virsorter_data_united <- virsorter_data_separated %>%
-  unite("Genome", Site, Timepoint, Sample_Name, sep = "_", remove = FALSE)
-head(virsorter_data_united)
-```
+{:.activity}
+>```
+>virsorter_data_united <- virsorter_data_separated %>%
+>  unite("Genome", Site, Timepoint, Sample_Name, sep = "_", remove = FALSE)
+>head(virsorter_data_united)
+>```
 
     ## # A tibble: 6 × 5
     ##   Genome                             Site  Timepoint Sample_Name      Phage_Type
@@ -153,12 +154,13 @@ The `stringr` package provides a set of functions for working with
 strings in R. It is part of the tidyverse and is designed to make string
 manipulation easier and more consistent.
 
-```{r}
-library(stringr)
-virsorter_data_separated <- virsorter_data_united %>%
-  mutate(Population = str_extract(Genome, "Green|Blue|Yellow|Orange|Brown|Purple"))
-head(virsorter_data_separated, n = 20)
-```
+{:.activity}
+>```
+>library(stringr)
+>virsorter_data_separated <- virsorter_data_united %>%
+>  mutate(Population = str_extract(Genome, "Green|Blue|Yellow|Orange|Brown|Purple"))
+>head(virsorter_data_separated, n = 20)
+>```
     ## # A tibble: 20 × 6
     ##    Genome                      Site  Timepoint Sample_Name Phage_Type Population
     ##    <chr>                       <chr> <chr>     <chr>       <chr>      <chr>     
@@ -194,17 +196,20 @@ Sometimes, you may want to replace specific values in a column with new
 values. The `recode()` function from `dplyr` allows you to do this
 easily.
 
-    virsorter_data_recode <- virsorter_data_separated %>% 
-        mutate(Population = recode(Population, 
-                        Orange="Hydrogenobacter sp. Cluster 2 Orange", 
-                        Blue="Hydrogenobacter sp. Cluster 2 Blue", 
-                        Green="Hydrogenobacter sp. Cluster 1 Green", 
-                        Yellow="H. thermophilus", 
-                        Brown="Sulfurihydrogenibium sp.",
-                        Purple="Venenivibrio sp."
-                        )
-        ) 
-    head(virsorter_data_recode)
+{:.activity}
+>```
+>  virsorter_data_recode <- virsorter_data_separated %>% 
+>      mutate(Population = recode(Population, 
+>                      Orange="Hydrogenobacter sp. Cluster 2 Orange", 
+>                      Blue="Hydrogenobacter sp. Cluster 2 Blue", 
+>                      Green="Hydrogenobacter sp. Cluster 1 Green", 
+>                      Yellow="H. thermophilus", 
+>                      Brown="Sulfurihydrogenibium sp.",
+>                      Purple="Venenivibrio sp."
+>                      )
+>      ) 
+>  head(virsorter_data_recode)
+>```
 
     ## # A tibble: 6 × 6
     ##   Genome                       Site  Timepoint Sample_Name Phage_Type Population
@@ -219,12 +224,16 @@ easily.
 Let us create a summary table that counts the number of viral sequences
 per Phage\_Type and Genome:
 
-    virsorter_summary <- virsorter_data_recode %>%
-      group_by(Population, Phage_Type) %>%
-      summarise(Count = n()
-      ) %>%
-      arrange(Population, Phage_Type)
-    virsorter_summary
+{:.activity}
+>```
+>    virsorter_summary <- virsorter_data_recode %>%
+>      group_by(Population, Phage_Type) %>%
+>      summarise(Count = n()
+>      ) %>%
+>      arrange(Population, Phage_Type)
+>    virsorter_summary
+>```
+
 
     ## # A tibble: 7 × 3
     ## # Groups:   Population [6]

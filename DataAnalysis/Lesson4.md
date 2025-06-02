@@ -8,6 +8,8 @@ nav_order: 4
 
 There are a lot of visualization tools in **R** that are often used in Bioinformatics. They are too many to list, but we will tackle some few examples on this page.
 
+<br>
+
 ## Useful R Packages for Bioinformatics Visualization
 Here’s a list of R packages commonly used for visualization in bioinformatics:
 
@@ -48,6 +50,8 @@ Here’s a list of R packages commonly used for visualization in bioinformatics:
   Color palettes for making plots accessible and visually appealing.
 
 These packages cover a wide range of visualization needs in bioinformatics, from basic plots to specialized genomic and omics data visualizations.
+
+---
 
 ## Learning New Data Analysis and Visualization Packages
 
@@ -116,6 +120,8 @@ Here some helpfule guide:
 
 By following these steps, you’ll efficiently learn and apply new R packages to your bioinformatics projects.
 
+---
+
 ## The R Markdown 
 **R Markdown** is a powerful documentation tool that allows you to combine text, code, and results in a single, reproducible document. You can write reports, presentations, and even websites that include both your analysis and its explanation. R Markdown documents are easy to write and can be converted to HTML, PDF, or Word formats.
 
@@ -130,6 +136,8 @@ The **Markdown** is a lightweight markup language that makes it easy to format t
 The input `.md` or markdown file (`.Rmd` or R markdown, too) is renderred along the code that needs to be executed inside it. Here is an example output of a renderred **R Markdown** html:
 
 ![Knitted R Markdown]((https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_knit_sample.png)
+
+---
 
 ## 🙇🏻‍♀️ More Packages to Follow
 Unfortunately, we will end here for now. We will update this page with more examples of **R Packages** that you might need to start your Bioinformatics journey!

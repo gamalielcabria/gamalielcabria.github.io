@@ -214,8 +214,12 @@ We can create a bar plot to visualize the distribution of viral types by populat
 virsorter_input <- virsorter_summary %>%
     ungroup() %>%
     complete(Population, Phage_Type, fill = list(Count = 0))
+head(virsorter_input)
+```
 
-plot <- ggplot(virsorter_input) +
+Plot the data using `ggplot2`:
+```r
+plot1 <- ggplot(virsorter_input) +
   geom_bar(aes( x = Population, 
                 y = Count, 
                 fill = Phage_Type
@@ -227,8 +231,10 @@ plot <- ggplot(virsorter_input) +
        x = "Population",
        y = "Count") +
   theme_minimal()
-plot
+plot1
 ```
+
+![]()
 
 ## Plot Geom Objects
 Let us make a time series from our virsorter dataset.
@@ -258,7 +264,7 @@ Let us plot the time series data using `ggplot2`. We will use `geom_line()` to c
 virsorter_time_series_orange <- virsorter_time_series %>%
   filter(Population == "Hydrogenobacter sp. Cluster 2 Orange")
 
-plot <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot2 <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -267,7 +273,7 @@ plot <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, color
   scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
   theme_minimal() +
   theme(legend.position = "bottom")
-plot
+plot2
 ```
 
 We filter the dataset to only include the **Hydrogenobacter sp. Cluster 2 Orange** population. The `geom_line()` function is used to create lines connecting the points for each viral type, and `geom_point()` adds points at each timepoint.
@@ -275,7 +281,7 @@ We filter the dataset to only include the **Hydrogenobacter sp. Cluster 2 Orange
 ## Plotting with `facet_wrap()`
 We can also use `facet_wrap()` to create separate plots for each population. This allows us to visualize the distribution of viral types within each population.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
-plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot3 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -285,12 +291,12 @@ plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phag
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot
+plot3
 ```
 
 If you want to see the non-facet_wrap version, you can use the `facet_null()` function to remove the facets.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}  
-plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot4 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -299,14 +305,14 @@ plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phag
   scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
   theme_minimal() +
   theme(legend.position = "bottom") 
-plot
+plot4
 ```
 
 
 ## Changing the Color Palette
 We can customize the color palette of our plot using the `scale_color_manual()` function. This allows us to specify the colors for each viral type.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
-plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot5 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -317,14 +323,14 @@ plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phag
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot
+plot5
 ```
 
 Let us try the Wes Anderson color palette from the `wesanderson` package. This package provides a set of aesthetically pleasing color palettes inspired by the films of Wes Anderson.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
 library(wesanderson) # Install the package if you haven't already
 
-plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot6 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -335,7 +341,7 @@ plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phag
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot
+plot6
 ```
 
 ---
@@ -343,7 +349,7 @@ plot
 ## The Themes of `ggplot2`
 You can customize the appearance of your plots using themes in `ggplot2`. The `theme_minimal()` function is one of the built-in themes that provides a clean and minimalistic look. You can also create your own custom themes or use other built-in themes like `theme_bw()`, `theme_classic()`, etc.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
-plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+plot7 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
   geom_line(aes(group = Phage_Type), linewidth = 1) +
   geom_point(size = 3) +
   labs(title = "Viral Types Over Time by Population",
@@ -359,7 +365,7 @@ plot <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phag
         plot.title = element_text(size = 18, face = "bold", hjust = 0.5)
         ) +
   facet_wrap(~ Population)
-plot
+plot7
 ```
 
 Other themes can be applied to the plot using the `theme()` function. You can customize various aspects of the plot, such as axis labels, titles, and legend positions.
@@ -404,3 +410,16 @@ These arguments allow you to control the appearance of almost every aspect of yo
 | `replace_na()`   | Replace missing values                                      | `mutate(df, col = replace_na(col, 0))`                               |
 | `expand()`       | Create all combinations of variables                        | `expand(df, col1, col2)`                                             |
 | `complete()`     | Fill in missing combinations of variables                   | `complete(df, col1, col2, fill = list(count = 0))`                   |
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# Save the plots to files
+ggsave("plot1.png", plot = plot1, width = 8, height = 6)
+ggsave("plot2.png", plot = plot2, width = 8, height = 6)
+ggsave("plot3.png", plot = plot3, width = 8, height = 6)
+ggsave("plot4.png", plot = plot4, width = 8, height = 6)
+ggsave("plot5.png", plot = plot5, width = 8, height = 6)
+ggsave("plot6.png", plot = plot6, width = 8, height = 6)
+ggsave("plot7.png", plot = plot7, width = 8, height = 6)
+# End of the R Markdown document
+```

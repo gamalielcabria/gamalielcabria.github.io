@@ -2,9 +2,7 @@
 title: "Tidyverse: TidyR and ggplot2"
 author: "Gamaliel Cabria"
 date: "`r Sys.Date()`"
-output: 
-  github_document:
-    keep_md: true
+output: md_document
 ---
 
 # Tidying Data with `tidyr`

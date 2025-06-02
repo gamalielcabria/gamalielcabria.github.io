@@ -4,7 +4,7 @@ parent: Data Wrangling with R
 nav_order: 3
 ---
 
-# Tidying Data with `tidyr`
+# 🧹 Tidying Data with `tidyr`
 
 The `tidyr` package is designed to help you create tidy data, which is a
 standardized way of organizing data that makes it easier to work with.
@@ -125,6 +125,8 @@ useful when the number of pieces of information varies across rows. The
 `fill = "right"` argument ensures that any missing values are filled
 with `NA` on the right side. <br>
 
+---
+
 ### The opposite of `separate()`: `unite()`
 
 The `unite()` function from `tidyr` allows you to combine multiple
@@ -147,6 +149,8 @@ new column that contains information from multiple existing columns.
     ## 4 KRP1_SE046_G26_cluster_1_Blue_vs2  KRP1  SE046     G26_cluster_1_B… dsDNAphage
     ## 5 KRP1_SE055_G02_cluster_2_Brown_vs2 KRP1  SE055     G02_cluster_2_B… dsDNAphage
     ## 6 KRP1_SE055_G02_cluster_2_Brown_vs2 KRP1  SE055     G02_cluster_2_B… dsDNAphage
+
+---
 
 ### Featuring: Tidyverse’s `stringr`
 
@@ -257,9 +261,12 @@ use the `pivot_wider()` function from `tidyr` to convert this table into
 wide format, where each Population has its own column for each
 Phage\_Type.
 
-    virsorter_wide <- virsorter_summary %>%
-      pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
-    head(virsorter_wide)
+{:.activity}
+>```    
+>    virsorter_wide <- virsorter_summary %>%
+>      pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
+>    head(virsorter_wide)
+>```
 
     ## # A tibble: 6 × 3
     ## # Groups:   Population [6]
@@ -282,11 +289,14 @@ Meanwhile, if you have a dataset in wide format and you want to convert
 it back to long format, you can use the `pivot_longer()` function. This
 is useful when you want to perform operations that require tidy data.
 
-    virsorter_long <- virsorter_wide %>%
-      pivot_longer(cols = -Population, 
-                   names_to = "Phage_Type", 
-                   values_to = "Count")
-    head(virsorter_long)
+{:.activity}
+>```
+>    virsorter_long <- virsorter_wide %>%
+>      pivot_longer(cols = -Population, 
+>                   names_to = "Phage_Type", 
+>                   values_to = "Count")
+>    head(virsorter_long)
+>```
 
     ## # A tibble: 6 × 3
     ## # Groups:   Population [3]
@@ -315,11 +325,14 @@ the **Population** and **Site** columns. We can then use the `expand()`
 function to create a dataset that contains all combinations of these two
 variables.
 
-    virsorter_expanded <- virsorter_data_recode %>%
-        select(Population, Site) %>%
-        distinct() %>%
-        expand(Population, Site)
-    virsorter_expanded
+{:.activity}
+>```
+>    virsorter_expanded <- virsorter_data_recode %>%
+>        select(Population, Site) %>%
+>        distinct() %>%
+>        expand(Population, Site)
+>    virsorter_expanded
+>```
 
     ## # A tibble: 18 × 2
     ##    Population                           Site 
@@ -349,10 +362,13 @@ This is because the expanded dataset contains all combinations of
 Population, Site, and Phage\_Type, including those that were not present
 in the original dataset.
 
-    virsorter_original <- virsorter_data_recode %>%
-        select(Population, Site) %>%
-        distinct()
-    virsorter_original
+{:.activity}
+>```
+>    virsorter_original <- virsorter_data_recode %>%
+>        select(Population, Site) %>%
+>        distinct()
+>    virsorter_original
+>```
 
     ## # A tibble: 11 × 2
     ##    Population                           Site 
@@ -386,12 +402,15 @@ combinations of variables in your dataset. This is useful when you want
 to ensure that all possible combinations of variables are represented in
 your data.
 
-    virsorter_incomplete <- virsorter_data_recode %>%
-        group_by(Population, Phage_Type, Site, Timepoint) %>%
-        summarise(Count = n()) %>%
-        ungroup() %>%
-        pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
-    virsorter_incomplete
+{:.activity}
+>```
+>    virsorter_incomplete <- virsorter_data_recode %>%
+>        group_by(Population, Phage_Type, Site, Timepoint) %>%
+>        summarise(Count = n()) %>%
+>        ungroup() %>%
+>        pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
+>    virsorter_incomplete
+>```
 
     ## # A tibble: 18 × 5
     ##    Population                           Site  Timepoint dsDNAphage ssDNA
@@ -420,13 +439,16 @@ Timepoint are present in the dataset. For example, there are no entries
 for **SE046** in the **Green** population. We can use the `complete()`
 function to fill in these missing combinations with `0` counts.
 
-    virsorter_complete <- virsorter_data_recode %>%
-        group_by(Population, Phage_Type, Site, Timepoint) %>%
-        summarise(Count = n()) %>%
-        ungroup() %>%
-        complete(Population, Phage_Type, Site, Timepoint, fill = list(Count = 0)) %>%
-        pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
-    head(virsorter_complete, n = 20)
+{:.activity}
+>```
+>    virsorter_complete <- virsorter_data_recode %>%
+>        group_by(Population, Phage_Type, Site, Timepoint) %>%
+>        summarise(Count = n()) %>%
+>        ungroup() %>%
+>        complete(Population, Phage_Type, Site, Timepoint, fill = list(Count = 0)) %>%
+>        pivot_wider(names_from = Phage_Type, values_from = Count, values_fill = 0)
+>    head(virsorter_complete, n = 20)
+>```
 
     ## # A tibble: 20 × 5
     ##    Population                          Site  Timepoint dsDNAphage ssDNA
@@ -452,9 +474,10 @@ function to fill in these missing combinations with `0` counts.
     ## 19 Hydrogenobacter sp. Cluster 1 Green KRP1  SE057              0     0
     ## 20 Hydrogenobacter sp. Cluster 1 Green KRP1  SE058             19     0
 
-The complete dataset now has 90 rows, with all combinations of
-Population, Phage\_Type, Site, and Timepoint represented. The missing
-combinations have been filled with `0` counts.
+{:.notice}
+>The complete dataset now has 90 rows, with all combinations of
+>Population, Phage\_Type, Site, and Timepoint represented. The missing
+>combinations have been filled with `0` counts.
 
 The `complete()` function is particularly useful when you want to ensure
 that your dataset is fully populated with all possible combinations of
@@ -463,7 +486,7 @@ visualizations.
 
 ------------------------------------------------------------------------
 
-# Visualizing Data with `ggplot2`
+# 🖌️ Visualizing Data with `ggplot2`
 
 The `ggplot2` package is a powerful and flexible system for creating
 static graphics in R. It is part of the tidyverse and is designed to
@@ -476,10 +499,13 @@ population using `ggplot2`. The `geom_bar()` function is used to create
 bar plots, and we can use the `fill` aesthetic to color the bars by
 viral type.
 
-    virsorter_input <- virsorter_summary %>%
-        ungroup() %>%
-        complete(Population, Phage_Type, fill = list(Count = 0))
-    head(virsorter_input)
+{:.activity}
+>```
+>    virsorter_input <- virsorter_summary %>%
+>        ungroup() %>%
+>        complete(Population, Phage_Type, fill = list(Count = 0))
+>    head(virsorter_input)
+>```
 
     ## # A tibble: 6 × 3
     ##   Population                          Phage_Type Count
@@ -493,19 +519,22 @@ viral type.
 
 Plot the data using `ggplot2`:
 
-    plot1 <- ggplot(virsorter_input) +
-      geom_bar(aes( x = Population, 
-                    y = Count, 
-                    fill = Phage_Type
-                    ),
-                    stat = "identity",
-                    position = "dodge"
-            ) +
-      labs(title = "Distribution of Viral Types by Population",
-           x = "Population",
-           y = "Count") +
-      theme_minimal()
-    plot1
+{:.activity}
+>```
+>    plot1 <- ggplot(virsorter_input) +
+>      geom_bar(aes( x = Population, 
+>                    y = Count, 
+>                    fill = Phage_Type
+>                    ),
+>                    stat = "identity",
+>                    position = "dodge"
+>            ) +
+>      labs(title = "Distribution of Viral Types by Population",
+>           x = "Population",
+>           y = "Count") +
+>      theme_minimal()
+>    plot1
+>```
 
 <figure>
 <img
@@ -523,22 +552,25 @@ Let us make a time series from our virsorter dataset.
 First, let us re-analyse it so that viral count is show by timepoint and
 population.
 
-    virsorter_time_series <- virsorter_data_recode %>%
-      group_by(Population, Timepoint, Phage_Type) %>%
-      summarise(Count = n(), .groups = 'drop') %>%
-      arrange(Population, Timepoint, Phage_Type) %>%
-      ungroup() %>%
-      mutate(Timepoint = recode(Timepoint, 
-             SE046 = 1,
-             SE053 = 2,
-             SE055 = 3,
-             SE056 = 4,
-             SE057 = 5,
-             SE058 = 6,
-             )
-      ) %>%
-      complete(Population, Timepoint, Phage_Type, fill = list(Count = 0)) 
-    virsorter_time_series
+{:.activity}
+>```
+>    virsorter_time_series <- virsorter_data_recode %>%
+>      group_by(Population, Timepoint, Phage_Type) %>%
+>      summarise(Count = n(), .groups = 'drop') %>%
+>      arrange(Population, Timepoint, Phage_Type) %>%
+>      ungroup() %>%
+>      mutate(Timepoint = recode(Timepoint, 
+>             SE046 = 1,
+>             SE053 = 2,
+>             SE055 = 3,
+>             SE056 = 4,
+>             SE057 = 5,
+>             SE058 = 6,
+>             )
+>      ) %>%
+>      complete(Population, Timepoint, Phage_Type, fill = list(Count = 0)) 
+>    virsorter_time_series
+>```
 
     ## # A tibble: 60 × 4
     ##    Population      Timepoint Phage_Type Count
@@ -559,19 +591,22 @@ Let us plot the time series data using `ggplot2`. We will use
 `geom_line()` to create a line plot and `geom_point()` to add points for
 each timepoint.
 
-    virsorter_time_series_orange <- virsorter_time_series %>%
-      filter(Population == "Hydrogenobacter sp. Cluster 2 Orange")
-
-    plot2 <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      theme_minimal() +
-      theme(legend.position = "bottom")
-    #plot2
+{:.activity}
+>```
+>    virsorter_time_series_orange <- virsorter_time_series %>%
+>      filter(Population == "Hydrogenobacter sp. Cluster 2 Orange")
+>
+>    plot2 <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      theme_minimal() +
+>      theme(legend.position = "bottom")
+>    #plot2
+>```
 
 <figure>
 <img
@@ -593,16 +628,19 @@ We can also use `facet_wrap()` to create separate plots for each
 population. This allows us to visualize the distribution of viral types
 within each population.
 
-    plot3 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      theme_minimal() +
-      theme(legend.position = "bottom") +
-      facet_wrap(~ Population)
+{:.activity}
+>```
+>    plot3 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      theme_minimal() +
+>      theme(legend.position = "bottom") +
+>      facet_wrap(~ Population)
+>```
 
 <figure>
 <img
@@ -614,15 +652,18 @@ alt="Plot3" />
 If you want to see the non-facet\_wrap version, you can use the
 `facet_null()` function to remove the facets.
 
-    plot4 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      theme_minimal() +
-      theme(legend.position = "bottom") 
+{:.activity}
+>```
+>    plot4 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      theme_minimal() +
+>      theme(legend.position = "bottom") 
+>```
 
 <figure>
 <img
@@ -639,17 +680,20 @@ We can customize the color palette of our plot using the
 `scale_color_manual()` function. This allows us to specify the colors
 for each viral type.
 
-    plot5 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      scale_color_manual(values = c("dsDNAphage" = "#FF5733", "ssDNA" = "#33FF57")) +
-      theme_minimal() +
-      theme(legend.position = "bottom") +
-      facet_wrap(~ Population)
+{:.activity}
+>```
+>    plot5 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      scale_color_manual(values = c("dsDNAphage" = "#FF5733", "ssDNA" = "#33FF57")) +
+>      theme_minimal() +
+>      theme(legend.position = "bottom") +
+>      facet_wrap(~ Population)
+>```
 
 <figure>
 <img
@@ -662,19 +706,22 @@ Let us try the Wes Anderson color palette from the `wesanderson`
 package. This package provides a set of aesthetically pleasing color
 palettes inspired by the films of Wes Anderson.
 
-    library(wesanderson) # Install the package if you haven't already
-
-    plot6 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      scale_color_manual(values = wes_palette("GrandBudapest1",2)) + # Use a Wes Anderson color palette
-      theme_minimal() +
-      theme(legend.position = "bottom") +
-      facet_wrap(~ Population)
+{:.activity}
+>```
+>    library(wesanderson) # Install the package if you haven't already
+>
+>    plot6 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      scale_color_manual(values = wes_palette("GrandBudapest1",2)) + # Use a Wes Anderson color palette
+>      theme_minimal() +
+>      theme(legend.position = "bottom") +
+>      facet_wrap(~ Population)
+>```
 
 <figure>
 <img
@@ -693,22 +740,25 @@ that provides a clean and minimalistic look. You can also create your
 own custom themes or use other built-in themes like `theme_bw()`,
 `theme_classic()`, etc.
 
-    plot7 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
-      geom_line(aes(group = Phage_Type), linewidth = 1) +
-      geom_point(size = 3) +
-      labs(title = "Viral Types Over Time by Population",
-           x = "Timepoint",
-           y = "Count") +
-      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
-      scale_color_manual(values = wes_palette("GrandBudapest1",2)) + # Use a Wes Anderson color palette
-      theme_minimal() + # Use a minimal theme
-      theme(legend.position = "bottom",
-            axis.title.x = element_text(size = 16, face = "bold"),
-            axis.title.y = element_text(size = 15, face = "bold"),
-            strip.text.x = element_text(size = 15, face = "bold"),
-            plot.title = element_text(size = 18, face = "bold", hjust = 0.5)
-            ) +
-      facet_wrap(~ Population)
+{:.activity}
+>```
+>    plot7 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Phage_Type)) +
+>      geom_line(aes(group = Phage_Type), linewidth = 1) +
+>      geom_point(size = 3) +
+>      labs(title = "Viral Types Over Time by Population",
+>           x = "Timepoint",
+>           y = "Count") +
+>      scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
+>      scale_color_manual(values = wes_palette("GrandBudapest1",2)) + # Use a Wes Anderson color palette
+>      theme_minimal() + # Use a minimal theme
+>      theme(legend.position = "bottom",
+>            axis.title.x = element_text(size = 16, face = "bold"),
+>            axis.title.y = element_text(size = 15, face = "bold"),
+>            strip.text.x = element_text(size = 15, face = "bold"),
+>            plot.title = element_text(size = 18, face = "bold", hjust = 0.5)
+>            ) +
+>      facet_wrap(~ Population)
+>```
 
 <figure>
 <img

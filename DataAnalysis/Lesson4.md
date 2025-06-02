@@ -60,6 +60,8 @@ It can be overwhelming to learn a new Package, especially in Bioniformatics. But
 {:.info}
 >First, if you are looking for a visualization tool. Make sure you first check that it cannot easily be done by **base R** or **ggplot2** commands. For more infor on basic graphs they can present. Please check the **[R Graph Gallery](https://r-graph-gallery.com/)**
 
+<br><br>
+
 Here some helpfule guide:
 
 - **Read the official documentation:**  
@@ -69,6 +71,8 @@ Here some helpfule guide:
 > Most packages in CRAN (R Package Repositories) requires documentation (like help files for each function). Vignettes (long-form guides or tutorials) are optional but highly recommended.
 >
 > Here is an example of a vignette for R: [ComplexUpset Vignette](https://cran.r-project.org/web/packages/ComplexUpset/ComplexUpset.pdf)
+
+<br>
 
 - **Check for tutorials and blog posts:**  
   Look for tutorials, blog posts, or YouTube videos that demonstrate real-world use cases.
@@ -82,9 +86,12 @@ Here some helpfule guide:
 > >- **Documentation**
 > >- **R examples**
 
+<br>
+
 - **Experiment with your own data:**  
   Apply the package to your own datasets to reinforce your understanding and discover practical challenges.
 
+<br>
 
 - **Review function arguments:**  
   Use `?function_name` or `help(function_name)` in R to see all arguments and options for each function.
@@ -94,6 +101,7 @@ Here some helpfule guide:
 >
 >Check it out **[here](https://gamalielcabria.github.io/DataAnalysis/Lesson1.html#the-help-system)**.
 
+<br>
 
 - **Consult the community:**  
   Search for questions and answers on Stack Overflow, GitHub issues, or RStudio Community if you get stuck.
@@ -106,8 +114,12 @@ Here some helpfule guide:
 >>
 >>**Check the Package Website and developer if issues persists!** We do not bite.
 
+<br>
+
 - **Keep your R and packages updated:**  
   Make sure you are using the latest versions to access new features and bug fixes.
+
+<br>
 
 - **Practice reproducibility:**  
   Document your code and workflow so you (and others) can reproduce your analysis later.
@@ -115,9 +127,12 @@ Here some helpfule guide:
 {:.save}
 > Double check the version you install and used. Newer version could have problematic update that can change the syntax of the your code. 
 
+<br>
+
 - **Start simple, then go deeper:**  
   Begin with basic functionality before exploring advanced features and customizations.
 
+<br>
 By following these steps, you’ll efficiently learn and apply new R packages to your bioinformatics projects.
 
 ---

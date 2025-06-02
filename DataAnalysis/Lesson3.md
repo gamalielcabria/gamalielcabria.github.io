@@ -110,10 +110,11 @@ this column into multiple columns.
     ## 19 KRP1  SE057     G07_cluster_2_Brown_vs2           dsDNAphage
     ## 20 KRP1  SE057     G07_cluster_2_Brown_vs2           dsDNAphage
 
-You might notice that the **Population** column is still missing. It is
-hard to extract since some genomes
-(i.e. KRP1\_SE055\_G12\_cluster\_2\_cluster\_1\_Green\_vs2) have more
-than one extra sets of columns due to extra ’\_’.
+{:.notice}
+>You might notice that the **Population** column is still missing. It is
+>hard to extract since some genomes
+>(i.e. KRP1\_SE055\_G12\_cluster\_2\_cluster\_1\_Green\_vs2) have more
+>than one extra sets of columns due to extra ’\_’.
 
 We can use the `str_extract()` function from the `stringr` package to
 extract the population from the **Sample\_Name** column.

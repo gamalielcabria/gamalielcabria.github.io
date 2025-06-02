@@ -2,12 +2,11 @@
 title: "Introduction to Tidyverse: dplyr"
 author: "Gamaliel Cabria"
 date: "`r Sys.Date()`"
-output: 
-  github_document:
-    keep_md: true
+output: md_document
 ---
 
-# Introduction
+# Introduction to Tidyverse: dplyr
+## What is the Tidyverse?
 
 The **tidyverse** is a collection of R packages designed for data science. All tidyverse packages share an underlying design philosophy, grammar, and data structures.
 

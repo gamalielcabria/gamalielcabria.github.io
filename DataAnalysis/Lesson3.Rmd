@@ -2,7 +2,9 @@
 title: "Tidyverse: TidyR and ggplot2"
 author: "Gamaliel Cabria"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  github_document:
+    keep_md: true
 ---
 
 # Tidying Data with `tidyr`
@@ -234,7 +236,9 @@ plot1 <- ggplot(virsorter_input) +
 plot1
 ```
 
-![]()
+![Plot1](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot1.png)
+
+---
 
 ## Plot Geom Objects
 Let us make a time series from our virsorter dataset.
@@ -273,10 +277,15 @@ plot2 <- ggplot(virsorter_time_series_orange, aes(x = Timepoint, y = Count, colo
   scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
   theme_minimal() +
   theme(legend.position = "bottom")
-plot2
+#plot2
 ```
 
+![Plot2](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot2.png)
+
+
 We filter the dataset to only include the **Hydrogenobacter sp. Cluster 2 Orange** population. The `geom_line()` function is used to create lines connecting the points for each viral type, and `geom_point()` adds points at each timepoint.
+
+---
 
 ## Plotting with `facet_wrap()`
 We can also use `facet_wrap()` to create separate plots for each population. This allows us to visualize the distribution of viral types within each population.
@@ -291,8 +300,9 @@ plot3 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Pha
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot3
 ```
+
+![Plot3](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot3.png)
 
 If you want to see the non-facet_wrap version, you can use the `facet_null()` function to remove the facets.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}  
@@ -305,9 +315,11 @@ plot4 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Pha
   scale_x_continuous(breaks = 1:6, labels = c("SE046", "SE053", "SE055", "SE056", "SE057", "SE058")) +
   theme_minimal() +
   theme(legend.position = "bottom") 
-plot4
 ```
 
+![Plot4](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot4.png)
+
+---
 
 ## Changing the Color Palette
 We can customize the color palette of our plot using the `scale_color_manual()` function. This allows us to specify the colors for each viral type.
@@ -323,8 +335,9 @@ plot5 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Pha
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot5
 ```
+
+![Plot5](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot5.png)
 
 Let us try the Wes Anderson color palette from the `wesanderson` package. This package provides a set of aesthetically pleasing color palettes inspired by the films of Wes Anderson.
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
@@ -341,8 +354,9 @@ plot6 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Pha
   theme_minimal() +
   theme(legend.position = "bottom") +
   facet_wrap(~ Population)
-plot6
 ```
+
+![Plot6](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot6.png)
 
 ---
 
@@ -365,8 +379,9 @@ plot7 <- ggplot(virsorter_time_series, aes(x = Timepoint, y = Count, color = Pha
         plot.title = element_text(size = 18, face = "bold", hjust = 0.5)
         ) +
   facet_wrap(~ Population)
-plot7
 ```
+
+![Plot7](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/plot7.png)
 
 Other themes can be applied to the plot using the `theme()` function. You can customize various aspects of the plot, such as axis labels, titles, and legend positions.
 
@@ -412,14 +427,14 @@ These arguments allow you to control the appearance of almost every aspect of yo
 | `complete()`     | Fill in missing combinations of variables                   | `complete(df, col1, col2, fill = list(count = 0))`                   |
 
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, include=FALSE}
 # Save the plots to files
-ggsave("plot1.png", plot = plot1, width = 8, height = 6)
-ggsave("plot2.png", plot = plot2, width = 8, height = 6)
-ggsave("plot3.png", plot = plot3, width = 8, height = 6)
-ggsave("plot4.png", plot = plot4, width = 8, height = 6)
-ggsave("plot5.png", plot = plot5, width = 8, height = 6)
-ggsave("plot6.png", plot = plot6, width = 8, height = 6)
-ggsave("plot7.png", plot = plot7, width = 8, height = 6)
+# ggsave("plot1.png", plot = plot1, width = 8, height = 6)
+# ggsave("plot2.png", plot = plot2, width = 8, height = 6)
+# ggsave("plot3.png", plot = plot3, width = 8, height = 6)
+# ggsave("plot4.png", plot = plot4, width = 8, height = 6)
+# ggsave("plot5.png", plot = plot5, width = 8, height = 6)
+# ggsave("plot6.png", plot = plot6, width = 8, height = 6)
+# ggsave("plot7.png", plot = plot7, width = 8, height = 6)
 # End of the R Markdown document
 ```

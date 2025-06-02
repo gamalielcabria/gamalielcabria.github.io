@@ -150,7 +150,7 @@ The **Markdown** is a lightweight markup language that makes it easy to format t
 
 The input `.md` or markdown file (`.Rmd` or R markdown, too) is renderred along the code that needs to be executed inside it. Here is an example output of a renderred **R Markdown** html:
 
-![Knitted R Markdown]((https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_knit_sample.png)
+![Knitted R Markdown](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_knit_sample.png)
 
 ---
 

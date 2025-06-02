@@ -1,0 +1,67 @@
+---
+title: "Tidyverse: TidyR and ggplot2"
+author: "Gamaliel Cabria"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Tidying Data with `tidyr`
+The `tidyr` package is designed to help you create tidy data, which is a standardized way of organizing data that makes it easier to work with. Tidy data has the following characteristics:
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+  
+Tidy data is essential for efficient data analysis and visualization, as it allows you to easily manipulate and visualize your data using the tidyverse packages.
+
+## Example Dataset with `tidyr`
+In this section, we will use another Bioinformatics dataset to demonstrate the use of `tidyr` for tidying data. The dataset is a summarised table listing the instances that the program `virsorter` predicted a viral sequence in a metagenomic dataset. The dataset contains the following columns:
+- **Genome**: The name of the genome file.
+  - It is divided by the **Site**, **Timepoint** (i.e. SE046), **Sample Name** (i.e. G07_cluster_2), and **Population**(i.e. Blue).
+- **Viral Type**: The predicted viral sequence is either **dsDNAPhage** or **ssDNAPhage**.
+
+To download the data, run the following code:
+```bash
+wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/virsorter/virsorter_output.csv
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+setwd("/home/gam/github/gamalielcabria.github.io/DataAnalysis")
+```
+
+Let us load the dataset and take a look at its structure:
+```{r echo=TRUE, warning=FALSE, message=FALSE}
+library(tidyverse)
+
+virsorter_data <- read_csv(./virsorter_output.csv)
+head(virsorter_data)
+```
+
+## Gather (wide to long)
+```r
+pivot_longer(mtcars, cols = c(mpg, hp), names_to = "metric", values_to = "value") %>% head()
+```
+
+### Spread (long to wide)
+```r
+mtcars_long <- mtcars %>% 
+  select(model = rownames(mtcars), cyl, gear) %>% 
+  pivot_wider(names_from = gear, values_from = cyl, values_fn = mean)
+```
+
+# Data Visualization with `ggplot2`
+
+### Basic scatter plot
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+### Add trend line
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+# Conclusion
+The tidyverse streamlines many common data science tasks in R. It emphasizes readability and consistency, making it ideal for beginners and experienced users alike.

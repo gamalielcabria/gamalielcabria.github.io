@@ -50,7 +50,7 @@ Let us load the dataset and take a look at its structure:
 >head(virsorter_data)
 >```
 
-{:.activity}
+
     ## # A tibble: 6 × 2
     ##   Genome                             Phage_Type
     ##   <chr>                              <chr>     

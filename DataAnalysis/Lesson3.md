@@ -30,20 +30,24 @@ file. - It is divided by the **Site**, **Timepoint** (i.e. SE046),
 
 To download the data, run the following code:
 
-    wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/virsorter/virsorter_output.csv
+```bash
+wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/virsorter/virsorter_output.csv
+```
 
 Let us load the dataset and take a look at its structure:
 
-    library(tidyverse)
+```r
+library(tidyverse)
 
-    virsorter_data <- read_csv("./virsorter_output.csv",
-      col_types = cols(
-        ...1 = col_skip(),              # Skip the first unnamed column
-        Genome = col_character(),       # The genome file name
-        Phage_Type = col_character()    # The predicted viral sequence type
-      )
-    )
-    head(virsorter_data)
+virsorter_data <- read_csv("./virsorter_output.csv",
+  col_types = cols(
+    ...1 = col_skip(),              # Skip the first unnamed column
+    Genome = col_character(),       # The genome file name
+    Phage_Type = col_character()    # The predicted viral sequence type
+  )
+)
+head(virsorter_data)
+```
 
     ## # A tibble: 6 × 2
     ##   Genome                             Phage_Type

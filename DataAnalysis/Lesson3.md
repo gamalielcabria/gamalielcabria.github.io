@@ -22,10 +22,12 @@ In this section, we will use another Bioinformatics dataset to
 demonstrate the use of `tidyr` for tidying data. The dataset is a
 summarised table listing the instances that the program `virsorter`
 predicted a viral sequence in a metagenomic dataset. The dataset
-contains the following columns: - **Genome**: The name of the genome
-file. - It is divided by the **Site**, **Timepoint** (i.e. SE046),
-**Sample Name** (i.e. G07\_cluster\_2), and **Population**(i.e. Blue). -
-**Viral Type**: The predicted viral sequence is either **dsDNAPhage** or
+contains the following columns:
+- **Genome**: The name of the genome
+file. 
+- It is divided by the **Site**, **Timepoint** (i.e. SE046),
+**Sample Name** (i.e. G07\_cluster\_2), and **Population**(i.e. Blue). 
+- **Viral Type**: The predicted viral sequence is either **dsDNAPhage** or
 **ssDNAPhage**.
 
 To download the data, run the following code:

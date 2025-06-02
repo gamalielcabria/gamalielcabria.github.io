@@ -67,24 +67,24 @@ Here some helpfule guide:
 - **Read the official documentation:**  
   Start with the package’s README, vignettes, and reference manual to understand its main functions and workflow.
 
-{:.activity}
-> Most packages in CRAN (R Package Repositories) requires documentation (like help files for each function). Vignettes (long-form guides or tutorials) are optional but highly recommended.
->
-> Here is an example of a vignette for R: [ComplexUpset Vignette](https://cran.r-project.org/web/packages/ComplexUpset/ComplexUpset.pdf)
+  {:.activity}
+  > Most packages in CRAN (R Package Repositories) requires documentation (like help files for each function). Vignettes (long-form guides or tutorials) are optional but highly recommended.
+  >
+  > Here is an example of a vignette for R: [ComplexUpset Vignette](https://cran.r-project.org/web/packages/ComplexUpset/ComplexUpset.pdf)
 
 <br>
 
 - **Check for tutorials and blog posts:**  
   Look for tutorials, blog posts, or YouTube videos that demonstrate real-world use cases.
 
-{:.save}
-> Most package developers also publish an online guide or tutorial. Check the package's Github site or Readthedocs.io for **ofetn** a beginner friendly guide to use their packages.
-> 
-> Check this tutorial on the package **[ComplexUpset](https://krassowski.github.io/complex-upset/index.html)**
-> >They often shows:
-> >- **Installation Guide**
-> >- **Documentation**
-> >- **R examples**
+  {:.save}
+  > Most package developers also publish an online guide or tutorial. Check the package's Github site or Readthedocs.io for **ofetn** a beginner friendly guide to use their packages.
+  > 
+  > Check this tutorial on the package **[ComplexUpset](https://krassowski.github.io/complex-upset/index.html)**
+  > >They often shows:
+  > >- **Installation Guide**
+  > >- **Documentation**
+  > >- **R examples**
 
 <br>
 
@@ -96,23 +96,23 @@ Here some helpfule guide:
 - **Review function arguments:**  
   Use `?function_name` or `help(function_name)` in R to see all arguments and options for each function.
 
-{:.note}
->Remember that you can check the usage of a function or package within R.
->
->Check it out **[here](https://gamalielcabria.github.io/DataAnalysis/Lesson1.html#the-help-system)**.
+  {:.note}
+  >Remember that you can check the usage of a function or package within R.
+  >
+  >Check it out **[here](https://gamalielcabria.github.io/DataAnalysis/Lesson1.html#the-help-system)**.
 
 <br>
 
 - **Consult the community:**  
   Search for questions and answers on Stack Overflow, GitHub issues, or RStudio Community if you get stuck.
-> Bugs and common issues are often talked in the package's *Github Issue Page**
->
-> An Example: **[https://github.com/krassowski/complex-upset/issues/186](https://github.com/krassowski/complex-upset/issues/186)**
->
->{:.warning}
->>You can opt to paste your error or issue to a GenAI (i.e. ChatGpt or Copilot). But do not trust that they will solve the issue as they still often hallucinate. 
->>
->>**Check the Package Website and developer if issues persists!** We do not bite.
+  > Bugs and common issues are often talked in the package's *Github Issue Page**
+  >
+  > An Example: **[https://github.com/krassowski/complex-upset/issues/186](https://github.com/krassowski/complex-upset/issues/186)**
+  >
+  >{:.warning}
+  >>You can opt to paste your error or issue to a GenAI (i.e. ChatGpt or Copilot). But do not trust that they will solve the issue as they still often hallucinate. 
+  >>
+  >>**Check the Package Website and developer if issues persists!** We do not bite.
 
 <br>
 
@@ -124,8 +124,8 @@ Here some helpfule guide:
 - **Practice reproducibility:**  
   Document your code and workflow so you (and others) can reproduce your analysis later.
 
-{:.save}
-> Double check the version you install and used. Newer version could have problematic update that can change the syntax of the your code. 
+  {:.save}
+  > Double check the version you install and used. Newer version could have problematic update that can change the syntax of the your code. 
 
 <br>
 
@@ -142,7 +142,7 @@ By following these steps, you’ll efficiently learn and apply new R packages to
 
 Here is a sample of an R Markdown code:
 
-![R Markdown Code](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_sample.png)
+  ![R Markdown Code](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_sample.png)
 
 As you might have notice it is written like a code or a text file. Because, it is!
 
@@ -150,7 +150,7 @@ The **Markdown** is a lightweight markup language that makes it easy to format t
 
 The input `.md` or markdown file (`.Rmd` or R markdown, too) is renderred along the code that needs to be executed inside it. Here is an example output of a renderred **R Markdown** html:
 
-![Knitted R Markdown](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_knit_sample.png)
+  ![Knitted R Markdown](https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/img/rmd_knit_sample.png)
 
 ---
 

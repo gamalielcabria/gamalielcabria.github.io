@@ -36,6 +36,7 @@ wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/m
 
 Let us load the dataset and take a look at its structure:
 
+{:.activity}
 ```{r}
 library(tidyverse)
 
@@ -49,6 +50,7 @@ virsorter_data <- read_csv("./virsorter_output.csv",
 head(virsorter_data)
 ```
 
+{:.activity}
     ## # A tibble: 6 × 2
     ##   Genome                             Phage_Type
     ##   <chr>                              <chr>     
@@ -149,11 +151,12 @@ The `stringr` package provides a set of functions for working with
 strings in R. It is part of the tidyverse and is designed to make string
 manipulation easier and more consistent.
 
-    library(stringr)
-    virsorter_data_separated <- virsorter_data_united %>%
-      mutate(Population = str_extract(Genome, "Green|Blue|Yellow|Orange|Brown|Purple"))
-    head(virsorter_data_separated, n = 20)
-
+```{r}
+library(stringr)
+virsorter_data_separated <- virsorter_data_united %>%
+  mutate(Population = str_extract(Genome, "Green|Blue|Yellow|Orange|Brown|Purple"))
+head(virsorter_data_separated, n = 20)
+```
     ## # A tibble: 20 × 6
     ##    Genome                      Site  Timepoint Sample_Name Phage_Type Population
     ##    <chr>                       <chr> <chr>     <chr>       <chr>      <chr>     

@@ -37,29 +37,29 @@ wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/m
 Let us load the dataset and take a look at its structure:
 
 {:.activity}
-```{r}
-library(tidyverse)
-
-virsorter_data <- read_csv("./virsorter_output.csv",
-  col_types = cols(
-    ...1 = col_skip(),              # Skip the first unnamed column
-    Genome = col_character(),       # The genome file name
-    Phage_Type = col_character()    # The predicted viral sequence type
-  )
-)
-head(virsorter_data)
+>```
+>library(tidyverse)
+>
+>virsorter_data <- read_csv("./virsorter_output.csv",
+>  col_types = cols(
+>    ...1 = col_skip(),              # Skip the first unnamed column
+>    Genome = col_character(),       # The genome file name
+>    Phage_Type = col_character()    # The predicted viral sequence type
+>  )
+>)
+>head(virsorter_data)
 ```
 
 {:.activity}
-    ## # A tibble: 6 × 2
-    ##   Genome                             Phage_Type
-    ##   <chr>                              <chr>     
-    ## 1 KRP1_SE046_G07_cluster_2_Blue_vs2  dsDNAphage
-    ## 2 KRP1_SE046_G11_cluster_3_Blue_vs2  dsDNAphage
-    ## 3 KRP1_SE046_G25_cluster_1_Green_vs2 dsDNAphage
-    ## 4 KRP1_SE046_G26_cluster_1_Blue_vs2  dsDNAphage
-    ## 5 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
-    ## 6 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
+>    ## # A tibble: 6 × 2
+>    ##   Genome                             Phage_Type
+>    ##   <chr>                              <chr>     
+>    ## 1 KRP1_SE046_G07_cluster_2_Blue_vs2  dsDNAphage
+>    ## 2 KRP1_SE046_G11_cluster_3_Blue_vs2  dsDNAphage
+>    ## 3 KRP1_SE046_G25_cluster_1_Green_vs2 dsDNAphage
+>    ## 4 KRP1_SE046_G26_cluster_1_Blue_vs2  dsDNAphage
+>    ## 5 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
+>    ## 6 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
 
 ------------------------------------------------------------------------
 

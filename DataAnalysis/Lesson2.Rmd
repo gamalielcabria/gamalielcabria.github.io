@@ -1,5 +1,5 @@
 ---
-title: "Introduction to the tidyverse"
+title: "Introduction to Tidyverse"
 author: "Gamaliel Cabria"
 date: "`r Sys.Date()`"
 output: html_document
@@ -21,6 +21,7 @@ This loads several core packages:
 ![dplyr](https://dplyr.tidyverse.org/logo.png){width=200px height=200px}![ggplot2](https://ggplot2.tidyverse.org/logo.png){width=200px height=200px}![tidyr](https://tidyr.tidyverse.org/logo.png){width=200px height=200px}
 ![readr](https://readr.tidyverse.org/logo.png){width=200px height=200px}![purrr](https://purrr.tidyverse.org/logo.png){width=200px height=200px}![tibble](https://tibble.tidyverse.org/logo.svg){width=200px height=200px}
 
+
 ## The Tidyverse Philosophy
 The tidyverse promotes a consistent and intuitive approach to data analysis in R. It emphasizes:
 - **Human readability**: Code is designed to be easy to read and understand.
@@ -41,6 +42,7 @@ mtcars %>%                          # Load the mtcars dataset and pipe
   geom_point()                      # ggplot2 package: add points to the plot
 ```
 
+
 ## Installation
 To use the tidyverse, you first need to install it. You can do this from CRAN using the following command:
 ```r
@@ -55,6 +57,7 @@ library(tidyverse)
 {:.note}
 >This is the basic is also the basic way to install and load packages in R. 
 
+
 # Data Manipulation with `dplyr`
 `dplyr` is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges. It uses vectorized operations to make data manipulation fast and efficient.
 The main verbs in `dplyr` are:
@@ -64,6 +67,7 @@ The main verbs in `dplyr` are:
 - **`summarise()`**: Reduce data to summary statistics.
 - **`group_by()`**: Group data by one or more variables for subsequent operations.
 
+
 ## Example Dataset
 We will use the built-in `mtcars` dataset for demonstration. The `mtcars` dataset contains specifications and performance measurements of various car models from the 1970s. It includes variables such as miles per gallon (mpg), number of cylinders (cyl), horsepower (hp), weight (wt), and more.
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
@@ -71,6 +75,9 @@ head(mtcars)
 ```
 
 The `mtcars` dataset is a data frame with 32 rows and 11 columns, where each row represents a different car model and each column represents a different attribute of the car.
+
+
+---
 
 ## Select columns
 If we need to subset the dataset to only include specific columns, we can use the `select()` function from `dplyr`. This is useful for focusing on relevant variables for analysis.
@@ -83,6 +90,9 @@ mtcars %>% select(c(mpg, cyl, hp)) %>% head()
 > The input for `select()` can be a vector of column names. You can use the `c()` function to combine multiple column names, or list them directly within `select()`.
 > 
 > Additionally, you can use helper functions like `starts_with()`, `ends_with()`, `contains()`, etc. More of this later.
+
+
+---
 
 ## Filter rows
 Now, the power of `dplyr` shines with the `filter()` function, which allows us to subset rows based on conditions. This is particularly useful for focusing on specific groups or values within the dataset.
@@ -105,31 +115,186 @@ mtcars %>% filter(grepl("Mazda", rownames(mtcars)))
 mtcars %>% filter(!grepl("Hornet", rownames(mtcars)))
 ```
 
-## Bioinformatics Example
+# A Bioinformatics Example with `dplyr`
 Let us use a Bioinformatics example to illustrate the use of `dplyr` for data manipulation.
 
-For the next segment of this lesson, let us use 
+For the next segment of this lesson, let us use some Bioinformatics data generated from from the analysis of abundance of different genomes in a metagenomic dataset, as measured using **[sourmash](https://sourmash.readthedocs.io/en/latest/index.html)**. 
 
-### Create new variables
-```r
-mtcars %>% mutate(kpl = mpg * 0.425144)
+To download the data, run the following code:
+```bash
+wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/sourmash/krona_files/TP3-KRP1_v_gtdb-all.krona.csv.krona.tsv
+wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/sourmash/krona_files/TP3-KRP2_v_gtdb-all.krona.csv.krona.tsv
 ```
 
-### Summarize data
-```r
-mtcars %>% summarise(mean_mpg = mean(mpg), max_hp = max(hp))
+{:.highlight}
+>The TP3-KRP1_v_gtdb-all.krona.csv.krona.tsv and TP3-KRP2_v_gtdb-all.krona.csv.krona.tsv files are tab-separated files that contain the abundance of Aquificales genomes in two different samples (TP3-KRP1 and TP3-KRP2) against a reference database (gtdb-all).
+>
+>**TP3-KRP1** in the name denotes the time point it was collected (TP3) and the sample it was collected from (KRP1). The same applies to **TP3-KRP2**.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+setwd("/home/gam/github/gamalielcabria.github.io/DataAnalysis")
 ```
 
-### Group and summarize
-```r
-mtcars %>% 
-  group_by(cyl) %>% 
-  summarise(mean_mpg = mean(mpg), .groups = 'drop')
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Load the data
+TP3_KRP1 <- read_tsv("./TP3-KRP1_v_gtdb-all.krona.csv.krona.tsv")
+TP3_KRP2 <- read_tsv("./TP3-KRP2_v_gtdb-all.krona.csv.krona.tsv")
+# Display the first few rows of the data
+head(TP3_KRP1)
 ```
+
+{:.note}
+> The data contains the following columns:
+> - **fraction**: The computed fraction of the representative genome in the metagenomic sample.
+> - **Taxonomic columns**: From Superkingdom to Species, representing the assigned taxonomic classification of the representative genome used in the `sourmash` analysis. This sample uses genomes from the **GTDB** database.
+
+The goal of this section is to manipulate the two datasets to compare the abundance of select genomes between the two samples (TP3-KRP1 and TP3-KRP2).
+
+---
+
+## Mutate and create new columns
+Given we downloaded two samples with similar structures, we need to have a column that differentiates the two samples. We can use the `mutate()` function to create a new column that indicates the sample name for each dataset.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+TP3_KRP1 <- TP3_KRP1 %>%        # Pipe the TP3_KRP1 data to itself so modifications are made in place
+  mutate(sample = "TP3-KRP1")   # Create a new column called sample with the value "TP3-KRP1"
+
+head(TP3_KRP1)
+```
+
+The new column `sample` now contains the sample name for each row in the `TP3_KRP1` dataset. We can do the same for the `TP3_KRP2` dataset:
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+TP3_KRP2 <- TP3_KRP2 %>%        # Pipe the TP3_KRP2 data to itself so modifications are made in place
+  mutate(sample = "TP3-KRP2")   # Create a new column called sample with the value "TP3-KRP2"
+
+head(TP3_KRP2)
+```
+
+{:.note}
+> Naming column schemes in **R** is flexible, but it is a good practice to use descriptive names that reflect the content of the column. In this case, we named the new column `sample` to indicate that it contains the sample name.
+>
+>**Columns and variables** in R can be named using *letters*, *numbers*, and *underscores*, but they cannot start with a number or contain spaces.
+
+As you can see, the new column is added into the end of the data frame. 
+
+---
+
+## Mutate and vectorize operations
+We can also use `mutate()` to modify the values in existing columns. 
+
+The fraction column in datasets represents the literal **decimal fraction** of the abundance of the representative genome in the sample. To convert this to a percentage, we can multiply the values in the `fraction` column by 100.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+TP3_KRP1 <- TP3_KRP1 %>% 
+  mutate(fraction = fraction * 100)         # Convert fraction to percentage
+head(TP3_KRP1)
+
+TP3_KRP2 <- TP3_KRP2 %>%
+  mutate(fraction = fraction * 100)         # Convert fraction to percentage
+head(TP3_KRP2)
+```
+
+{:.highlight}
+> The `mutate()` function is vectorized, meaning it applies the operation to each element in the `fraction` column. Again, this is a powerful feature of R that allows for efficient data manipulation without the need for explicit loops.
+
+---
+
+## Renaming columns
+We can use `rename()` to rename columns. For example, we can rename the `fraction` column to `percent_abundance` to make it more descriptive.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+TP3_KRP1 <- TP3_KRP1 %>% 
+  rename(percent_abundance = fraction,      # Rename fraction to percent_abundance
+         domain = superkingdom              # Rename Superkingdom to Domain
+        )  
+head(TP3_KRP1)
+
+TP3_KRP2 <- TP3_KRP2 %>%
+  rename(percent_abundance = fraction) %>%  # Rename fraction to percent_abundance
+  rename(domain = superkingdom)             # Rename Superkingdom to Domain
+head(TP3_KRP2)
+```
+
+---
+
+## Combining columns
+Now, both datasets have a `sample` column that indicates which sample the data belongs to. We can combine the two datasets into one for easier comparison.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Combine the two datasets into one
+combined_data <- bind_rows(TP3_KRP1, TP3_KRP2)
+# Display the first few rows of the combined data
+head(combined_data)
+
+# Base R combine the two datasets into one
+combined_data_base <- rbind(TP3_KRP1, TP3_KRP2)
+# Display the first few rows of the combined data
+head(combined_data_base)
+```
+
+{:.note}
+> Both `rbind` and `bind_rows` is useful for combining datasets with the same structure (i.e. number of columns), such as the two samples we have here.
+>
+> The `rbind()` function from base R can also be used to combine datasets, but it requires that the datasets have **the same column names and types**. 
+> 
+> The `bind_rows()` function is more flexible and can handle **different column names and types**. Missing columns in one dataset will be filled with `NA` in the combined dataset.
+
+---
+
+## Summarize data
+One of the most powerful features of `dplyr` is the ability to summarize data using the `summarise()` function. This allows us to compute summary statistics for each group in the dataset. The `summarise()` function is often used in conjunction with `group_by()` to compute statistics for each group.
+
+For example, we can compute the total percent abundance of memberse of the same Phylum per dataset.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+summarised_data <- combined_data %>% 
+  group_by(phylum, sample) %>%          # Group by Domain and sample
+  summarise(mean_percent_abundance = sum(percent_abundance),
+            number_of_taxa = n(),       # Count the number of taxa in each group
+            .groups = 'drop') %>%       # Compute mean percent abundance
+  arrange(phylum, sample)     %>%       # Arrange the results by Domain and sample
+  ungroup()                             # Ungroup the data for further operations
+```
+
+{:.notice}
+> The `sum()` are among the most common functions used in `summarise()`, but you can also use other functions like `mean()`, `median()`, `min()`, `max()`, etc. to compute different summary statistics.
+> The `n()` function is used to count the number of elements counted in each group. This is useful for understanding the number of taxa in each Phylum in each sample.
+> The `arrange()` function is used to sort the results by the `Phylum` and `sample` columns.
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Display the first few rows of the summarised data
+head(summarised_data)
+```
+
+As you can see, the summarised data contains only the average percent abundance of each Phylum taxonomic group in each sample and the number of taxa we requested. This allows us to compare the abundance of different taxonomic groups between the two samples. 
+
+Additionally, we can also see the column by which they were grouped (`phylum` and `sample`). The other columns in the original dataset are not included in the summarised data, which makes it easier to focus on the relevant information.
+
+{:.save}
+>Always ungroup the data after summarizing it. This is important to avoid unexpected behavior in subsequent operations, as the data will still be grouped by the specified columns if not ungrouped.
+
+{:.note}
+> Summarizing data is useful for understanding the overall trends and makes an easier way to visualize the data. [See the next section for more on visualization](https://gamalielcabria.github.io/DataAnalysis/).
+
+<br><br><br>
 
 # Tidying Data with `tidyr`
+The `tidyr` package is designed to help you create tidy data, which is a standardized way of organizing data that makes it easier to work with. Tidy data has the following characteristics:
+- Each variable forms a column.
+- Each observation forms a row.
+- Each type of observational unit forms a table.
+  
+Tidy data is essential for efficient data analysis and visualization, as it allows you to easily manipulate and visualize your data using the tidyverse packages.
 
-### Gather (wide to long)
+## Example Dataset with `tidyr`
+In this section, we will use another Bioinformatics dataset to demonstrate the use of `tidyr` for tidying data. The dataset is a summarised table listing the instances that the program `virsorter` predicted a viral sequence in a metagenomic dataset. The dataset contains the following columns:
+- **Genome**: The name of the genome file.
+  - It is divided by the **Site**, **Timepoint** (i.e. SE046), **Sample Name** (i.e. G07_cluster_2), and **Population**(i.e. Blue).
+- **Viral Type**: The predicted viral sequence is either **dsDNAPhage** or **ssDNAPhage**.
+
+To download the data, run the following code:
+```bash
+wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/main/DataAnalysis/files/virsorter/virsorter_output.csv
+```
+
+## Gather (wide to long)
 ```r
 pivot_longer(mtcars, cols = c(mpg, hp), names_to = "metric", values_to = "value") %>% head()
 ```

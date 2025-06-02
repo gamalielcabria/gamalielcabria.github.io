@@ -115,6 +115,52 @@ mtcars %>% filter(grepl("Mazda", rownames(mtcars)))
 mtcars %>% filter(!grepl("Hornet", rownames(mtcars)))
 ```
 
+---
+
+## Joining datasets
+Joining datasets is a common operation in data analysis, especially when you have related data spread across multiple tables. `dplyr` provides several functions for joining datasets, such as `inner_join()`, `left_join()`, `right_join()`, and `full_join()`.
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+# Create a second dataset with car models and their origins
+car_origins <- tibble(
+  model = c("Mazda RX4", "Mazda RX4 Wag", "Datsun 710", "Hornet 4 Drive", "Hornet Sportabout"),
+  origin = c("Japan", "Japan", "Japan", "USA", "USA")
+)
+head(car_origins)
+
+# Perform an inner join to combine the two datasets
+mtcars_with_origins <- mtcars %>%
+  rownames_to_column(var = "model") %>%  # Convert row names to a column
+  inner_join(car_origins, by = "model")   # Join by the model column
+head(mtcars_with_origins)
+
+# Perform a left join to combine the two datasets
+mtcars_with_origins_left <- mtcars %>%
+  rownames_to_column(var = "model") %>%   # Convert row names to a column
+  left_join(car_origins, by = "model")    # Join by the model column
+head(mtcars_with_origins_left)
+
+# Perform a right join to combine the two datasets
+mtcars_with_origins_right <- mtcars %>%
+  rownames_to_column(var = "model") %>%   # Convert row names to a column
+  right_join(car_origins, by = "model")   # Join by the model column
+head(mtcars_with_origins_right)
+
+# Perform a full join to combine the two datasets
+mtcars_with_origins_full <- mtcars %>%
+  rownames_to_column(var = "model") %>%   # Convert row names to a column
+  full_join(car_origins, by = "model")    # Join by the model column
+head(mtcars_with_origins_full)
+```
+
+The `inner_join()` function returns only the rows that have matching values in both datasets, while `left_join()` returns all rows from the left dataset and the matching rows from the right dataset. The `right_join()` does the opposite, returning all rows from the right dataset and the matching rows from the left dataset. The `full_join()` returns all rows from both datasets, filling in `NA` for missing values.
+
+{:.note}
+> The `inner_join()`, `left_join()`, `right_join()`, and `full_join()` functions are used to combine datasets based on a common column. The `by` argument specifies the column(s) to join on. If the column names are different in the two datasets, you can use `by = c("col1" = "col2")` to specify the columns to join on.
+
+---
+
+<br>
+
 # A Bioinformatics Example with `dplyr`
 Let us use a Bioinformatics example to illustrate the use of `dplyr` for data manipulation.
 
@@ -290,5 +336,17 @@ Additionally, we can also see the column by which they were grouped (`phylum` an
 | `arrange()`     | Sort rows                                    | `arrange(mtcars, desc(mpg))`                  |
 | `bind_rows()`   | Combine data frames by rows                  | `bind_rows(df1, df2)`                         |
 | `ungroup()`     | Remove grouping                              | `ungroup(data)`                               |
+| `inner_join()`  | Join two data frames by matching columns    | `inner_join(df1, df2, by = "id")`             |
+| `left_join()`   | Join two data frames by matching columns    | `left_join(df1, df2, by = "id")`              |
+| `right_join()`  | Join two data frames by matching columns    | `right_join(df1, df2, by = "id")`             |
+| `full_join()`   | Join two data frames by all columns         | `full_join(df1, df2, by = "id")`              |
 
 These commands form the core of data manipulation with `dplyr` in the tidyverse.
+
+Other useful `dplyr` commands include:
+| Command         | Purpose                                      | Example Usage                                 |
+|-----------------|----------------------------------------------|-----------------------------------------------|
+| `anti_join()`   | Return rows from the first data frame not in the second | `anti_join(df1, df2, by = "id")` |
+| `semi_join()`   | Return rows from the first data frame that have a match in the second | `semi_join(df1, df2, by = "id")` |
+| `distinct()`    | Return unique rows                           | `distinct(mtcars, cyl)`                       |
+| `slice()`       | Select rows by position                      | `slice(mtcars, 1:5)`                          |

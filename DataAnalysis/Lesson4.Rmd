@@ -1,0 +1,24 @@
+---
+title: "Example Workflows"
+author: "Gamaliel Cabria"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Data Visualization with `ggplot2`
+
+### Basic scatter plot
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point()
+```
+
+### Add trend line
+```r
+ggplot(mtcars, aes(x = wt, y = mpg)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+# Conclusion
+The tidyverse streamlines many common data science tasks in R. It emphasizes readability and consistency, making it ideal for beginners and experienced users alike.

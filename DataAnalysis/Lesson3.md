@@ -51,15 +51,15 @@ Let us load the dataset and take a look at its structure:
 >```
 
 {:.activity}
->    ## # A tibble: 6 × 2
->    ##   Genome                             Phage_Type
->    ##   <chr>                              <chr>     
->    ## 1 KRP1_SE046_G07_cluster_2_Blue_vs2  dsDNAphage
->    ## 2 KRP1_SE046_G11_cluster_3_Blue_vs2  dsDNAphage
->    ## 3 KRP1_SE046_G25_cluster_1_Green_vs2 dsDNAphage
->    ## 4 KRP1_SE046_G26_cluster_1_Blue_vs2  dsDNAphage
->    ## 5 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
->    ## 6 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
+    ## # A tibble: 6 × 2
+    ##   Genome                             Phage_Type
+    ##   <chr>                              <chr>     
+    ## 1 KRP1_SE046_G07_cluster_2_Blue_vs2  dsDNAphage
+    ## 2 KRP1_SE046_G11_cluster_3_Blue_vs2  dsDNAphage
+    ## 3 KRP1_SE046_G25_cluster_1_Green_vs2 dsDNAphage
+    ## 4 KRP1_SE046_G26_cluster_1_Blue_vs2  dsDNAphage
+    ## 5 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
+    ## 6 KRP1_SE055_G02_cluster_2_Brown_vs2 dsDNAphage
 
 ------------------------------------------------------------------------
 
@@ -73,17 +73,18 @@ In our dataset, the **Genome** column contains multiple pieces of
 information separated by underscores. We can use `separate()` to split
 this column into multiple columns.
 
-```{r}
-virsorter_data_separated <- virsorter_data %>%
-  separate(Genome, 
-            into = c("Site", "Timepoint", "Sample_Name"), 
-            sep = "_", 
-            remove = TRUE,
-            extra = "merge",
-            fill = "right"
-            )
-head(virsorter_data_separated, n = 20)
-```
+{:.activity}
+>```
+>virsorter_data_separated <- virsorter_data %>%
+>  separate(Genome, 
+>            into = c("Site", "Timepoint", "Sample_Name"), 
+>            sep = "_", 
+>            remove = TRUE,
+>            extra = "merge",
+>            fill = "right"
+>            )
+>head(virsorter_data_separated, n = 20)
+>```
 
     ## # A tibble: 20 × 4
     ##    Site  Timepoint Sample_Name                       Phage_Type

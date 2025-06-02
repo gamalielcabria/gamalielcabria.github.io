@@ -36,7 +36,7 @@ wget https://raw.githubusercontent.com/gamalielcabria/gamalielcabria.github.io/m
 
 Let us load the dataset and take a look at its structure:
 
-```r
+```{r}
 library(tidyverse)
 
 virsorter_data <- read_csv("./virsorter_output.csv",
@@ -71,15 +71,17 @@ In our dataset, the **Genome** column contains multiple pieces of
 information separated by underscores. We can use `separate()` to split
 this column into multiple columns.
 
-    virsorter_data_separated <- virsorter_data %>%
-      separate(Genome, 
-                into = c("Site", "Timepoint", "Sample_Name"), 
-                sep = "_", 
-                remove = TRUE,
-                extra = "merge",
-                fill = "right"
-                )
-    head(virsorter_data_separated, n = 20)
+```{r}
+virsorter_data_separated <- virsorter_data %>%
+  separate(Genome, 
+            into = c("Site", "Timepoint", "Sample_Name"), 
+            sep = "_", 
+            remove = TRUE,
+            extra = "merge",
+            fill = "right"
+            )
+head(virsorter_data_separated, n = 20)
+```
 
     ## # A tibble: 20 × 4
     ##    Site  Timepoint Sample_Name                       Phage_Type
@@ -125,9 +127,11 @@ The `unite()` function from `tidyr` allows you to combine multiple
 columns into a single column. This is useful when you want to create a
 new column that contains information from multiple existing columns.
 
-    virsorter_data_united <- virsorter_data_separated %>%
-      unite("Genome", Site, Timepoint, Sample_Name, sep = "_", remove = FALSE)
-    head(virsorter_data_united)
+```{r}
+virsorter_data_united <- virsorter_data_separated %>%
+  unite("Genome", Site, Timepoint, Sample_Name, sep = "_", remove = FALSE)
+head(virsorter_data_united)
+```
 
     ## # A tibble: 6 × 5
     ##   Genome                             Site  Timepoint Sample_Name      Phage_Type
@@ -174,10 +178,8 @@ manipulation easier and more consistent.
     ## 19 KRP1_SE057_G07_cluster_2_B… KRP1  SE057     G07_cluste… dsDNAphage Brown     
     ## 20 KRP1_SE057_G07_cluster_2_B… KRP1  SE057     G07_cluste… dsDNAphage Brown
 
-{:.notice} &gt; The `mutate()` function is still needed to create a new
-column in the dataset. This is because `str_extract()` returns a
-character vector of the same length as the input, and we need to assign
-it to a new column in the dataset.
+{:.notice}
+>The `mutate()` function is still needed to create a new column in the dataset. This is because `str_extract()` returns a character vector of the same length as the input, and we need to assign it to a new column in the dataset.
 
 ------------------------------------------------------------------------
 
@@ -283,18 +285,12 @@ is useful when you want to perform operations that require tidy data.
     ## 5 Hydrogenobacter sp. Cluster 2 Blue  dsDNAphage     3
     ## 6 Hydrogenobacter sp. Cluster 2 Blue  ssDNA          0
 
-{:.warning} &gt; The `pivot_longer()` function is the opposite of
-`pivot_wider()`. It might seem reversible, but it is not always
-straightforward. The `cols` argument specifies which columns to pivot,
-and the `names_to` and `values_to` arguments specify the names of the
-new columns created from the pivoting operation. &gt; &gt; When there is
-missing data, the `pivot_longer()` function will fill in the missing
-values with `NA`. This is important to keep in mind when working with
-datasets that may have missing values.
+{:.warning} 
+> The `pivot_longer()` function is the opposite of `pivot_wider()`. It might seem reversible, but it is not always straightforward. The `cols` argument specifies which columns to pivot, and the `names_to` and `values_to` arguments specify the names of the new columns created from the pivoting operation. > > When there is missing data, the `pivot_longer()` function will fill in the missing values with `NA`. This is important to keep in mind when working with datasets that may have missing values.
 
-{:.info} &gt; **`replace_na()`**: &gt; It can be manually replaced with
-`0` or any other value using the `replace_na()` function from `tidyr`.
-&gt; &gt;`df_long <- df_long %>% mutate(score = replace_na(score, 0))`
+{:.info} 
+> **`replace_na()`**: > It can be manually replaced with `0` or any other value using the `replace_na()` function from `tidyr`.
+> >`df_long <- df_long %>% mutate(score = replace_na(score, 0))`
 
 ------------------------------------------------------------------------
 
@@ -364,11 +360,8 @@ not present in the original dataset. This is useful when you want to
 ensure that all combinations of variables are represented in your data,
 which can be important for certain types of analyses or visualizations.
 
-{:.note} &gt; The `expand()` function is particularly useful when you
-want to create a dataset that contains all possible combinations of
-variables, even if some combinations do not exist in the original
-dataset. This can be helpful for creating visualizations or performing
-analyses that require complete datasets.
+{:.note} 
+> The `expand()` function is particularly useful when you want to create a dataset that contains all possible combinations of variables, even if some combinations do not exist in the original dataset. This can be helpful for creating visualizations or performing analyses that require complete datasets.
 
 ------------------------------------------------------------------------
 

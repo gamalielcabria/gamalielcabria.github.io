@@ -1,0 +1,221 @@
+# Gama's insistence on Amelia
+```{r}
+library('tidyverse')
+library('readxl')
+setwd("/home/gam/github/gamalielcabria.github.io")
+
+data_BBW <- read_excel("/home/gam/github/gamalielcabria.github.io/10102024_Amelia_June24.xlsx",
+                       sheet = "R_2", 
+                       col_names = TRUE) %>%
+                       mutate(
+                        Sample = "City WWTP",
+                        Rep = 1:length(e_ml)
+                       ) %>%
+                       select(e_ml, Sample, Rep)
+data_EMM <- read_excel("/home/gam/github/gamalielcabria.github.io/10102024_Amelia_June24.xlsx",
+                       sheet = "R_3", 
+                       col_names = TRUE)%>%
+                       mutate(
+                        Sample = "Hospital",
+                        Rep = 1:length(e_ml)
+                       )%>%
+                       select(e_ml, Sample, Rep)
+data_TAB <- read_excel("/home/gam/github/gamalielcabria.github.io/10102024_Amelia_June24.xlsx",
+                       sheet = "R_1", 
+                       col_names = TRUE)%>%
+                       mutate(
+                        Sample = "Small Town WWTP",
+                        Rep = 1:length(e_ml)
+                       )%>%
+                       select(e_ml, Sample, Rep)
+
+combined_data <- bind_rows(data_BBW, data_EMM, data_TAB)
+
+library('ggpubr')
+plot_box_whisker <- ggboxplot(combined_data, 
+                  x = "Sample", 
+                  y = "e_ml", 
+                  fill = "Sample",
+                  palette = c("#F48247", "#CE9ABC", "#922A68"),
+                  add = c("jitter", "mean_sd") 
+                  ) +
+  stat_compare_means(
+    comparisons = list(c("City WWTP", "Hospital"), c("City WWTP", "Small Town WWTP"), c("Hospital", "Small Town WWTP")),
+    method = "wilcox.test", 
+    label = "p.signif"
+    ) +
+  labs(x = "Sample",
+       y = "Average Endospores \n per Milliliter Wastewater") +
+  theme_minimal() +
+  theme(
+        aspect.ratio = 0.6, 
+        axis.title = element_text(size = 25),
+        axis.text = element_text(size = 20),
+        legend.position = "none",
+        plot.margin = unit(c(1, 1, 1, 1), "cm") 
+        )
+
+plot_box_whisker
+
+# Uncomment to save
+# ggsave("Amelia_boxplot.png", 
+#        plot = plot_box_whisker, 
+#        width = 10, 
+#        height = 7, 
+#        units = "in",
+#        dpi = 300)
+```
+
+# Creating bar plot of Total_Abundance of Phyla in Three Samples
+In this section, I will demonstrate the use of tidyverse packages without the pesky '%>%' operator to read in CSV files, manipulate the data, and create a bar plot of the total abundance of phyla across three samples. The samples are from different datasets, and we will combine them into a single data frame for analysis.
+
+## Loading the data and preparing it for plotting
+```{r}
+library('dplyr')
+library('tidyr')
+
+
+# Hybrid base R and tidyverse approach to read the CSV file (no use of magrittr %>% operator)
+df_48 <- read.csv("./48-ADA_TEST1_Z10_20250920_S48 (1).csv")
+colnames(df_48 )<-c("Taxa", "Values")
+df_48 <- mutate(df_48, Sample = "Hospital Rep1")
+df_48 <- separate(
+  df_48, Taxa, into = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+  sep = ";",
+  fill = "right",
+  extra = "merge"
+  )
+
+df_49 <- read.csv("./49-ADA_TEST1_Z2_20250820_S49.csv")
+colnames(df_49 )<-c("Taxa", "Values")
+df_49 <- mutate(df_49, Sample = "Hospital Rep2")
+df_49 <- separate(
+  df_49, Taxa, into = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+  sep = ";",
+  fill = "right",
+  extra = "merge"
+  )
+
+df_50 <- read.csv("./50-ADA_TEST1_Z3_20250820_S50.csv")
+colnames(df_50 )<-c("Taxa", "Values")
+df_50 <- mutate(df_50, Sample = "Hospital Rep3")
+df_50 <- separate(
+  df_50, Taxa, into = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"),
+  sep = ";",
+  fill = "right",
+  extra = "merge"
+  )
+
+combined_abund_df <- bind_rows(df_48, df_49, df_50)
+summary_abund_df <- group_by(combined_abund_df, Phylum, Sample)
+summary_abund_df <- summarise(
+  summary_abund_df, 
+  Total_Abundance = sum(Values, na.rm = TRUE)
+ ) 
+summary_abund_df <- arrange(summary_abund_df, desc(Total_Abundance))
+summary_abund_df <- ungroup(summary_abund_df)
+
+# Create a relative abundance column
+summary_abund_df <- group_by(summary_abund_df, Sample)
+summary_abund_df <- mutate(
+  summary_abund_df, 
+  Rel_Abundance = Total_Abundance / sum(Total_Abundance) * 100
+)
+summary_abund_df <- ungroup(summary_abund_df)
+
+head(summary_abund_df)
+```
+
+
+## Just stuff to beautify the plot
+```{r}
+# Set stacked order
+desc_phylum_order <- group_by(summary_abund_df, Phylum)
+desc_phylum_order <- summarise(
+  desc_phylum_order, 
+  Total_Abundance = sum(Rel_Abundance, na.rm = TRUE),
+  ..groups = "drop"
+)
+desc_phylum_order <- arrange(desc_phylum_order, desc(Total_Abundance))
+desc_phylum_order <- unique(desc_phylum_order$Phylum)
+
+# Add values for top 5 taxa
+## Got lazy and revert to traditional tidyverse
+top_phyla_df <- summary_abund_df %>%
+  group_by(Sample) %>%
+  arrange(desc(Rel_Abundance)) %>%
+  slice_head(n = 6) %>%
+  mutate(label_position = 100 - cumsum(Rel_Abundance) + ((Rel_Abundance) / 2) )  %>% # y-position
+  mutate(Rel_Abundance = round(Rel_Abundance, 2))
+```
+
+## Plotting it in ggplot2
+Here is a bar plot of the total abundance of phyla across the three samples, using ggplot2:
+```{r}
+if(!requireNamespace("paletteer", quietly = TRUE)) {
+  install.packages("paletteer")
+}
+if(!requireNamespace("ggsci", quietly = TRUE)) {
+  install.packages("ggsci")
+}
+if(!requireNamespace("Polychrome", quietly = TRUE)) {
+  install.packages("Polychrome")
+}
+library('Polychrome')
+library('ggplot2')
+
+# Generate unique color for all phylum
+num_of_colors <- length(unique(summary_abund_df$Phylum))
+set.seed(723451) # for reproducibility
+color_scale <- createPalette(num_of_colors, c("#010101", "#ff0000")) #Generate a color palette
+names(color_scale) <- unique(summary_abund_df$Phylum) # Set color names to Phylum names
+
+# Ensure the Phylum factor levels are in the order of their total abundance
+summary_abund_df$Phylum <- factor(summary_abund_df$Phylum, levels = desc_phylum_order)
+
+# Create the bar plot
+plot_abundance <- ggplot(
+    summary_abund_df, 
+    aes(x = Sample, y = Rel_Abundance, fill = Phylum)
+  ) +
+  geom_bar(
+    stat = "identity", #Use y-values as-is, as opposed to 'count' which counts rows per group ('i.e how many 5 or 10 in the value')
+    position = "stack" # stacked bar plot, as opposed to dodge where bars are side by side
+  ) +
+  geom_text(
+    data = top_phyla_df,
+    aes(label = Rel_Abundance, y = label_position),
+    color = "white", size = 8
+  ) +
+  scale_fill_manual(values = color_scale) +
+  labs(
+    x = "Samples", y = "Relative Abundance",
+     title = "Abundance of Phyla in Samples"
+     ) +
+  theme_minimal() +
+  theme(
+    aspect.ratio = 0.75,
+    axis.text.y = element_text(size = 20), 
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 20),
+    legend.position = "top",
+    axis.title = element_text(size = 25),
+    legend.text = element_text(size = 10),
+    plot.margin = unit(c(1, 1, 1, 1), "cm") 
+  )
+plot_abundance
+
+# Save the file
+## Uncomment to save
+ggsave("Amelia_plot_abundance.png", 
+       plot = plot_abundance, 
+       width = 12, 
+       height = 16, 
+       units = "in",
+       dpi = 300)
+
+```
+
+
+# This code was created by Gama for the Amelia project.
+With great thanks - Gama
+

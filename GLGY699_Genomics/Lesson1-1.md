@@ -1,5 +1,5 @@
 ---
-title: Lesson 1 - The Terminal, the OS, and Bioinfo
+title: Lesson 1 - Multiple Sequence Alignment
 parent: Intro to GLGY699 Genomics and Bioinformatics
 nav_order: 1
 ---
@@ -105,7 +105,7 @@ Multiple algorithms and techniques are employed to do multiple sequence alignmen
 
 ### Exercise 1A: Installing MSA programs
 
-#### Clustal Omega
+#### **Clustal Omega**
 For this exercise, I suggest installing **clustalo** or **ClustalOmega** to your hardware. Easiest way to install **clustalo** is through and conda environment.
 
 {: .activity }
@@ -119,7 +119,9 @@ For this exercise, I suggest installing **clustalo** or **ClustalOmega** to your
 
 If you have trouble running **Conda**, you can download and use their precompiled binaries from the [clustal website](http://www.clustal.org/omega/). Read the `INSTALL.txt` file to understand the process of their installation.
 
-#### MAFFT
+<br>
+
+#### **MAFFT**
 Similar to **clustalo**, MAFFT can be easily installed using conda:
 
 {: .activity }
@@ -128,16 +130,21 @@ Similar to **clustalo**, MAFFT can be easily installed using conda:
 
 You can also download the software based on your OS from their [website](https://mafft.cbrc.jp/alignment/software/) and follow the specific instruction per OS.
 
-#### MEGA
+<br>
+
+#### **MEGA**
 MEGA Software or Molecular Evolutionary Genetics Analysis is a graphical-user interface (GUI) program that allows both alignment and visualization of your sequences and also other functions. For our purpose, I would not suggest aligning your sequences in MEGA as it can be slower than command-line interface (CLI) programs. 
 
 If you want to use it, I suggest using MEGA7 or MEGA11 as other versions are finicky to work with. You can download them from [here](https://www.megasoftware.net/).
+
+<br>
 
 ### Exercise 1B: Multiple Alignment
 
 Let us run your selected gene/protein of choice!
 
 Running with **clustalo** simply uses a simple call like this:
+
 {: .activity }
 >```
 >clustalo -i <my-in-seqs.fa> -o <my-out-seqs.fa> -v
@@ -153,6 +160,8 @@ The `-i` argument is the input while `-o` argument is the output. The `-v` argum
 >{: .info }
 >>Use the argument `--threads=<n>` to assign multiple processors to your run if you have more than 100 sequences.
 
+<br>
+
 ### Exercise 1C: Visualizing Alignments
 
 After aligning your sequences, let us visualize them. Open your output *fasta* file using a terminal text viewer command such as `cat` or `more` or `nano`
@@ -164,14 +173,15 @@ You can open your *stockholm* file also using the same commands.
 
 Alternatively, if you have installed MEGA, open the softwar and under `File` > > select your Alignment output. 
 
+<br>
 
 ### Exercise 2: More alignments!
 
 Run your protein sequences using MAFFT and see the difference. 
 
 ### Other Aligners:
-| **Sequence Aligner**                    | **Approach**                           | **Notes**                                                                                    |
-| ----------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| **Sequence Aligner**| **Approach**| **Notes**|
+| --- | --- | --- |
 | **DIALIGN-TX**          | Greedy + guide tree                        | Improved alignments (local & global); better than older DIALIGN versions.                |
 | **CRASP**               | Protein functional residue detection       | Uses physicochemical properties to find co-evolving residues.                            |
 | **ProbCons**            | Probabilistic consistency                  | Improves accuracy over T-Coffee, Clustal W, DIALIGN.                                     |

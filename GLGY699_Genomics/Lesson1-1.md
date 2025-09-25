@@ -40,8 +40,14 @@ So, is the fasta file for *Ralstonia eutropha* H16 or *Cupriavidu necator* H16? 
 
 From the GenPept file, you can scroll down to see the Features of the protein and also the protein themselves, such as [WP_011153943.1](https://www.ncbi.nlm.nih.gov/protein/WP_011153943.1). You can also click the **[FASTA](https://www.ncbi.nlm.nih.gov/protein/WP_011153943.1?report=fasta)** link to see it in FASTA format.
 
+![NCBI Taxonomy](./images/hypx_ncbi3.png)
+<center><b><em>NCBI Protein Features</em></b></center>
+<br>
+
 {: .note }
 > Save the fasta file to your GLGY work folder as a text and fasta file. Make it standout as the reference fasta sequence.
+
+<br>
 
 Another way I search for proteins with validation is using, the [UniProt database](https://www.uniprot.org/uniprotkb/P07598/publications). Here is an example of my other gene *HydA* and the publications that were based on that gene. 
 
@@ -55,6 +61,7 @@ Let us identify the protein family and domains that are present in your protein 
 >
 > - Afterwards, under `Results` you can select your job submission and select one of the fasta file you submitted.
 
+<br>
 Briefly, 
 
 - **Protein families**
@@ -69,7 +76,6 @@ Briefly,
 
 ![NCBI Taxonomy](./images/hypx_interpro2.png)
 <center><b><em>Interpro</em></b></center>
-
 <br>
 
 - **InterPro GO terms**
@@ -78,6 +84,7 @@ Briefly,
     >
     >Gene Onthology is a structure way or vocabulary use to described the gene or protein functions that is consistent in all organisms. It is mainly divided into three main categories and multiple sub-categories below them. The three main categories: **Molecular Function**, **Biological Process**, and **Cellular Component**. 
 
+<br>
 
 ### Finding members of your protein family
 From the InterPro website, we can click on the **Protein family membership** to select your protein's protein family. It should provide an overview, taxonomy, structures, pathways, and number of proteins belonging to that protein family
@@ -95,6 +102,7 @@ From the InterPro website, we can click on the **Protein family membership** to 
 > {: .info }
 >>The *fasta* file would be in multi fasta format and contains multiple identifiers in its headers, including its **accession** numbers. Similar accession numbers can be found in the *tsv* file to aid you in identifying the species and origin of the protein sequence
 
+<br>
 
 ## Building a Sequence Alignment File
 The multi-fasta file will use the multi-fasta file to build profiles for the protein families find other similar protein later in our class. For now, we will use it to create a multiple sequence alignment. 
@@ -102,6 +110,8 @@ The multi-fasta file will use the multi-fasta file to build profiles for the pro
 Multiple sequence alignment is a bioinformatic technique used to align three or more biological sequences, such as DNA, RNA or proteins. Alignment of similar/identical nucleotides or amino acid residues  allows the identification of conserved regions that may hold functional or structural significance. It is an important step in many biological/bioinformatic analyses, such as phylogenetic tree reconstruction, protein structure prediction, and, for our purposes, functional annotation of sequences. 
 
 Multiple algorithms and techniques are employed to do multiple sequence alignment. Common approaches often uses *progressive alignment methods* and/or *iterative refinement strategies*. **Progressive Alignment Methods** sequentially align pairs of sequences and use them to build larger sets of aligned sequences through a hierarchical approach. An example is **ClustalOmega**, which builds a guide tree on the pairwise distances between sequences to initially calculate sequence similarities. It progressively aligns sequences based on the guide tree ensuring closely related sequences are aligned first. Meanwhile, in **iterative refinement strategies** improves on alignment by repetitively adjusting and realigning subsequences based on scoring criteria. Initial alignments can be built using progressive models and then iteratively refined the alignment based on alignment scores. An example of this is **MAFFT** which can iterate local adjustments to improve consistency and accuracy. 
+
+<br>
 
 ### Exercise 1A: Installing MSA programs
 

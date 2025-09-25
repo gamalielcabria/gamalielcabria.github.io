@@ -180,6 +180,7 @@ Alternatively, if you have installed MEGA, open the softwar and under `File` > >
 Run your protein sequences using MAFFT and see the difference. 
 
 ### Other Aligners:
+
 | **Sequence Aligner**| **Approach**| **Notes**|
 | --- | --- | --- |
 | **DIALIGN-TX**          | Greedy + guide tree                        | Improved alignments (local & global); better than older DIALIGN versions.                |

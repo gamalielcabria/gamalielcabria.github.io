@@ -19,13 +19,13 @@ In this section, we have several goals:
 
 This section requires several programs:
 1. FastTree v2.2
-2. mmseqs2
-3. R and R Packages: Tidyverse, TreeIO and GGTree 
+2. R and R Packages: Tidyverse, TreeIO and GGTree 
 
-## Building a Tree
+
+# Building a Tree
 Different methodologies for phylogenetic tree construction can be categorized broadly into distance-based, parsimony-based, and likelihood-based approaches. **Distance-based methods**, such as the Neighbor-Joining algorithm, are favored for their simplicity and computational efficiency, especially when dealing with large datasets (Qin et al., 2006). In contrast, **Maximum Likelihood** and **Bayesian inference** methods offer more robust frameworks for considering complex evolutionary models but often require more computational resources (Cerutti et al., 2011; Scott & Gras, 2012). The choice of method can significantly influence the topology and branch lengths of the resultant tree (Liu et al., 2009).
 
-### Measuring Distances and Scoring Tree
+## Measuring Distances and Scoring Tree
 **Distance-based** methods measure pairwise distances/differences between sequences to build tree. Meanwhile, **character-based** methods look directly at the characters in the aligned sequences and attribtue a score on the changes or evoloved as depicted in the sequences (i.e. substitution or evolutionary models) to take into account *rate heterogeneity* and *base/amino acid* frequency variations.
 
 {: .note }
@@ -66,15 +66,154 @@ In addition, let us create a tree with a different evolutionary model. By defaul
 > Note: that here I change the file extension of the file to denote different trees.
 
 
-### Tree visualization and interpretation 
+## Tree visualization and interpretation 
+### Newick Format
+If you open the `*.tree` files [here](./sequences/hypx_interpro-IPR009188.msa.default.tree), you can see it is written in newick format. The newick format stores the topology of the tree based on the series of parenthesis, the name of the tips (i.e. Gorilla), and the distance from its common node.
+
+Here is an example:
+```
+(((Human:0.2,Chimp:0.2):0.1,Gorilla:0.3):0.5,Orangutan:0.6,Gibbon:0.7);
+```
+
+This can be interpreted as such:
+- **`Human:0.2`** → leaf **Human** with branch length `0.2`  
+- **`Chimp:0.2`** → leaf **Chimp** with branch length `0.2`  
+- **`(Human:0.2,Chimp:0.2):0.1`** → Human and Chimp grouped together, clade branch length `0.1`  
+- **`Gorilla:0.3`** → leaf **Gorilla** with branch length `0.3`  
+- **`((Human:0.2,Chimp:0.2):0.1,Gorilla:0.3):0.5`** → Human, Chimp, and Gorilla grouped together, clade branch length `0.5`  
+- **`Orangutan:0.6`** → leaf **Orangutan** with branch length `0.6`  
+- **`Gibbon:0.7`** → leaf **Gibbon** with branch length `0.7`  
+- Wrapping all clades → **`(((Human,Chimp),Gorilla),Orangutan,Gibbon);`**
+
+Of coursem it is hard to understand when written such as this. We can use newick formats to visualize a tree.
+
+### GGTree: an Elegant Graphics for Phylogenetic Tree Visualization
+
 There are multiple ways to visualizing a phylogenetic tree. One is  through the program `MEGA11` which we installed previously and another is through the R Package `GGTree` which will be using through `R` or its IDE `RStudio`. 
 
-`GGTree` has robust way of modifying a 
+`GGTree` has robust way of modifying a tree (Yu, 2020). For more details please visit their [github site](https://guangchuangyu.github.io/ggtree-book/chapter-treeio.html). The package can visualize in multiple formats, such as slanted, circular, radial and others:
 
+![GGTreeLayout](https://guangchuangyu.github.io/ggtree-book/ggtree-book_files/figure-html/layout-1.png)
+[Photo taken from: https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html)
 
+Additionally, you can add annotations and combined them with the tree in `GGTree`. Here is an example:
+![GGTreeAnnotation](https://guangchuangyu.github.io/ggtree-book/ggtree-book_files/figure-html/curatedgene-1.png)
+[Photo taken from: https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html)
 
+Here is another example:
+![Heatmap with GGTree](https://guangchuangyu.github.io/ggtree-book/ggtree-book_files/figure-html/ggtree5-1.png)
+[Photo taken from https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html#discussion-1](https://guangchuangyu.github.io/ggtree-book/chapter-ggtree.html#discussion-1)
 
-# Tips and Summary
+### Exercise 2B: Tree visualization
+
+Let us visualize our trees! First step is loading it up to your `R`. 
+
+Create an Rscript or RMarkdown and clean our input:
+
+{: .note}
+>1. Load your libraries (Make sure they are installed prior)
+>```
+>library(tidyverse)
+>library(treeio)
+>library(ggtree)
+>```
+>2. Read your tree
+>```
+>tree_orig <-read.tree("./path/to/your/fast.default.tree")
+>```
+>3. Visualize all the tip labels:
+>```
+>tree_orig$tip
+>```
+
+As you can see, most of the tip labels is using their accession number and other details. We will remove the other details and leave them with just accession number for now.
+
+{: .note }
+>4. Retain Accession number only for tip labels
+>```
+>tree_orig$tip.label <- str_replace_all(tree_orig$tip.label, "\\|.*\\|.*", "")
+>tree_orig$tip.label
+>```
+>
+>5. If you type `tree_orig`, you will see all the properties of your object as such:
+>```
+>Phylogenetic tree with 1481 tips and 1468 internal nodes.
+>
+>Tip labels:
+>  A0A933JFM2, A0A934L9U7, Q44027, Q79IP8, A0A7Y0DMC1, A0A2T6FCC0, ...
+>Node labels:
+>  , 0.977, 0.961, 0.647, 1.000, 0.727, ...
+>
+>Unrooted; includes branch length(s).
+>```
+
+Now, that we properly cleaned our input, we can visualize it using ggtree.
+
+{: .note }
+>1. Create a ggtree object and visualize it:
+>```
+>plot_tree <-ggtree(tree_orig, layout = 'roundrect')
+>```
+>This should show a bare tree if your run `plot_tree`.
+>
+>2. Let us add details:
+>```
+>plot_tree <- ggtree(tree_orig, layout = 'roundrect') +
+>    geom_tiplab(offset=0.05) +
+>    geom_nodepoint(size =1, color = blue) +
+>    geom_tippoint(size = 1)
+>```
+>Here I colored the nodes and the tips, but as you can see, it can be messy.
+
+This is the basic of GGTree. You can modify them further by checking up [GGTree guide](https://github.com/YuLab-SMU/ggtree).
+
+<br>
+
+### Annotating a Tree
+
+Before we end, here I will give an example of a tree with annotation. Here is a bare tree:
+```
+plot_a <-ggtree(tree_orig, layout = 'roundrect') 
+```
+![TreeA](./images/treeA.png)
+
+To annotate a leaf of the tree, we must first know the node and tip numbers.
+```
+#Identify Node Labels
+plot_nodes <-ggtree(tree_orig)+geom_text(aes(label=node, color = isTip), offset=0.05, size = 4)
+```
+![TreeNodes](./images/treenode.png)
+
+With the node we want to annotate known (i.e. `1846` for me), we can highlight the whole clade it belongs.
+```
+plot_a <-ggtree(tree_orig, layout = 'roundrect') 
+plot_b <-plot_a +
+  geom_hilight(node=1846, fill='#009E73', 
+               type = "gradient", 
+               gradient.direction="rt", 
+               alpha=0.3, to.bottom = TRUE) 
+```
+![TreeB](./images/treeB.png)
+
+Lastly, we add the tip labels and highlight the protein sequence of interest by labeling its tips.
+```
+plot_a <-ggtree(tree_orig, layout = 'roundrect') 
+plot_b <-plot_a +
+  geom_hilight(node=1846, fill='#009E73', 
+               type = "gradient", 
+               gradient.direction="rt", 
+               alpha=0.3, to.bottom = TRUE) 
+plot_c <- plot_b +
+  geom_tiplab(offset=0.1, size = 2, color='grey25') +
+  geom_point2(aes(subset= (label == "A0A917QCM7")),
+              color = 'red', size=3)
+```
+![TreeC](./images/treeC.png)
+
+**TO DO:**
+1. Create a radially formatted tree
+2. Highlight the clade where your annotated protein sequence is.
+    - Are you sure that your protein fasta is in your MSA file?
 
 # Acknowledgement
 This tutorial uses screenshots from NCBI and EBI/InterProScan websites. Any grievances, please let me know.r
@@ -94,3 +233,5 @@ Chan, C. and Ragan, M. (2013). Next-generation phylogenomics. Biology Direct, 8(
 [6]Qin, L., Luo, J., Chen, Z., Guo, J., Chen, L., & Pan, Y. (2006). Phelogenetic tree construction using self adaptive ant colony algorithm.. https://doi.org/10.1109/imsccs.2006.104
 
 [7]Scott, R. and Gras, R. (2012). Comparing distance-based phylogenetic tree construction methods using an individual-based ecosystem simulation, ecosim.. https://doi.org/10.7551/978-0-262-31050-5-ch015
+
+[8]Yu, G (2020). Using ggtree to visualize data on tree-like structures. Current Protocols in Bioinformatics, 69:e96. https://doi.org/10.1002/cpbi.96

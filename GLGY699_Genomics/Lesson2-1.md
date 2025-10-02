@@ -1,80 +1,96 @@
 ---
-title: Lesson 2A - Neighbor Joining
-parent: Lesson 2 - Tree Building
-nav_order: 1
+title: Lesson 2 - Tree Building
+parent: Intro to GLGY699 Genomics and Bioinformatics
+nav_order: 2
 ---
 
-# An example of tree building: Neighbor Joining 
-To demonstrate the process of calculating a Neighbor-Joining (NJ) score using a simple example, we can employ a set of DNA sequences consisting of five bases. Let’s consider the following four sequences:
+# What are Phylogenetic Trees
+Phylogenetic trees serve as vital tools in biology, providing a structured visual representation of the evolutionary relationships among various biological entities, including species, genes, and viruses. These trees are grounded in the principles of common ancestry and depict how different organisms or genes have diverged from shared ancestors over time (Bordewich et al., 2017; Gregory, 2008). They are constructed using various forms of data, primarily genetic sequences such as DNA, RNA, or protein alignments, which allows for detailed comparative analyses.
 
-```
->Sequence A
-ACGTA
->Sequence B
-ACGTC
->Sequence C
-AAGTA
->Sequence D
-AGGTA
-```
-
-## Step 1: Generate a Distance Matrix
-First, we need to compute a distance matrix using a straightforward method, such as the number of positions at which the corresponding bases are different (commonly referred to as Hamming distance). Here is how the pairwise distances are calculated:
-
-```
-Distance(A, B): 1 (different at 1 position)
-Distance(A, C): 1 (different at 1 position)
-Distance(A, D): 1 (different at 1 position)
-Distance(B, C): 2 (different at 2 positions)
-Distance(B, D): 2 (different at 2 positions)
-Distance(C, D): 1 (different at 1 position)
-```
-
-Using these calculations, we can construct the distance matrix as follows:
-
-| | A |	B	| C	| D |
-|--|--|--|--|--|
-|A	|0	|1	|1	|1|
-|B	|1	|0	|2	|2|
-|C	|1	|2	|0	|1|
-|D	|1	|2	|1	|0|
+Given that phylogenetic trees shows evolutionary relations, aligning DNA, RNA and/or protein sequences is a must step to properly score for any changes in the sequence, may it be substitution, deletion, insertion and/or duplication. Alignment is a crucial step in building trees as errors can skew evolutionary interpretation.
 
 <br>
 
-## Step 2: Apply the Neighbor-Joining Algorithm
-Now, we apply the NJ algorithm, which involves the following steps:
+## Goals
+In this section, we have several goals:
+1. Build a phylogenetic tree using MSA fasta file
+2. Visualize a phylogenetic tree
+3. Cluster proteins to build a Tree
 
-1. Find the smallest distance in the distance matrix. Here, the smallest distance is 1, corresponding to either (A, B), (A, C), (A, D), or (C, D).
+This section requires several programs:
+1. FastTree v2.2
+2. mmseqs2
+3. R and R Packages: Tidyverse, TreeIO and GGTree 
 
-2. Join the pair of sequences with the smallest distance. Let’s join A and B. The new node will be labeled as AB.
+## Building a Tree
+Different methodologies for phylogenetic tree construction can be categorized broadly into distance-based, parsimony-based, and likelihood-based approaches. **Distance-based methods**, such as the Neighbor-Joining algorithm, are favored for their simplicity and computational efficiency, especially when dealing with large datasets (Qin et al., 2006). In contrast, **Maximum Likelihood** and **Bayesian inference** methods offer more robust frameworks for considering complex evolutionary models but often require more computational resources (Cerutti et al., 2011; Scott & Gras, 2012). The choice of method can significantly influence the topology and branch lengths of the resultant tree (Liu et al., 2009).
 
-3. Update the distance matrix by averaging the distances of sequences A and B to all other sequences. The distances to sequences C and D will be recalculated based on the formula:
+### Measuring Distances and Scoring Tree
+**Distance-based** methods measure pairwise distances/differences between sequences to build tree. Meanwhile, **character-based** methods look directly at the characters in the aligned sequences and attribtue a score on the changes or evoloved as depicted in the sequences (i.e. substitution or evolutionary models) to take into account *rate heterogeneity* and *base/amino acid* frequency variations.
 
-<p align="center">
-  <img src="https://latex.codecogs.com/svg.latex?d_{AB,X}=\frac{d_{A,X}+d_{B,X}}{2}" alt="equation"/>
-</p>
+{: .note }
+> For a simple demonstration of distance based method, please take a look at [Lesson 2A: Neighbor-joining](./Lesson2-2.md)
 
-```
-Distance(AB, C) = (Distance(A, C) + Distance(B, C)) / 2 = (1 + 2) / 2 = 1.5
-Distance(AB, D) = (Distance(A, D) + Distance(B, D)) / 2 = (1 + 2) / 2 = 1.5
-```
+There are multiple ways in *character-based* methods to build a phylogenetic tree. In **Maximum Parsimony**, it operates on the principle that the *best tree is the one that requires the fewest evolutionary changes across all sites*. It assumes that each character or column in an sequence alignment is independent of each other. It is intuitive and fast and does not need complex evolutionary models but fails when there are fast-evolving sequences as it cannot easily differentiate them and interaction between segments of the sequences.
 
-<div style="margin-left:40px">
-The new distance matrix becomes:
+In contrast, **Maximum Likelihood** methods (ML) takes into accoutn evolutionary models. It tries to find *the best tree or topology of sequences by finding the tree that best explained an evolutionary model*. In ML tree building, it creates multiple trees to match a given topology and branch length to match an evolutionary model and assigns a score for each. The tree with highest score is chosen. It is very rigorous but often are time and computationally consuming. 
 
-| |AB|	C|	D|
-|--|--|--|--|
-|AB	|0	|1.5	|1.5|
-|C	|1.5	|0	|1|
-|D	|1.5	|1	|0|
+>**Bootstrapping** is the resampling from the same input several times to check on the uncertainty of your model or trees. 
+>It is used to measure the reliability of clades that were formed after repeated resampling or subsampling of sequences. A clade that occurs 990/1000 times is more certain to occur than a clade that only appears 130/1000 times that a tree was formed
 
-</div>
+Lastly, similar to ML, **Bayesian Inference** it assignes probability that the tree or topoplogy is correct based on an evolutionary model. However, rather than finding the "best" tree, it estimates the posterior probability distribution of tree/topology. 
 
-4. Repeat the process by finding the smallest distance again until all nodes are merged into a single tree. Joining C and D next leads to the construction of the final tree.
+> **Posterior probabilities** are conditional probabilities derived from Bayes’ rule. They combine prior knowledge with observational data under a chosen model, reflecting our updated belief about a hypothesis or parameter. Importantly, each posterior can serve as a new prior for further Bayesian updating when new information arrives.
+> In *Bayesian inference* made trees, posterior probabilities are used to determine clade worthiness rather than bootstrapping percentage.
 
-<br>
+### Exercise 2A: Building a tree
 
-## Step 3: Construct the Phylogenetic Tree
-The resulting tree will depict the evolutionary relationships, with branches indicating the distances (total branch lengths) based on the calculations above. You can build this tree using a ruler if you want to!
+Here, we will use the multiple sequence alignments created from previous exercise. We will use the fasta formatted MSA files as input for Tree Building. 
 
-In summary, this example illustrates a simple yet effective method for calculating Neighbor-Joining scores from basic sequences. It is crucial to recognize that while we have simplified the mathematics here, the same algorithm can be applied to more extensive and complex datasets spanning multiple species or genes. Using methods like NJ provides an efficient way to infer phylogenetic relationships in comparative genomics.
+{: .note }
+> Build a tree using your MSA files
+> 1. Run Fast Tree using the default settings:
+> ```
+> FastTree <protein_alignment>.msa.fasta > <protein_alignment>.fast.tree
+> ```
+>
+> 2. Check your outputs by using `more` or `less` or `nano`
+
+In addition, let us create a tree with a different evolutionary model. By default, FastTree uses ML and Jones-Taylor-Thorton model for tree-building using amino acids. Another evolutionary model is Le-Gascuel (LG).
+
+{:.note }
+> Build a tree using LG model:
+> ```
+> FastTree <protein_alignment>.msa.fasta > <protein_alignment>.lg.tree
+> ```
+> Note: that here I change the file extension of the file to denote different trees.
+
+
+### Tree visualization and interpretation 
+There are multiple ways to visualizing a phylogenetic tree. One is  through the program `MEGA11` which we installed previously and another is through the R Package `GGTree` which will be using through `R` or its IDE `RStudio`. 
+
+`GGTree` has robust way of modifying a 
+
+
+
+
+# Tips and Summary
+
+# Acknowledgement
+This tutorial uses screenshots from NCBI and EBI/InterProScan websites. Any grievances, please let me know.r
+
+# Citation
+[1]Bordewich, M., Deutschmann, I., Fischer, M., Kasbohm, E., Semple, C., & Steel, M. (2017). On the information content of discrete phylogenetic characters. Journal of Mathematical Biology, 77(3), 527-544. https://doi.org/10.1007/s00285-017-1198-2
+
+[2]Gregory, T. (2008). Understanding evolutionary trees. Evolution Education and Outreach, 1(2), 121-137. https://doi.org/10.1007/s12052-008-0035-x
+
+[3]McMahon, M., Deepak, A., Fernández‐Baca, D., Boss, D., & Sanderson, M. (2015). Stbase: one million species trees for comparative biology. Plos One, 10(2), e0117987. https://doi.org/10.1371/journal.pone.0117987
+
+[4]Cerutti, F., Bertolotti, L., Goldberg, T., & Giacobini, M. (2011). Taxon ordering in phylogenetic trees: a workbench test. BMC Bioinformatics, 12(1). https://doi.org/10.1186/1471-2105-12-58
+Chan, C. and Ragan, M. (2013). Next-generation phylogenomics. Biology Direct, 8(1). https://doi.org/10.1186/1745-6150-8-3
+
+[5]Liu, S., Ji, K., Chen, J., Tai, D., Jiang, W., Hou, G., … & Huang, B. (2009). Panorama phylogenetic diversity and distribution of type a influenza virus. Plos One, 4(3), e5022. https://doi.org/10.1371/journal.pone.0005022
+
+[6]Qin, L., Luo, J., Chen, Z., Guo, J., Chen, L., & Pan, Y. (2006). Phelogenetic tree construction using self adaptive ant colony algorithm.. https://doi.org/10.1109/imsccs.2006.104
+
+[7]Scott, R. and Gras, R. (2012). Comparing distance-based phylogenetic tree construction methods using an individual-based ecosystem simulation, ecosim.. https://doi.org/10.7551/978-0-262-31050-5-ch015

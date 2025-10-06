@@ -60,6 +60,7 @@ mmseqs cluster Gama_origDB Gama_clusteredDB tmp
   3. `tmp` - a temporary folder you will name for the temp files to be located. Can be deleted afterwards
 
 There are other `options` you can add to adjust the running parameters of `mmseqs cluster`. To see most of them run `mmseqs cluster -h`. Some `options` that might interest you:
+
 | Options | Description |
 | -- | -- |
 | `-c FLOAT` | List the fraction of aligned/covered residues with FLOAT ranging from **\[0-1\]** and with default: **\[0.800\]** |

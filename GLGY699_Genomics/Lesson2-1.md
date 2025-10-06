@@ -21,9 +21,11 @@ This section requires several programs:
 1. FastTree v2.2
 2. R and R Packages: Tidyverse, TreeIO and GGTree 
 
+<br>
 
 # Building a Tree
 Different methodologies for phylogenetic tree construction can be categorized broadly into distance-based, parsimony-based, and likelihood-based approaches. **Distance-based methods**, such as the Neighbor-Joining algorithm, are favored for their simplicity and computational efficiency, especially when dealing with large datasets (Qin et al., 2006). In contrast, **Maximum Likelihood** and **Bayesian inference** methods offer more robust frameworks for considering complex evolutionary models but often require more computational resources (Cerutti et al., 2011; Scott & Gras, 2012). The choice of method can significantly influence the topology and branch lengths of the resultant tree (Liu et al., 2009).
+
 
 ## Measuring Distances and Scoring Tree
 **Distance-based** methods measure pairwise distances/differences between sequences to build tree. Meanwhile, **character-based** methods look directly at the characters in the aligned sequences and attribtue a score on the changes or evoloved as depicted in the sequences (i.e. substitution or evolutionary models) to take into account *rate heterogeneity* and *base/amino acid* frequency variations.
@@ -42,6 +44,8 @@ Lastly, similar to ML, **Bayesian Inference** it assignes probability that the t
 
 > **Posterior probabilities** are conditional probabilities derived from Bayes’ rule. They combine prior knowledge with observational data under a chosen model, reflecting our updated belief about a hypothesis or parameter. Importantly, each posterior can serve as a new prior for further Bayesian updating when new information arrives.
 > In *Bayesian inference* made trees, posterior probabilities are used to determine clade worthiness rather than bootstrapping percentage.
+
+<br>
 
 ### Exercise 2A: Building a tree
 
@@ -65,6 +69,7 @@ In addition, let us create a tree with a different evolutionary model. By defaul
 > ```
 > Note: that here I change the file extension of the file to denote different trees.
 
+<br>
 
 ## Tree visualization and interpretation 
 ### Newick Format
@@ -85,7 +90,11 @@ This can be interpreted as such:
 - **`Gibbon:0.7`** → leaf **Gibbon** with branch length `0.7`  
 - Wrapping all clades → **`(((Human,Chimp),Gorilla),Orangutan,Gibbon);`**
 
-Of coursem it is hard to understand when written such as this. We can use newick formats to visualize a tree.
+Of course it is hard to understand when written such as this. We can use newick formats to visualize a tree. Here is the visualization of the abovementioned tree:
+
+![tree of the Newick File](./images/treeNewick.png)
+
+<br>
 
 ### GGTree: an Elegant Graphics for Phylogenetic Tree Visualization
 
@@ -210,9 +219,11 @@ plot_c <- plot_b +
 ```
 ![TreeC](./images/treeC.png)
 
-**TO DO:**
-1. Create a radially formatted tree
-2. Highlight the clade where your annotated protein sequence is.
+# **TO DO:**
+1. Cluster your >10,000 protein sequences using `mmseqs`. For more details: [Lesson 2B is here](./Lesson2-3.md).
+    - You might need to re-align the sequences
+2. Create a radially formatted tree
+3. Highlight the clade where your annotated protein sequence is.
     - Are you sure that your protein fasta is in your MSA file?
 
 # Acknowledgement

@@ -226,8 +226,24 @@ plot_c <- plot_b +
 3. Highlight the clade where your annotated protein sequence is.
     - Are you sure that your protein fasta is in your MSA file?
 
+# Tree Visualization Softwares
+
+| Tool | Type | Description |
+| -- | -- | -- |
+| **GGTree** | R Package | [GGTRee Paper](https://currentprotocols.onlinelibrary.wiley.com/doi/10.1002/cpbi.96) |
+| | | [GGTree Guide](https://yulab-smu.top/treedata-book/chapter1.html). Unfortunately, the firewall prevents this to be opened within University of Calgary network. Please view this documentation using outside networks. |
+| | | [GGTree Examples](https://github.com/GuangchuangYu/ggtree-current-protocols) |
+| **iTOL** | Web based | The interactive tree of life has a visualization and annotation in their [website](https://itol.embl.de/). |
+| | | Their [help pages](https://itol.embl.de/help.cgi) is useful tool. Please take your time on it. |
+| ETE Toolkit | Python Module | If you are more inclined to use python and its module, [ETE Toolkit](https://etetoolkit.org/) would be very useful|
+| | | They have a detailed guide [here](https://etetoolkit.org/docs/latest/tutorial/tutorial_drawing.html). |
+| MEGA 11 | GUI Desktop Program | The [MEGA software](https://www.megasoftware.net/) can also visualize newick formatted trees. It also allow topology annotation through its **TREE Topology Editor**. |
+| TVBOT | Web based | It many tree layouts and flexibility. It can add annotations too. It also has video tutorials and guide. Please check: https://www.chiplot.online/tvbot.html |
+| | | Publication: https://doi.org/10.1093/nar/gkad359 |
+
+
 # Acknowledgement
-This tutorial uses screenshots from NCBI and EBI/InterProScan websites. Any grievances, please let me know.r
+This tutorial uses screenshots from GGTree and iTOL wikis/websites. Any grievances, please let me know.
 
 # Citation
 [1]Bordewich, M., Deutschmann, I., Fischer, M., Kasbohm, E., Semple, C., & Steel, M. (2017). On the information content of discrete phylogenetic characters. Journal of Mathematical Biology, 77(3), 527-544. https://doi.org/10.1007/s00285-017-1198-2

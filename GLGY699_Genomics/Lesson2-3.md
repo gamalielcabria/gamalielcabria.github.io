@@ -33,7 +33,8 @@ The difference between `mmseqs cluster` and `mmseqs linclust` is that the latter
 {: .info }
 > For more detail on `mmseqs linclust` linear time clustering and k-mer usage, please read their [documentation](https://github.com/soedinglab/mmseqs2/wiki#clustering-databases-using-mmseqs-cluster-or-mmseqs-linclust).
 
-The `mmseqs cluster` can be run using different subcommands:
+<br>
+The `mmseqs cluster` can be run using multiple subcommands:
 
 ### Step 1: Making Database 
 To run both methods, you need to create first a database of your fasta sequences (i.e. GamaProteins --> `Gama_origDB`). This create an index (i.e. `Gama_origDB.index`) and database file (`GamaDB_clu`) which is used for clustering. 

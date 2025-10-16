@@ -209,9 +209,8 @@ Important to note:
 # TO DO:
 
 1. Create a HMM profile for your clade of interest and other neighboring clades
-2. Download five genomes and fetch their proteomic sequences
-3. Find how many of those genomes has homolog of your protein.
-4. Defend that it is likely functionally similar to your protein.
+2. Run `hmmsearch` for the each outgroup and ingroup HMMs to your annotated protein sequence
+3. Defend that it is likely functionally similar to your protein.
 
 # Acknowledgement
 This tutorial uses screenshots from GGTree and iTOL wikis/websites. Any grievances, please let me know.

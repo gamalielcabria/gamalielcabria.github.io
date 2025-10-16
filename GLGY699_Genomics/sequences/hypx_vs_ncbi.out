@@ -1,0 +1,76 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  hypx_clade1.hmm
+# target sequence database:        hypx_ncbi-WP011153943_1.fasta
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       hypx_clade1  [M=570]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+   2.7e-282  923.5   4.3   3.2e-282  923.3   4.3    1.0  1  WP_011153943.1  hydrogenase maturation protein [Cupriavidus n
+
+
+Domain annotation for each sequence (and alignments):
+>> WP_011153943.1  hydrogenase maturation protein [Cupriavidus necator]
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  923.3   4.3  3.2e-282  3.2e-282       1     563 [.       1     580 [.       1     587 [. 0.97
+
+  Alignments for each domain:
+  == domain 1  score: 923.3 bits;  conditional E-value: 3.2e-282
+     hypx_clade1   1 mriLllthsfnsLtqrlfaeLrarGhevsvelDiadsvteeavalfrPdlivapflkraipesvwrrvvclvvhPGivGDrGPsalDwailegea 95 
+                     mriLllthsfnsLtqrlf+eLr+rGh vsve+Diadsvteeavalf+Pdl++apflkraipe +w+r vclvvhPGivGDrGPsalDwai ++e+
+  WP_011153943.1   1 MRILLLTHSFNSLTQRLFVELRQRGHLVSVEFDIADSVTEEAVALFAPDLVIAPFLKRAIPERIWSRLVCLVVHPGIVGDRGPSALDWAIVRDER 95 
+                     9********************************************************************************************** PP
+
+     hypx_clade1  96 ewGvtvlqaeaelDaGpvwasaefalraakksslYrnevteaavaavleaverlaeaeagefkpaaleeaaargrlrpllkqadraidwarddta 190
+                     +wGvtvlqa++e+DaGpvwasa+f++raa+ksslYrnevt aav+avlea++ ++++    +++a+ ++++  g+++p+++qa+r idwar++ta
+  WP_011153943.1  96 SWGVTVLQANGEMDAGPVWASATFPMRAARKSSLYRNEVTVAAVQAVLEALAAFEAG----WRSAN-DAQSGPGTWNPAMRQAERGIDWARESTA 185
+                     ******************************************************544....44443.345789********************** PP
+
+     hypx_clade1 191 tvlakiraadgfPGvadelfgepcrlfdahpeaaaa.....kgapGevlarreeallratvdgavwighvrraee......eekalklpatlafa 274
+                     +vlak++aad+fPGv d+lfg+pcrlfdah+++ ++     +g+pG+++arre+a+lr tvd++vwigh++ a +      +  +lklp++++f+
+  WP_011153943.1 186 AVLAKLHAADSFPGVPDALFGQPCRLFDAHAATPQTvarapRGQPGDIVARREHAVLRLTVDAGVWIGHAKLAVRdewentSLPSLKLPVAQVFH 280
+                     *******************************99988899999****************************988666777767789********** PP
+
+     hypx_clade1 275 eeaaalpelela...eeeewqelryeea....arvgllsfdfynGamstaqcerLraaleearerptrvlvlaGgedffsnGihLneieaae... 359
+                     e+ a+lp+l+l+   ++ ew+e ry e     + vg+l+fd ynGamstaqc+rL aal+ ar r+trvlvl+GgedffsnGihL++ieaae   
+  WP_011153943.1 281 EAWAQLPDLSLPlehDAGEWSEFRYWEDdsgaGLVGYLAFDCYNGAMSTAQCQRLCAALRYARGRQTRVLVLLGGEDFFSNGIHLHQIEAAEhrg 375
+                     *********999988899*********9888889**********************************************************9** PP
+
+     hypx_clade1 360 .dsaadeswrninamddlaeailettdrltvaalrgnagaGGcflalaaDevwaregvvlnphYknmGnLyGseyWtyllPrrvgeeaaraimqe 453
+                      +saad+swrni+amdd+a++il+ +dr+tv+alrgnagaGG+flalaaD+vwaregv++nphYknmGnLyGseyWtyllP+rvg+++a+++m+ 
+  WP_011153943.1 376 aESAADASWRNIQAMDDVALEILAFSDRMTVSALRGNAGAGGVFLALAADQVWAREGVLVNPHYKNMGNLYGSEYWTYLLPQRVGAQRASDLMDG 470
+                     9********************************************************************************************** PP
+
+     hypx_clade1 454 rlPlsaaeavelglidavlaadaaafeaevarraaalaaaedlaerlaakrarraadeaakpLaayreeelarmrrnfyGfDpsyhvaryhfvkk 548
+                     rlP+s ++a e+glida l++da++  ae+ rra ala+a+d+a+++++kr++raadeaakpLa+yreeel +m+rnfyGfDpsyhvaryhfv+k
+  WP_011153943.1 471 RLPMSVRRAIEIGLIDASLDGDARSCLAEIGRRAVALARAPDYAAHIDNKRRKRAADEAAKPLAQYREEELVHMHRNFYGFDPSYHVARYHFVYK 565
+                     *********************************************************************************************** PP
+
+     hypx_clade1 549 sphswtPrhlalhre 563
+                      ph++tPrhla+hr 
+  WP_011153943.1 566 LPHAHTPRHLAMHRG 580
+                     **************6 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (570 nodes)
+Target sequences:                          1  (597 residues searched)
+Passed MSV filter:                         1  (1); expected 0.0 (0.02)
+Passed bias filter:                        1  (1); expected 0.0 (0.02)
+Passed Vit filter:                         1  (1); expected 0.0 (0.001)
+Passed Fwd filter:                         1  (1); expected 0.0 (1e-05)
+Initial search space (Z):                  1  [actual number of targets]
+Domain search space  (domZ):               1  [number of targets reported over threshold]
+# CPU time: 0.00u 0.00s 00:00:00.00 Elapsed: 00:00:00.00
+# Mc/sec: 52.14
+//
+[ok]

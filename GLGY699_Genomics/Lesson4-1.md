@@ -15,7 +15,7 @@ In this lesson, we will discuss metagenome sequencing and the bioinformatic work
 
 ## Sequencing: Short Reads vs Long Reads
 
-Next generation sequencing can be divided into two main categories: short and long reads sequencing. Short reads are sequencing of DNA with length 100-500 nucleotides (nt) and among the earliest version of high-throughput sequencing platforms (Roche Pyrosequencing, Illumina/Solexa's Sequencing-by-synthesis Technology, ThermoFisher's IonTorrent systems). Meanwhile, long read sequencing are among the newest innovation next generation sequencing platform able to sequence reads as long as 10,000 to 1 million nt. Among these are Pacific Biosciences' SMRT Sequencing for real-time sequencing and Oxford Nanopore Technology's portable nanopore sequencing.
+Next generation sequencing can be divided into two main categories: *short* and *long reads* sequencing. Short reads are sequencing of DNA with length **100-500 nucleotides (nt)** and among the earliest version of high-throughput sequencing platforms (Roche Pyrosequencing, Illumina/Solexa's Sequencing-by-synthesis Technology, ThermoFisher's IonTorrent systems). Meanwhile, long read sequencing are among the newest innovation next generation sequencing platform able to sequence reads as long as **10,000 to 1 million nt**. Among these are Pacific Biosciences' SMRT Sequencing for real-time sequencing and Oxford Nanopore Technology's portable nanopore sequencing.
 
 <br>
 
@@ -203,3 +203,31 @@ Here are some common software for metagenomic analysis:
 [22] Sedlazeck, F., Rescheneder, P., Smolka, M., Fang, H., Nattestad, M., Haeseler, A., … & Schatz, M. (2018). Accurate detection of complex structural variations using single-molecule sequencing. Nature Chemical Biology, 15(6), 461-468. https://doi.org/10.1038/s41592-018-0001-7
 
 [23] Wood, E., Parker, M., Dunning, M., Hesketh, S., Wang, D., Pink, R., … & Fratter, C. (2019). Clinical long-read sequencing of the human mitochondrial genome for mitochondrial disease diagnostics.. https://doi.org/10.1101/597187
+
+[24] Adey, A., Morrison, H., Xu, X., Kitzman, J., Turner, E., Stackhouse, B., … & Shendure, J. (2010). Rapid, low-input, low-bias construction of shotgun fragment libraries by high-density in vitro transposition. Genome Biology, 11(12). https://doi.org/10.1186/gb-2010-11-12-r119
+
+[25] Burnham, P., Kim, M., Agbor-Enoh, S., Luikart, H., Valantine, H., Khush, K., … & Vlaminck, I. (2015). Single-stranded dna library preparation uncovers the origin and diversity of ultrashort cell-free dna in plasma.. https://doi.org/10.1101/035741
+
+[26] Carøe, C., Gopalakrishnan, S., Vinner, L., Mak, S., Sinding, M., Castruita, J., … & Gilbert, M. (2017). Single‐tube library preparation for degraded dna. Methods in Ecology and Evolution, 9(2), 410-419. https://doi.org/10.1111/2041-210x.12871
+
+[27] Gao, Y., Zhao, H., An, K., Liu, Z., Hai, L., Li, R., … & Sun, Y. (2022). Whole‐genome bisulfite sequencing analysis of circulating tumour dna for the detection and molecular classification of cancer. Clinical and Translational Medicine, 12(8). https://doi.org/10.1002/ctm2.1014
+
+[28] Hahn, E., Alexander, M., Grealy, A., Stiller, J., Gardiner, D., & Holleley, C. (2021). Unlocking inaccessible historical genomes preserved in formalin. Molecular Ecology Resources, 22(6), 2130-2147. https://doi.org/10.1111/1755-0998.13505
+
+[29] Kia, A., Gloeckner, C., Osothprarop, T., Gormley, N., Bomati, E., Stephenson, M., … & He, M. (2017). Improved genome sequencing using an engineered transposase. BMC Biotechnology, 17(1). https://doi.org/10.1186/s12896-016-0326-1
+
+[30] Lan, J., Yin, Y., Reed, E., Moua, K., Thomas, K., & Zhang, Q. (2015). Impact of three illumina library construction methods on gc bias and hla genotype calling. Human Immunology, 76(2-3), 166-175. https://doi.org/10.1016/j.humimm.2014.12.016
+
+[31] Pasquali, F., Valle, Í., Palma, F., Remondini, D., Manfreda, G., Castellani, G., … & Cesare, A. (2019). Application of different dna extraction procedures, library preparation protocols and sequencing platforms: impact on sequencing results. Heliyon, 5(10), e02745. https://doi.org/10.1016/j.heliyon.2019.e02745
+
+[32] Picelli, S., Björklund, Å., Reinius, B., Sagasser, S., Winberg, G., & Sandberg, R. (2014). Tn5 transposase and tagmentation procedures for massively scaled sequencing projects. Genome Research, 24(12), 2033-2040. https://doi.org/10.1101/gr.177881.114
+
+[33] Puchta, M., Groszyk, J., & Boczkowska, M. (2025). Improved degradome sequencing protocol via reagent recycling from srnaseq library preparations. International Journal of Molecular Sciences, 26(14), 7020. https://doi.org/10.3390/ijms26147020
+
+[34] Rhodes, J., Beale, M., & Fisher, M. (2014). Illuminating choices for library prep: a comparison of library preparation methods for whole genome sequencing of cryptococcus neoformans using illumina hiseq. Plos One, 9(11), e113501. https://doi.org/10.1371/journal.pone.0113501
+
+[35] Sato, M., Ogura, Y., Nakamura, K., Nishida, R., Gotoh, Y., Hayashi, M., … & Hayashi, T. (2019). Comparison of the sequencing bias of currently available library preparation kits for illumina sequencing of bacterial genomes and metagenomes. Dna Research, 26(5), 391-398. https://doi.org/10.1093/dnares/dsz017
+
+[36] Vardi, O., Shamir, I., Javasky, E., Goren, A., & Simon, I. (2017). Biases in the smart-dna library preparation method associated with genomic poly da/dt sequences. Plos One, 12(2), e0172769. https://doi.org/10.1371/journal.pone.0172769
+
+[37] Vonesch, S., Li, S., Szu‐Tu, C., Hennig, B., Dobrev, N., & Steinmetz, L. (2020). Fast and inexpensive whole-genome sequencing library preparation from intact yeast cells. G3 Genes Genomes Genetics, 11(1). https://doi.org/10.1093/g3journal/jkaa009

@@ -1,6 +1,6 @@
 ---
-title: Lesson 4A - Metagenomic Data Analysis
-parent: Lesson 4 - Metagenome Shotgun Sequencing
+title: Lesson 5A - Metagenomic Data Analysis
+parent: Lesson 5 - GLGY699 Project
 nav_order: 1
 ---
 
@@ -99,7 +99,7 @@ This section requires several programs:
 <br>
 
 ## **Step 3**. Find Reads that belong to your protein of choice
-There are several ways to do this. It can be assembly-based or read-based analysis or a mix of both.
+There are several ways to do this. It can be **(A) assembly-based** or **(B) read-based analysis** or a **(C) hybrid mix** of both.
 
 ### **Step 3A**. Assembly-based Analysis
 In here, we will `assemble your reads` > `predict Open Reading Frames (ORFs)` > `classify ORFs matching to your HMMs`
@@ -188,13 +188,21 @@ Identify abundance of your predicted proteins **\[Extra\]** using `mmseqs`. Foll
 
 <br>
 
-## Step 4. Plug the Abundance as annotation to your phylogenetic tree
+## **Step 4**. Find abundance of a housekeeping gene (i.e. rpoB)
+You can do this through two ways: Repeating the above process (Step 3) but focusing on RpoB sequences only.
+1. For a housekeeping gene, you can just create a single database using all reviewed rpoB from pFAM database. RpoB is highly conserved and thus should
+2. I would suggest using DIAMOND BLAST as it can be more straightforward.
+
+<br>
+
+## Step 5. Plug the Abundance as annotation to your phylogenetic tree
 You can annotate your tree using both `R GGTree` or `TVBOT`
 
 {: .funfact }
 > I believe you can do this! Look up old class material or documentation of those programs to do this.
 >
 > At this specific point, I will not help you. :P
+
 
 # Tips and Tricks
 1. **Always Check the Help File**. Try `<program> --help` or `<program> -h`

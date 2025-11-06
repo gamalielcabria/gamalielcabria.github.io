@@ -1,6 +1,6 @@
 ---
 title: Lesson 1 - Multiple Sequence Alignment
-parent: Intro to GLGY699 Genomics and Bioinformatics
+parent: GLGY699 Intro to Genomics and Bioinformatics
 nav_order: 1
 ---
 

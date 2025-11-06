@@ -2,7 +2,6 @@
 title: Lesson 4 - Metagenome Shotgun Sequencing
 parent: GLGY699 - Intro to Genomics and Bioinformatics
 nav_order: 4
-has_children: true
 ---
 
 # Metagenome Sequencing and Bioinformatic analysis

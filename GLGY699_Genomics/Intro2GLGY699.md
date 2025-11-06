@@ -1,7 +1,6 @@
 ---
-title: Intro to GLGY699 Genomics and Bioinformatics
+title: GLGY699 Intro to Genomics and Bioinformatics
 nav_order: 5
-has_children: true
 permalink: /GLGY699_Genomics/
 ---
 

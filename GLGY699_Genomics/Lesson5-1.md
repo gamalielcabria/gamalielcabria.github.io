@@ -24,6 +24,6 @@ You must have a question on how can we use all these technique to verify a funct
 # The rest of GLGY 699
 For the rest of the semester, we would like you to process and analyze an actual metagenome. Here is a workflow that you can follow:
 
-[Workflow](./images/workflow-glgy699-5-2C.png)
+![Workflow](./images/workflow-glgy699-5-2C.png)
 
 More details can be found in [Lesson5-2](./Lesson5-2.md).

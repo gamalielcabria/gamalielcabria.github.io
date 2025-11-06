@@ -120,9 +120,8 @@ For taxonomic analyis, common methods are KRAKEN2, MetaPhlan and singleM among o
 <img src='./images/workflow-read-based.png' alt="Read-based Workflow" width="700">
 </p>
 
-## 
+# Bionformatic Programs
 
-# Exercise 3A:
 
 # Acknowledgement
 This tutorial uses screenshots from GGTree and iTOL wikis/websites. Any grievances, please let me know.

@@ -1,7 +1,8 @@
 ---
-title: Lesson 4 - Metagenome Shotgun Sequencing 
+title: Lesson 4 - Metagenome Shotgun Sequencing
 parent: GLGY699 - Intro to Genomics and Bioinformatics
 nav_order: 4
+has_children: true
 ---
 
 # Metagenome Sequencing and Bioinformatic analysis
@@ -121,10 +122,41 @@ For taxonomic analyis, common methods are KRAKEN2, MetaPhlan and singleM among o
 </p>
 
 # Bionformatic Programs
+Here are some common software for metagenomic analysis:
+1. **Demultiplexing**
 
+    - **bcl2fastq**: A widely used tool that converts binary sequencing files (BCL format) from Illumina sequencing runs into demultiplexed FASTQ files, facilitating downstream analysis.
 
-# Acknowledgement
-This tutorial uses screenshots from GGTree and iTOL wikis/websites. Any grievances, please let me know.
+2. **Quality Filtering and Control**
+
+    - **FastQC**: A tool designed for providing a visual overview of sequence quality, enabling users to identify potential issues with the data before analysis.
+    - **Trimmomatic**: A flexible read trimming tool that allows for aggressive filtering of low-quality sequences and removal of adapter sequences from FASTQ files.
+    - **Cutadapt**: A package for removing adapter sequences from high-throughput sequencing reads, thereby improving the quality of the dataset for downstream analysis.
+    - **PRINSEQ**: A tool for filtering and trimming sequences based on user-defined quality thresholds, providing a straightforward way to preprocess sequencing data.
+    - **Guppy**: A base calling software developed by Oxford Nanopore Technologies for processing raw signal data from nanopore sequencers, ensuring high-quality sequence outputs Cuscó et al. (2021).
+    - **Canu**: A tool that corrects raw long reads and generates high-quality long-read assemblies, particularly useful for error correction in nanopore and PacBio data (Koren et al., 2017).
+
+3. **Quality Visualization**
+
+    - **FastQC**: (Also mentioned in filtering and control) This tool exhibits quality score distributions, GC content, and other quality metrics in a user-friendly graphical format, essential for assessing dataset integrity.
+
+4. **Assembly**
+
+    - **MEGAHIT**: A fast assembler for large and complex metagenomic datasets, optimized for speed and memory efficiency while maintaining high assembly quality.
+    - **metaSPAdes**: A versatile metagenomic assembler that extends the capabilities of SPAdes to handle metagenome-specific complexity, producing high-quality assemblies even from noise-rich datasets
+    - **IDBA-UD**: An assembler that utilizes de Bruijn graphs to more effectively handle the assembly of diverse microbial communities, often yielding accurate genomic reconstructions.
+    - **MetaVelvet**: An extension of the Velvet assembler specifically designed for de novo metagenome assembly from short read sequencing data, optimizing its performance for complex datasets 
+    - **metaFLye**: An assembler specifically designed for long-read metagenomic sequencing, allowing assembly of high-quality metagenomes from complex datasets 
+    - **Canu**: A tool that corrects raw long reads and generates high-quality long-read assemblies, particularly useful for error correction in nanopore and PacBio data (Koren et al., 2017).
+
+5. **Binning**
+
+    - **MetaBAT 2**: A popular binning software that employs probabilistic methods based on read abundance and tetranucleotide frequencies to partition metagenomic assemblies into genomic bins  
+    - **MaxBin**: A tool designed for automated genomic binning from metagenomic datasets utilizing a probabilistic algorithm to enhance the classification of sequences into distinct genomes.
+    - **CONCOCT**: A binning tool that capitalizes on coverage information and clustering algorithms to group contigs based on their similarities, providing high-quality genomic bins.
+    - **nf-core/mag**: A community-driven pipeline that optimizes workflows for metagenomic assembly and binning to yield robust and reproducible results.
+    - **uBin**: A manual refining tool designed for recovering genomes from metagenomic data, particularly effective in identifying genomes present in low-complexity environments  
+    - **DAS Tool**: It integrates multiple binning algorithms to produce a high-quality, non-redundant set of MAGs data.
 
 # Citation
 [1] Brown, B., Watson, M., Minot, S., Rivera, M., & Franklin, R. (2017). Minion™ nanopore sequencing of environmental metagenomes: a synthetic approach. Gigascience, 6(3). https://doi.org/10.1093/gigascience/gix007

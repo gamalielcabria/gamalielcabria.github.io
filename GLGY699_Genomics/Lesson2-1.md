@@ -1,7 +1,8 @@
 ---
 title: Lesson 2 - Tree Building
-parent: Intro to GLGY699 Genomics and Bioinformatics
+parent: GLGY699 - Intro to Genomics and Bioinformatics
 nav_order: 2
+has_children: true
 ---
 
 # What are Phylogenetic Trees

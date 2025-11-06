@@ -1,6 +1,6 @@
 ---
-title: Lesson 3 - Hidden Markov Model and 
-parent: Intro to GLGY699 Genomics and Bioinformatics
+title: Lesson 3 - Hidden Markov Models
+parent: GLGY699 - Intro to Genomics and Bioinformatics
 nav_order: 3
 ---
 

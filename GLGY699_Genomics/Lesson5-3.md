@@ -57,7 +57,9 @@ The header names of your fasta or fastq file should be under the column of `quer
 
 For our purpose, we will just use awk to subset our `query` column. To do this, just run the following command:
 
-> ` awk -F'\t' '{print $1}' `
+```
+awk -F'\t' '{print $1}'
+```
 
 The command above means:
 - `-F`: to set the delimiter to divide the text into different columns. Here we used tabs `\t`.

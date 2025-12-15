@@ -203,6 +203,7 @@ You can annotate your tree using both `R GGTree` or `TVBOT`
 >
 > At this specific point, I will not help you. :P
 
+You can also just create a **heatmap** using R packages such as `pheatmap` or `ComplexHeatmap` and show it as comparison of abundance of your protein between your different samples (i.e. SRAs)
 
 # Tips and Tricks
 1. **Always Check the Help File**. Try `<program> --help` or `<program> -h`

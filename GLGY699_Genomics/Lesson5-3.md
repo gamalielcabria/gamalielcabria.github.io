@@ -82,3 +82,13 @@ In here:
 
 For the purpose of the previous sections, the `subset_reads.fastq` are reads that matched to you clade of interest. These reads will be used for **bias correction** through mapping the subset reads against the wider protein tree (all your clades) to see which one truly matched best in your clade of interest.
 
+# Tips for subsetting:
+- Match is on **ID before first whitespace** in FASTA headers
+- IDs are **case-sensitive** (normalize with sed 's/>//; s/ .*//')
+- Use `sort -u` on ID lists to avoid duplicate output
+- Subset **FASTQ keeps qualities** intact
+- **Index large FASTA** first (`samtools faidx`) for speed
+- If Best-hit only: sort by **bitscore**, then de-duplicate per query
+- `seqkit subseq` has **no regex support** → use `seqkit grep` for pattern matching
+- Pipe-friendly: works well in one-liners
+- **Avoid partial ID matches—must be exact**

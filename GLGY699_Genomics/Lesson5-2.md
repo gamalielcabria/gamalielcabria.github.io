@@ -36,23 +36,23 @@ This section requires several programs:
 
 ## **Step 1**. Downloading Metagenome Data
 
-1. Search the [www.ncbi.nlm.nih.gov](www.ncbi.nlm.nih.gov) a dataset you choose 
+1: Search the [www.ncbi.nlm.nih.gov](www.ncbi.nlm.nih.gov) a dataset you choose 
 - Select the **BioProject** category and search for specific dataset (i.e. `hot springs`, `volcano`, `alkaline springs`)
 - Check the `Metagenome` under **Data Types**
 - Choose **Three** **Bioproject** of your choosing
 
->{: .info }
->>Here is usual heirarchy of NCBI accession numbers:
->>
->>| Type                | Prefix         | Example        | Description                          |
->>| ------------------- | -------------- | -------------- | ------------------------------------ |
->>| **Study / Project** | PRJNAxxxx      | PRJNA384123    | Overall project submission           |
->>| **Experiment**      | SRXxxxxxxx     | SRX2403769     | Experimental setup (library, method) |
->>| **Sample**          | SRSxxxxxxx     | SRS2137452     | Biological sample metadata           |
->>| **Sequence Read Archive (SRA) / Run** | **SRRxxxxxxx** | **SRR6260347** | Specific sequencing run (FASTQ data) |
+{: .info }
+>Here is usual heirarchy of NCBI accession numbers:
+>
+>| Type                | Prefix         | Example        | Description                          |
+>| ------------------- | -------------- | -------------- | ------------------------------------ |
+>| **Study / Project** | PRJNAxxxx      | PRJNA384123    | Overall project submission           |
+>| **Experiment**      | SRXxxxxxxx     | SRX2403769     | Experimental setup (library, method) |
+>| **Sample**          | SRSxxxxxxx     | SRS2137452     | Biological sample metadata           |
+>| **Sequence Read Archive (SRA) / Run** | **SRRxxxxxxx** | **SRR6260347** | Specific sequencing run (FASTQ data) |
 
 
-2. Download the SRA Accession Numbers for each Bioproject you chose
+2: Download the SRA Accession Numbers for each Bioproject you chose
 - Click each **Bioproject** you choose
 - Copy the **SRA** accession numbers present
 - Create a text file and paste all the SRA in that file, let's say `accessions.txt`:
@@ -62,25 +62,25 @@ This section requires several programs:
     SRR6260349
     ```
 
-3. Use the `prefetch` command from SRAToolkit to download the list of accessions
+3: Use the `prefetch` command from SRAToolkit to download the list of accessions
 - Run `prefetch` using the option `--option-file` with the list of accession as its parameter. 
     - Additionally, you can specify where it can be save using `--output-directory` option
 
->{: .note }
->> - Prefetch saves the `*.sra` archive locally for later conversion
->> - You can resume even after an interrupted download by running the same file and same output directory
->> - You can limit space using `--max-size 100G` if files are too large
+{: .note }
+> - Prefetch saves the `*.sra` archive locally for later conversion
+> - You can resume even after an interrupted download by running the same file and same output directory
+> - You can limit space using `--max-size 100G` if files are too large
 
-4. Convert the downloaded `*.sra` files to fastq
+4: Convert the downloaded `*.sra` files to fastq
 - Run `fasterq-dump` to convert them
 
->{: .note }
->>- I suggest using options `--split-files` so if there are multiple entry in a `*.sra` they will be save in separate `fastq` file
->>- Other options to look out are `--threads` for number of cores to use and `-O` which is the output directory to save the fastq
->>- Remember the main **argument** for `fasterq-dump` is the sra file, so to run multiple ones automatedly, I suggest create a **BASH** `for-loop`
->>    - If you forgot what an **argument** is, check [Intro to Bionfo](../Intro2Bioinfo/Lesson1.md) and the program's `help` file
+{: .note }
+>- I suggest using options `--split-files` so if there are multiple entry in a `*.sra` they will be save in separate `fastq` file
+>- Other options to look out are `--threads` for number of cores to use and `-O` which is the output directory to save the fastq
+>- Remember the main **argument** for `fasterq-dump` is the sra file, so to run multiple ones automatedly, I suggest create a **BASH** `for-loop`
+>    - If you forgot what an **argument** is, check [Intro to Bionfo](../Intro2Bioinfo/Lesson1.md) and the program's `help` file
 
-5. Check your output if they have the correct sizes and matches the data from the database
+5: Check your output if they have the correct sizes and matches the data from the database
 
 ## **Step 2**. Clean the Sequencing Data
 

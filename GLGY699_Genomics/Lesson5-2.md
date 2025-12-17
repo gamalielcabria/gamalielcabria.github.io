@@ -141,7 +141,7 @@ Briefly, we will `BLASTx reads that matches NarrowProtDB` > `Aligned Reads is ru
         - This sets highest matches of protein sequences per reads to be the one only shown
     - An example:
         ```
-        diamond blastx --db NarrowProt.dmnd --query SRR0000_1.clean.fastq.gz \
+        diamond blastx --db NarrowProtDB --query SRR0000_1.clean.fastq.gz \
         --alfmt fastq --al NarrowProtDBaligned_SRR0000_1.clean.fastq \
         --max-target-seqs 1 --threads 30 --ultra-sensitive \
         --outfmt 6 --out NarrowProtDBaligned_SRR0000_1.out
